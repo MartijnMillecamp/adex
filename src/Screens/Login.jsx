@@ -94,7 +94,7 @@ export default class Login extends Component {
 				{
 					this.state.loggedIn
 						? (
-							<h1>login success </h1>
+							<Home/>
 						)
 						: (
 							<button className="btn btn-md btn-violet" onClick={this.loginBtnClick.bind(this)}>Log in with Spotify</button>

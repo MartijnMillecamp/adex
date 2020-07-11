@@ -1,12 +1,25 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+import Recommendations from '../Components/Recommendations'
 
 export default class Home extends Component {
 	
 	constructor(props){
-		super(props)
+		super(props);
+		this.state = {
+			recommendations: []
+		};
+		this.handlerRecommendations = this.handlerRecommendations.bind(this);
 		
 	}
+	
+	handlerRecommendations(recommendations) {
+		this.setState({
+			recommendations: recommendations
+		});
+	}
+	
+	
+	
 	
 	getAccessToken(){
 		const tokenObj = JSON.parse(localStorage.getItem('spotify_token'));
@@ -20,9 +33,15 @@ export default class Home extends Component {
 	}
 	
 	render() {
-		const token = this.getAccessToken();
+		
 		return (
-			<h1>{token}</h1>
+			<>
+			<Recommendations
+				updateRecommendations = {this.handlerRecommendations}
+				recommendations = {this.state.recommendations}
+				tokenObject = {this.props.tokenObject}
+			/>
+			</>
 		)
 	}
 	

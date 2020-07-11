@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import Home from './Home.jsx'
-import axios from 'axios'
+
 
 
 import {parseQueryString} from '../Utils/parseQueryString';
@@ -94,7 +94,7 @@ export default class Login extends Component {
 				{
 					this.state.loggedIn
 						? (
-							<Home/>
+							<Home tokenObject = {this.state.token} />
 						)
 						: (
 							<button className="btn btn-md btn-violet" onClick={this.loginBtnClick.bind(this)}>Log in with Spotify</button>

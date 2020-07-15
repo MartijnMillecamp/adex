@@ -1,12 +1,31 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import Recommendation from "./Recommendation";
+import styles from '../Styling/Recommendations.module.css';
+import classnames from 'classnames'
+
 
 export default class Recommendations extends Component {
+	constructor(props){
+		super(props)
+	}
 	
 	componentDidMount(){
 		this.getRecommendations()
 	}
+	
+	filterNoPreview(recommendations){
+		const newList = [];
+		const length = recommendations.length;
+		for (let i = 0; i < length; i++){
+			let rec = recommendations[i]
+			if (rec.preview_url !== null){
+				newList.push(rec)
+			}
+		}
+		return newList
+	}
+	
 	
 	
 	getRecommendations() {
@@ -26,24 +45,38 @@ export default class Recommendations extends Component {
 			.then(res => {
 					const resData = res.data;
 					const recommendations = resData['tracks'];
-					console.log(recommendations)
-					this.props.updateRecommendations(recommendations)
+					const recFiltered = this.filterNoPreview(recommendations)
+					this.props.updateRecommendations(recFiltered)
 				}
 			)
 	}
 	
+	
 	render(){
 		const list = this.props.recommendations;
+		// if (list.length > 0){
+		// 	console.log(list[0].id)
+		// }
+		const styleContainerRecommendations = classnames('container-columns', styles.container);
 		return(
-			<>
-			<h1>recommendations</h1>
-			<p>{list.length}</p>
-			<div>
-				{list.map(rec => (
-					<Recommendation key={rec.id} title={rec.name} artist={rec.artists[0]['name']}/>
-				))}
-			</div>
-			</>
+				<>
+					<div className={styleContainerRecommendations}>
+						{list.map(rec =>
+							(
+								<Recommendation
+									key={"rec_" + rec.id}
+									id={rec.id}
+									title={rec.name}
+									artist={rec.artists[0]['name']}
+									album={rec.album.images[1].url}
+									preview={rec.preview_url}
+									handlerPlaySong = {this.props.handlerPlaySong}
+									handlerPauseSong = {this.props.handlerPauseSong}
+								/>
+							)
+						)}
+					</div>
+				</>
 		)
 	}
 	

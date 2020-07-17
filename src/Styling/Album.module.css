@@ -11,3 +11,26 @@
 
     margin-top: 2px;
 }
+
+.playlist{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+.playRec{
+    width: 40px;
+    height: 40px;
+}
+
+.playPlaylist{
+    width: 20px;
+    height: 20px;
+}

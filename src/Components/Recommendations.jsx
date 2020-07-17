@@ -51,6 +51,10 @@ export default class Recommendations extends Component {
 			)
 	}
 	
+	checkPlaying(id){
+		return this.props.playing === id
+	}
+	
 	
 	render(){
 		const list = this.props.recommendations;
@@ -72,6 +76,8 @@ export default class Recommendations extends Component {
 									preview={rec.preview_url}
 									handlerPlaySong = {this.props.handlerPlaySong}
 									handlerPauseSong = {this.props.handlerPauseSong}
+									playing = {this.checkPlaying(rec.id)}
+									handlerPlaylist = {this.props.handlerPlaylist}
 								/>
 							)
 						)}

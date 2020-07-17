@@ -1,0 +1,9 @@
+.container{
+    width: 30%;
+    margin-left: 10px;
+    flex-wrap: nowrap;
+}
+
+.header{
+    color: whitesmoke;
+}

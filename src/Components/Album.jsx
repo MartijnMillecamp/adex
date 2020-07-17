@@ -19,18 +19,22 @@ export default class Album extends Component{
 		}
 	}
 	
+	static getDerivedStateFromProps(props, state) {
+		return {playing: props.playing };
+	}
+	
 	
 	handlePlay(){
-		this.props.handlerPlaySong(this.props.id, this.props.preview)
-		this.audio.play()
+		this.props.handlerPlaySong(this.props.id, this.audio)
+		this.audio.play();
 		this.setState({playing: true});
 		this.audio.addEventListener('ended', this.handlePause);
 	}
 	
 	handlePause(){
+		this.props.handlerPauseSong(this.props.id, this.audio)
 		this.setState({playing: false});
 		this.audio.pause()
-		this.props.handlerPauseSong(this.props.id, this.props.preview)
 	}
 	
 	
@@ -38,25 +42,30 @@ export default class Album extends Component{
 	render(){
 		const background = "url(" + this.props.album + ")";
 		const styleCoverDiv = classnames(styles.cover, 'container-rows');
+		const stylePlaylistDiv = classnames(styles.playlist, 'container-rows');
+		const styleIconRec = classnames(styles.playRec);
+		const styleIconPlaylist = classnames(styles.playPlaylist)
 		return(
 			<>
 			<div
 				style={{backgroundImage: background}}
-				className={styleCoverDiv}
+				className={this.props.playlist ? stylePlaylistDiv : styleCoverDiv }
 			>
 				{this.state.playing ?
 					(<img
 						src={pause}
 						alt="Pause"
-						data-tip="Pause preview"
 						onClick={this.handlePause}
+						className={this.props.playlist ? styleIconPlaylist : styleIconRec }
+					
 					/>)
 					
 					: (<img
 						src={play}
 						alt="Play"
-						data-tip="Play preview"
 						onClick={this.handlePlay}
+						className={this.props.playlist ? styleIconPlaylist : styleIconRec }
+					
 					/>)
 				}
 				

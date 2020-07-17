@@ -14,22 +14,21 @@ import ReactTooltip from "react-tooltip";
 export default class SongInfo extends Component{
 	
 	constructor(props){
-		super(props)
-		this.state = {
-			hoverTitle: false,
-			hoverArtist: false
+		super(props);
+		this.addToPlaylist = this.addToPlaylist.bind(this)
+	}
+	
+	
+	
+	addToPlaylist(){
+		const songData = {
+			id: this.props.id,
+			title: this.props.title,
+			artist: this.props.artist,
+			preview: this.props.preview,
+			album: this.props.album
 		};
-		
-		this.hoverArtist = this.hoverArtist.bind(this);
-		this.hoverTitle = this.hoverTitle.bind(this);
-	}
-	
-	hoverTitle() {
-		this.setState({hoverTitle: true, hoverArtist: false});
-	}
-	
-	hoverArtist(){
-		this.setState({hoverTitle: false, hoverArtist: true});
+		this.props.handlerPlaylist(songData)
 	}
 	
 	
@@ -69,14 +68,16 @@ export default class SongInfo extends Component{
 						src={addToPlaylist}
 						alt="Add"
 						data-tip="Add to playlist"
+						onClick={this.addToPlaylist}
+					
 					/>
 					<ReactTooltip/>
 					<img
 						src={question}
 						data-tip="Why is this song recommended"
 						alt="Why" />
+					<ReactTooltip/>
 				</div>
-				<ReactTooltip/>
 				
 			</div>
 			</>

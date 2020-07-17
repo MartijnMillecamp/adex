@@ -1,3 +1,8 @@
+.container{
+    justify-content: flex-start;
+    align-items: center;
+}
+
 
 .song{
     font-size: 12px;
@@ -12,7 +17,7 @@
 
 .title{
     font-weight: bolder;
-    color: #1B9E18;
+    color: green;
 }
 
 
@@ -29,6 +34,7 @@
     height: 50px;
     justify-content: space-between;
     align-items: center;
+    margin: 10px;
 }
 
 .text{
@@ -38,4 +44,23 @@
 
 .buttons{
     margin-right: 5px;
+    width: 20%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
 }
+
+
+.play{
+    width: 90%;
+    height: 40%;
+}
+
+.deleteSong{
+    width: 50%;
+}
+
+.icon{
+    width: 100%
+}
+

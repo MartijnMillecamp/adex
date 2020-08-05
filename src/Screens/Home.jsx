@@ -6,6 +6,7 @@ import {removeFromArrayOfObjects} from '../Utils/removeFromArray';
 import Playlist from "../Components/Playlist";
 import classnames from 'classnames'
 import '../Styling/global.css'
+import Sliders from "../Components/Sliders";
 
 
 export default class Home extends Component {
@@ -119,6 +120,13 @@ export default class Home extends Component {
 	}
 	
 	render() {
+		const colorDict ={
+			'danceability': '#9CE09F',
+			'energy': '#E25151',
+			'happiness': '#EDCD7C',
+			'popularity': '#7CD2ED'
+			
+		};
 		const styleContainerHome = classnames('container-columns');
 		return (
 			<div className={styleContainerHome}>
@@ -132,6 +140,10 @@ export default class Home extends Component {
 					handlerDeleteFromPlaylist = {this.handlerDeleteFromPlaylist}
 					handlerAddSource = {this.handlerAddSource}
 					handlerRemoveSource = {this.handlerRemoveSource}
+				/>
+				
+				<Sliders
+					colorDict = {colorDict}
 				/>
 				
 				<Recommendations

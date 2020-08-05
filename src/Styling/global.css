@@ -1,3 +1,10 @@
+:root {
+    --danceability: green;
+    --energy: red;
+    --happiness: yellow;
+    --popularity: blue
+}
+
 body{
     margin: 0px;
     background-color: #1e1e1e;
@@ -29,4 +36,8 @@ code {
 
 .no-margin{
     margin-top: 4px;
+}
+
+.MuiSlider-root.MuiSlider-vertical{
+    width: 10px
 }

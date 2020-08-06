@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import MusicSlider from './MusicSlider'
+import VerticalSlider from './VerticalSlider'
+
 
 
 import '../Styling/global.css'
@@ -20,25 +21,25 @@ export default class Sliders extends Component{
 		
 		return (
 			<div className={styleContainerSliders}>
-				<MusicSlider
+				<VerticalSlider
 					feature={"Danceability"}
 					color = {this.props.colorDict['danceability']}
 				/>
-				{/*<MusicSlider*/}
-					{/*feature={"Energy"}*/}
-					{/*color = {this.props.colorDict['energy']}*/}
+				<VerticalSlider
+					feature={"Energy"}
+					color = {this.props.colorDict['energy']}
 				
-				{/*/>*/}
-				{/*<MusicSlider*/}
-					{/*feature={"Happiness"}*/}
-					{/*color = {this.props.colorDict['happiness']}*/}
+				/>
+				<VerticalSlider
+					feature={"Happiness"}
+					color = {this.props.colorDict['happiness']}
 				
-				{/*/>*/}
-				{/*<MusicSlider*/}
-					{/*feature={"Popularity"}*/}
-					{/*color = {this.props.colorDict['popularity']}*/}
+				/>
+				<VerticalSlider
+					feature={"Popularity"}
+					color = {this.props.colorDict['popularity']}
 				
-				{/*/>*/}
+				/>
 			</div>
 		
 		)

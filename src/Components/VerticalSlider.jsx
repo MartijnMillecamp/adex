@@ -22,7 +22,9 @@ class VerticalSlider extends Component {
 	};
 	
 	onChange = values => {
+		const value = values[0]
 		this.setState({ values })
+		this.props.handlerSliderChange(value, this.props.feature)
 	};
 	
 	render() {

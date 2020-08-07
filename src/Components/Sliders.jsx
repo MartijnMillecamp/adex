@@ -23,28 +23,36 @@ export default class Sliders extends Component{
 		return (
 			<div className={styleContainerSliders}>
 				<VerticalSlider
-					feature={"Danceability"}
+					feature={"danceability"}
 					color = {this.props.colorDict['danceability']}
 					icon = {this.props.iconDict['danceability']}
+					value = {this.props.valueDict['danceability']}
+					handlerSliderChange = {this.props.handlerSliderChange}
 				/>
 				<VerticalSlider
-					feature={"Energy"}
+					feature={"energy"}
 					color = {this.props.colorDict['energy']}
 					icon = {this.props.iconDict['energy']}
+					value = {this.props.valueDict['energy']}
+					handlerSliderChange = {this.props.handlerSliderChange}
 				
 				
 				/>
 				<VerticalSlider
-					feature={"Happiness"}
+					feature={"happiness"}
 					color = {this.props.colorDict['happiness']}
 					icon = {this.props.iconDict['happiness']}
+					value = {this.props.valueDict['happiness']}
+					handlerSliderChange = {this.props.handlerSliderChange}
 				
 				
 				/>
 				<VerticalSlider
-					feature={"Popularity"}
+					feature={"popularity"}
 					color = {this.props.colorDict['popularity']}
 					icon = {this.props.iconDict['popularity']}
+					value = {this.props.valueDict['popularity']}
+					handlerSliderChange = {this.props.handlerSliderChange}
 				
 				
 				/>

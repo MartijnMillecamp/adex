@@ -25,6 +25,12 @@ export default class Home extends Component {
 			audioList: {},
 			playlist: [],
 			sources: [],
+			sliderValueDict: {
+				danceability: 50,
+				energy: 50,
+				happiness: 50,
+				popularity: 50
+			}
 		};
 		this.handlerRecommendations = this.handlerRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -32,8 +38,15 @@ export default class Home extends Component {
 		this.handlerAddToPlaylist = this.handlerAddToPlaylist.bind(this);
 		this.handlerDeleteFromPlaylist = this.handlerDeleteFromPlaylist.bind(this);
 		this.handlerAddSource = this.handlerAddSource.bind(this);
-		this.handlerRemoveSource = this.handlerRemoveSource.bind(this)
+		this.handlerRemoveSource = this.handlerRemoveSource.bind(this);
+		this.handlerSliderChange = this.handlerSliderChange.bind(this);
 		
+	}
+	
+	handlerSliderChange(value, slider){
+		const values = this.state.sliderValueDict
+		values[slider] = value;
+		this.setState({sliderValueDict: values})
 	}
 	
 	handlerAddSource(song){
@@ -160,6 +173,8 @@ export default class Home extends Component {
 				<Sliders
 					colorDict = {colorDict}
 					iconDict = {iconDict}
+					valueDict = {this.state.sliderValueDict}
+					handlerSliderChange = {this.handlerSliderChange}
 				/>
 				
 				<Recommendations
@@ -170,6 +185,7 @@ export default class Home extends Component {
 					tokenObject = {this.props.tokenObject}
 					playing = {this.state.playing}
 					handlerPlaylist = {this.handlerAddToPlaylist}
+					sliderValues = {this.state.sliderValueDict}
 				/>
 			</div>
 		)

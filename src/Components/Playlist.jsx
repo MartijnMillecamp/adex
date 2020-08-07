@@ -45,7 +45,6 @@ export default class Playlist extends Component{
 	}
 	
 	addToPlaylist(song){
-		console.log(song)
 		const songData = {
 			id: song.id,
 			title: song.name,

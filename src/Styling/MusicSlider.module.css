@@ -1,9 +1,0 @@
-.verticalSlider{
-    width: 10px;
-    transform: rotate(-90deg);
-}
-
-.MuiSlider-root.MuiSlider-vertical{
-    width: 10px !important;
-}
-

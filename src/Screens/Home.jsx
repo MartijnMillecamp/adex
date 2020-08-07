@@ -8,6 +8,12 @@ import classnames from 'classnames'
 import '../Styling/global.css'
 import Sliders from "../Components/Sliders";
 
+//import images
+import danceability from '../Images/danceability.svg'
+import energy from '../Images/energy.svg'
+import happiness from '../Images/happiness.svg'
+import popularity from '../Images/popularity.svg'
+
 
 export default class Home extends Component {
 	
@@ -127,6 +133,13 @@ export default class Home extends Component {
 			'popularity': '#7CD2ED'
 			
 		};
+		const iconDict ={
+			'danceability': danceability,
+			'energy': energy,
+			'happiness': happiness,
+			'popularity': popularity
+			
+		};
 		const styleContainerHome = classnames('container-columns');
 		return (
 			<div className={styleContainerHome}>
@@ -146,6 +159,7 @@ export default class Home extends Component {
 				
 				<Sliders
 					colorDict = {colorDict}
+					iconDict = {iconDict}
 				/>
 				
 				<Recommendations

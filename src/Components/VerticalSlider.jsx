@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Slider, { Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
 import { SliderRail, Handle, Track, Tick } from './CompoundSliderUtils'
+import styles from '../Styling/VerticalSlider.module.css'
+import classnames from 'classnames'
+
+import '../Styling/global.css'
 
 
 
@@ -26,28 +30,27 @@ class VerticalSlider extends Component {
 			state: { values, update },
 		} = this;
 		
-		const containerStyle = {
-			height: '100%',
-			width: '25%'
-		};
-		
-		const sliderStyle = {
+		const styleContainerMusicSlider = classnames('container-rows', styles.container);
+		const styleSliderIcon = classnames(styles.icon)
+		const styleSlider = {
 			position: 'relative',
 			height: '100%',
 			touchAction: 'none',
 		};
 		
-		
-		
 		return (
-			<div style={containerStyle}>
+			<div className={styleContainerMusicSlider}>
+				<img
+					src={this.props.icon}
+					className = {styleSliderIcon}
+				/>
 				<Slider
 					vertical
 					reversed
 					mode={2}
 					step={1}
 					domain={domain}
-					rootStyle={sliderStyle}
+					rootStyle={styleSlider}
 					onUpdate={this.onUpdate}
 					onChange={this.onChange}
 					values={values}

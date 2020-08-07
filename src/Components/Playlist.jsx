@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import PlaylistSong from './PlaylistSong'
 import styles from '../Styling/Playlist.module.css';
+import '../Styling/global.css'
+
 import classnames from 'classnames'
 
 

@@ -138,8 +138,10 @@ export default class Home extends Component {
 					tokenObject = {this.props.tokenObject}
 					playing = {this.state.playing}
 					handlerDeleteFromPlaylist = {this.handlerDeleteFromPlaylist}
+					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					handlerAddSource = {this.handlerAddSource}
 					handlerRemoveSource = {this.handlerRemoveSource}
+					
 				/>
 				
 				<Sliders

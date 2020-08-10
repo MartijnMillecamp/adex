@@ -3,11 +3,16 @@ import Recommendations from '../Components/Recommendations'
 import 'fontsource-roboto';
 import {addToDict} from '../Utils/addToDict';
 import {removeFromArrayOfObjects} from '../Utils/removeFromArray';
+import {search} from '../Utils/Spotify';
+
 import Playlist from "../Components/Playlist";
 import classnames from 'classnames'
 import '../Styling/global.css'
 import Sliders from "../Components/Sliders";
 import axios from 'axios'
+import SearchField from "../Components/SearchField"
+import SearchResults from "../Components/SearchResults"
+
 
 
 //import images
@@ -32,7 +37,9 @@ export default class Home extends Component {
 				energy: 0.50,
 				happiness: 0.50,
 				popularity: 0.50
-			}
+			},
+			search : false,
+			searchResults: []
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -42,6 +49,8 @@ export default class Home extends Component {
 		this.handlerAddSource = this.handlerAddSource.bind(this);
 		this.handlerRemoveSource = this.handlerRemoveSource.bind(this);
 		this.handlerSliderChange = this.handlerSliderChange.bind(this);
+		this.handlerSearchClick = this.handlerSearchClick.bind(this);
+		this.handlerSearch = this.handlerSearch.bind(this)
 		
 	}
 	
@@ -132,11 +141,27 @@ export default class Home extends Component {
 		});
 	}
 	
-
+	handlerSearchClick(){
+		this.setState({
+			search: true
+		})
+	}
+	
+	async handlerSearch(query){
+		const accessToken = this.props.tokenObject['access_token'];
+		const searchResults = await search(query, accessToken);
+		console.log(searchResults)
+		this.setState({
+			searchResults : searchResults
+		})
+	}
 
 	
 	
 	async getRecommendations() {
+		//TODO only update recommendations creating rec dict?
+		//TODO decide how to show all recommendations (tabs, list, ...)
+		//TODO decide if recommendations of different songs are mixed or not
 		function filterNoPreview(recommendations){
 			const newList = [];
 			const length = recommendations.length;
@@ -206,6 +231,7 @@ export default class Home extends Component {
 			
 		};
 		const styleContainerHome = classnames('container-columns');
+		const styleContainerCol2 = classnames('container-rows')
 		return (
 			<div className={styleContainerHome}>
 			
@@ -221,12 +247,31 @@ export default class Home extends Component {
 					handlerRemoveSource = {this.handlerRemoveSource}
 					
 				/>
+				<div
+					className = {styleContainerCol2}
+				>
+					<SearchField
+						handlerSearchClick = {this.handlerSearchClick}
+						active = {this.state.search}
+						handlerSearch = {this.handlerSearch}
+					/>
+					{this.state.search ?
+						<SearchResults
+							handlerPlaySong = {this.handlerPlaySong}
+							handlerPauseSong = {this.handlerPauseSong}
+							playing = {this.state.playing}
+							handlerAddToPlaylist = {this.handlerAddToPlaylist}
+							results={this.state.searchResults}
+						/>
+						:
+						<Sliders
+							colorDict={colorDict}
+							iconDict={iconDict}
+							handlerSliderChange={this.handlerSliderChange}
+						/>
+					}
+				</div>
 				
-				<Sliders
-					colorDict = {colorDict}
-					iconDict = {iconDict}
-					handlerSliderChange = {this.handlerSliderChange}
-				/>
 				
 				<Recommendations
 					handlerPlaySong = {this.handlerPlaySong}

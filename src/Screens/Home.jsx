@@ -7,6 +7,8 @@ import Playlist from "../Components/Playlist";
 import classnames from 'classnames'
 import '../Styling/global.css'
 import Sliders from "../Components/Sliders";
+import axios from 'axios'
+
 
 //import images
 import danceability from '../Images/danceability.svg'
@@ -26,13 +28,13 @@ export default class Home extends Component {
 			playlist: [],
 			sources: [],
 			sliderValueDict: {
-				danceability: 50,
-				energy: 50,
-				happiness: 50,
-				popularity: 50
+				danceability: 0.50,
+				energy: 0.50,
+				happiness: 0.50,
+				popularity: 0.50
 			}
 		};
-		this.handlerRecommendations = this.handlerRecommendations.bind(this);
+		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
 		this.handlerPauseSong = this.handlerPauseSong.bind(this);
 		this.handlerAddToPlaylist = this.handlerAddToPlaylist.bind(this);
@@ -43,40 +45,44 @@ export default class Home extends Component {
 		
 	}
 	
+	componentDidMount(){
+		this.getRecommendations()
+	}
+	
 	handlerSliderChange(value, slider){
-		const values = this.state.sliderValueDict
-		values[slider] = value;
+		const values = this.state.sliderValueDict;
+		values[slider] = value / 100;
 		this.setState({sliderValueDict: values})
+		this.getRecommendations()
 	}
 	
 	handlerAddSource(song){
 		this.setState({
 			sources: [...this.state.sources, song]
 		});
-		console.log(this.state.sources)
+		this.getRecommendations()
 	}
 	
 	handlerRemoveSource(song){
 		const sources = removeFromArrayOfObjects(this.state.sources, 'id', song);
-		console.log(sources, song.id)
 		this.setState({
 			sources: sources
 		});
-		console.log(this.state.sources)
+		this.getRecommendations()
 	}
 	
-	handlerRecommendations(recommendations) {
+	updateRecommendations(recommendations) {
 		this.setState({
 			recommendations: recommendations
 		});
 	}
 	
 	handlerAddToPlaylist(song){
-		const recommendations = removeFromArrayOfObjects(this.state.recommendations, 'id', song)
+		const recommendations = removeFromArrayOfObjects(this.state.recommendations, 'id', song);
 		
 		this.setState({
 			playlist: [...this.state.playlist, song],
-			recommendations: recommendations
+			recommendations: recommendations,
 		})
 		//stop playing if added to playlist
 		if (this.state.playing === song.id){
@@ -85,6 +91,7 @@ export default class Home extends Component {
 				playing: null
 			})
 		}
+		this.handlerAddSource(song)
 	}
 	
 	handlerDeleteFromPlaylist(song){
@@ -110,8 +117,6 @@ export default class Home extends Component {
 		this.setState({
 			audioList: newAudioList
 		})
-	//	TODO delete list of audio when updating recommendations
-
 	}
 	
 	stopPlayingSong(){
@@ -127,15 +132,62 @@ export default class Home extends Component {
 		});
 	}
 	
-	getAccessToken(){
-		const tokenObj = JSON.parse(localStorage.getItem('spotify_token'));
-		if(tokenObj
-			&& tokenObj.access_token
-			&& (new Date() < new Date(tokenObj.expires))
-		) {
-			return tokenObj.access_token;
+
+
+	
+	
+	async getRecommendations() {
+		function filterNoPreview(recommendations){
+			const newList = [];
+			const length = recommendations.length;
+			for (let i = 0; i < length; i++){
+				let rec = recommendations[i]
+				if (rec.preview_url !== null){
+					newList.push(rec)
+				}
+			}
+			return newList
 		}
-		else return null;
+		
+		//stop audio from playing when update
+		this.stopPlayingSong()
+		this.setState({
+			playing: null
+		})
+		
+		
+		const seeds = this.state.sources;
+		let recommendations = [];
+		for (let i=0; i < seeds.length; i++){
+			const recommendationsSeed = await this.getRecommendation(seeds[i]);
+			recommendations.push(recommendationsSeed)
+		}
+		const recommendationsFlat = recommendations.flat(1)
+		const recFiltered = filterNoPreview(recommendationsFlat);
+		this.updateRecommendations(recFiltered)
+	}
+	
+	async getRecommendation(seedSong){
+		const accessToken = this.props.tokenObject['access_token'];
+		const recommendationLink = [
+			"https://api.spotify.com/v1/recommendations",
+			`?authorization=${accessToken}`,
+			`&seed_tracks=${seedSong.id}`,
+			`&min_danceability=${this.state.sliderValueDict['danceability'] - 0.05}`,
+			`&max_danceability=${this.state.sliderValueDict['danceability'] + 0.05}`,
+			// `&min_energy=${this.state.sliderValueDict['energy'] - 0.05}`,
+			// `&max_energy=${this.state.sliderValueDict['energy'] + 0.05}`,
+			// `&min_valence=${this.state.sliderValueDict['happiness'] - 0.05}`,
+			// `&max_valence=${this.state.sliderValueDict['happiness'] + 0.05}`,
+			// `&min_popularity=${this.state.sliderValueDict['popularity'] - 0.05}`,
+			// `&max_popularity=${this.state.sliderValueDict['popularity'] + 0.05}`,
+		].join('');
+		
+		const AuthStr = 'Bearer ' + accessToken;
+		const res = await axios.get(recommendationLink, { 'headers': { 'Authorization': AuthStr } })
+		const resData = res.data;
+		return resData['tracks'];
+		
 	}
 	
 	render() {
@@ -173,12 +225,10 @@ export default class Home extends Component {
 				<Sliders
 					colorDict = {colorDict}
 					iconDict = {iconDict}
-					valueDict = {this.state.sliderValueDict}
 					handlerSliderChange = {this.handlerSliderChange}
 				/>
 				
 				<Recommendations
-					updateRecommendations = {this.handlerRecommendations}
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
 					recommendations = {this.state.recommendations}

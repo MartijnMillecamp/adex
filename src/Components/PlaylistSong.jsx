@@ -28,10 +28,6 @@ export default class PlaylistSong extends Component{
 		};
 	}
 	
-	componentDidMount(){
-		this.handlerAddSource()
-	}
-	
 	deleteFromPlaylist(){
 		this.props.handlerDeleteFromPlaylist({id: this.props.id})
 	}
@@ -42,7 +38,13 @@ export default class PlaylistSong extends Component{
 		this.setState({
 			source: true
 		});
-		const songData = {id: this.props.id}
+		const songData = {
+			id: this.props.id,
+			title: this.props.title,
+			artist: this.props.artist,
+			preview_url: this.props.preview_url,
+			album: this.props.album
+		};
 		this.props.handlerAddSource(songData)
 	}
 	

@@ -49,7 +49,7 @@ export default class Playlist extends Component{
 			id: song.id,
 			title: song.name,
 			artist: song.artists[0]['name'],
-			preview: song.preview_url,
+			preview_url: song.preview_url,
 			album: song.album.images[0]['url']
 		};
 		this.props.handlerAddToPlaylist(songData)
@@ -74,7 +74,7 @@ export default class Playlist extends Component{
 								id={song.id}
 								title={song.title}
 								artist={song.artist}
-								preview={song.preview}
+								preview_url={song.preview_url}
 								album={song.album}
 								handlerPlaySong = {this.props.handlerPlaySong}
 								handlerPauseSong = {this.props.handlerPauseSong}

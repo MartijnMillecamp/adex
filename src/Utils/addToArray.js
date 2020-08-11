@@ -9,3 +9,22 @@ export function addToArray(array, element) {
 	}
 
 }
+
+export function addToArrayObjects(array, object) {
+	let add = true;
+	const idNew = object['id'];
+	for (let i=0; i < array.length ; i++){
+		let id = array[i]['id']
+		if (id === idNew){
+			add = false
+		}
+	}
+	if (add){
+		const newArray = [...array, object];
+		console.log(newArray)
+		return newArray
+	}
+	else{
+		return array
+	}
+}

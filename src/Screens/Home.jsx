@@ -3,6 +3,8 @@ import Recommendations from '../Components/Recommendations'
 import 'fontsource-roboto';
 import {addToDict} from '../Utils/addToDict';
 import {removeFromArrayOfObjects} from '../Utils/removeFromArray';
+import {addToArrayObjects} from '../Utils/addToArray';
+
 import {search} from '../Utils/Spotify';
 
 import Playlist from "../Components/Playlist";
@@ -91,9 +93,11 @@ export default class Home extends Component {
 	
 	handlerAddToPlaylist(song){
 		const recommendations = removeFromArrayOfObjects(this.state.recommendations, 'id', song);
-		
+		//use utils function to check already in list
+		const newPlaylist = addToArrayObjects(this.state.playlist, song);
+		console.log(newPlaylist)
 		this.setState({
-			playlist: [...this.state.playlist, song],
+			playlist: newPlaylist,
 			recommendations: recommendations,
 		})
 		//stop playing if added to playlist

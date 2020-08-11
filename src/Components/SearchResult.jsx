@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 
-import styles from '../Styling/PlaylistSong.module.css';
+import styles from '../Styling/SearchResult.module.css';
 import '../Styling/global.css'
 import classnames from 'classnames'
+import Album from './Album'
 import ReactTooltip from "react-tooltip";
 
-import deleteFromPlaylist from '../Images/delete.svg'
-import source from '../Images/source.svg'
-import sourceGrey from '../Images/source-grey.svg'
 
 
 export default class SearchResult extends Component{
@@ -19,10 +17,23 @@ export default class SearchResult extends Component{
 	
 	
 	render(){
+		const styleContainer = classnames('container-columns', styles.container)
 		
 		return(
-			<div>
-				{this.props.id}
+			<div
+				className={styleContainer}
+			>
+				<Album
+					key={"search_album_" + this.props.id}
+					id={this.props.id}
+					album={this.props.album}
+					preview={this.props.preview}
+					handlerPlaySong = {this.props.handlerPlaySong}
+					handlerPauseSong = {this.props.handlerPauseSong}
+					playing = {this.props.playing}
+					small = {true}
+					playable = {false}
+				/>
 			</div>
 		)
 		

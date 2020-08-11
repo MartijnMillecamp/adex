@@ -75,11 +75,13 @@ export default class PlaylistSong extends Component{
 					key={"album_" + this.props.id}
 					id={this.props.id}
 					album={this.props.album}
-					preview={this.props.preview}
+					preview_url={this.props.preview_url}
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}
-					playlist = {true}
+					small = {true}
+					playable = {true}
+				
 				/>
 				<div className={styleBackground}>
 					<div className={styleText}>

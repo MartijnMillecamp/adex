@@ -13,7 +13,7 @@ export default class Album extends Component{
 		super(props);
 		this.handlePlay = this.handlePlay.bind(this);
 		this.handlePause = this.handlePause.bind(this);
-		this.audio = new Audio(this.props.preview);
+		this.audio = new Audio(this.props.preview_url);
 		this.state = {
 			playing: false
 		}
@@ -49,14 +49,14 @@ export default class Album extends Component{
 			<>
 			<div
 				style={{backgroundImage: background}}
-				className={this.props.playlist ? stylePlaylistDiv : styleCoverDiv }
+				className={this.props.small ? stylePlaylistDiv : styleCoverDiv }
 			>
 				{this.state.playing ?
 					(<img
 						src={pause}
 						alt="Pause"
 						onClick={this.handlePause}
-						className={this.props.playlist ? styleIconPlaylist : styleIconRec }
+						className={this.props.small ? styleIconPlaylist : styleIconRec }
 					
 					/>)
 					
@@ -64,7 +64,7 @@ export default class Album extends Component{
 						src={play}
 						alt="Play"
 						onClick={this.handlePlay}
-						className={this.props.playlist ? styleIconPlaylist : styleIconRec }
+						className={this.props.small ? styleIconPlaylist : styleIconRec }
 					
 					/>)
 				}

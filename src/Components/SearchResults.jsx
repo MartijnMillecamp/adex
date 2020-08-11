@@ -38,10 +38,13 @@ export default class SearchResults extends Component{
 							<SearchResult
 								key={"search_" + song.id}
 								id={song.id}
-								title={song.title}
-								artist={song.artist}
-								album={song.album}
+								title={song.name}
+								artist={song.artists[0]['name']}
+								album={song.album.images[0]['url']}
 								handlerAddToPlaylist={this.props.addToPlaylist}
+								handlerPlaySong = {this.props.handlerPlaySong}
+								handlerPauseSong = {this.props.handlerPauseSong}
+								playing = {this.props.playing}
 							/>
 						)
 					)}

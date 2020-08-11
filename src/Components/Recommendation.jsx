@@ -24,7 +24,7 @@ export default class Recommendation extends Component{
 					artist={this.props.artist}
 					handlerPlaylist={this.props.handlerPlaylist}
 					album={this.props.album}
-					preview={this.props.preview}
+					preview_url={this.props.preview_url}
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}
@@ -37,7 +37,9 @@ export default class Recommendation extends Component{
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}
-					playlist = {false}
+					small = {false}
+					playable = {true}
+				
 				/>
 			</div>
 			</>

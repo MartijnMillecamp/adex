@@ -2,7 +2,8 @@
     --danceability: green;
     --energy: red;
     --happiness: yellow;
-    --popularity: blue
+    --popularity: blue;
+    --backgroundcolor: #BDE1C5;
 }
 
 body{
@@ -38,6 +39,3 @@ code {
     margin-top: 4px;
 }
 
-.MuiSlider-root.MuiSlider-vertical{
-    width: 10px
-}

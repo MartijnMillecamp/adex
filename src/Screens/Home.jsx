@@ -8,6 +8,8 @@ import {search} from '../Utils/Spotify';
 import Playlist from "../Components/Playlist";
 import classnames from 'classnames'
 import '../Styling/global.css'
+import styles from '../Styling/Home.module.css';
+
 import Sliders from "../Components/Sliders";
 import axios from 'axios'
 import SearchField from "../Components/SearchField"
@@ -39,7 +41,7 @@ export default class Home extends Component {
 				popularity: 0.50
 			},
 			search : false,
-			searchResults: []
+			searchResults: [],
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -50,7 +52,8 @@ export default class Home extends Component {
 		this.handlerRemoveSource = this.handlerRemoveSource.bind(this);
 		this.handlerSliderChange = this.handlerSliderChange.bind(this);
 		this.handlerSearchClick = this.handlerSearchClick.bind(this);
-		this.handlerSearch = this.handlerSearch.bind(this)
+		this.handlerSearch = this.handlerSearch.bind(this);
+		this.handlerStopSearch = this.handlerStopSearch.bind(this);
 		
 	}
 	
@@ -150,10 +153,16 @@ export default class Home extends Component {
 	async handlerSearch(query){
 		const accessToken = this.props.tokenObject['access_token'];
 		const searchResults = await search(query, accessToken);
-		console.log(searchResults)
 		this.setState({
 			searchResults : searchResults
 		})
+	}
+	
+	handlerStopSearch(){
+		this.setState({
+			search: false,
+			searchResults: [],
+		});
 	}
 
 	
@@ -178,7 +187,7 @@ export default class Home extends Component {
 		this.stopPlayingSong()
 		this.setState({
 			playing: null
-		})
+		});
 		
 		
 		const seeds = this.state.sources;
@@ -231,7 +240,7 @@ export default class Home extends Component {
 			
 		};
 		const styleContainerHome = classnames('container-columns');
-		const styleContainerCol2 = classnames('container-rows')
+		const styleContainerCol2 = classnames('container-rows', styles.column2);
 		return (
 			<div className={styleContainerHome}>
 			
@@ -262,6 +271,7 @@ export default class Home extends Component {
 							playing = {this.state.playing}
 							handlerAddToPlaylist = {this.handlerAddToPlaylist}
 							results={this.state.searchResults}
+							handlerStopSearch={this.handlerStopSearch}
 						/>
 						:
 						<Sliders
@@ -279,7 +289,7 @@ export default class Home extends Component {
 					recommendations = {this.state.recommendations}
 					tokenObject = {this.props.tokenObject}
 					playing = {this.state.playing}
-					handlerPlaylist = {this.handlerAddToPlaylist}
+					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					sliderValues = {this.state.sliderValueDict}
 				/>
 			</div>

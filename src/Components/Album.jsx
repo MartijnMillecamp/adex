@@ -9,18 +9,26 @@ import classnames from 'classnames'
 import '../Styling/global.css'
 
 export default class Album extends Component{
+	//todo search results that are not playable
 	constructor(props){
 		super(props);
 		this.handlePlay = this.handlePlay.bind(this);
 		this.handlePause = this.handlePause.bind(this);
+		this.renderButton = this.renderButton.bind(this)
 		this.audio = new Audio(this.props.preview_url);
+		this.playable = this.checkPlayable();
 		this.state = {
 			playing: false
 		}
 	}
 	
 	static getDerivedStateFromProps(props, state) {
+		//important to change icon
 		return {playing: props.playing };
+	}
+	
+	checkPlayable(){
+		return this.props.preview_url !== null
 	}
 	
 	
@@ -37,6 +45,42 @@ export default class Album extends Component{
 		this.audio.pause()
 	}
 	
+	renderPlay(){
+		const styleIconRec = classnames(styles.playRec);
+		const styleIconPlaylist = classnames(styles.playPlaylist)
+		return(
+			<img
+				src={play}
+				alt="Play"
+				onClick={this.handlePlay}
+				className={this.props.small ? styleIconPlaylist : styleIconRec }
+			
+			/>
+		)
+	}
+	
+	renderPause(){
+		const styleIconRec = classnames(styles.playRec);
+		const styleIconPlaylist = classnames(styles.playPlaylist)
+		return(
+			<img
+				src={pause}
+				alt="Pause"
+				onClick={this.handlePause}
+				className={this.props.small ? styleIconPlaylist : styleIconRec }
+			/>
+		)
+	}
+	
+	renderButton(){
+		if (this.state.playing){
+			return this.renderPause()
+		}
+		else{
+			return this.renderPlay()
+		}
+	}
+	
 	
 	
 	render(){
@@ -51,22 +95,10 @@ export default class Album extends Component{
 				style={{backgroundImage: background}}
 				className={this.props.small ? stylePlaylistDiv : styleCoverDiv }
 			>
-				{this.state.playing ?
-					(<img
-						src={pause}
-						alt="Pause"
-						onClick={this.handlePause}
-						className={this.props.small ? styleIconPlaylist : styleIconRec }
-					
-					/>)
-					
-					: (<img
-						src={play}
-						alt="Play"
-						onClick={this.handlePlay}
-						className={this.props.small ? styleIconPlaylist : styleIconRec }
-					
-					/>)
+				{this.playable ?
+					(this.renderButton())
+					:
+					(null)
 				}
 				
 			</div>

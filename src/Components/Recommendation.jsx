@@ -22,18 +22,14 @@ export default class Recommendation extends Component{
 					id={this.props.id}
 					title={this.props.title}
 					artist={this.props.artist}
-					handlerPlaylist={this.props.handlerPlaylist}
-					album={this.props.album}
-					preview_url={this.props.preview_url}
-					handlerPlaySong = {this.props.handlerPlaySong}
-					handlerPauseSong = {this.props.handlerPauseSong}
-					playing = {this.props.playing}
+					handlerAddToPlaylist={this.props.handlerAddToPlaylist}
+					search={false}
 				/>
 				<Album
 					key={"album_" + this.props.id}
 					id={this.props.id}
 					album={this.props.album}
-					preview={this.props.preview}
+					preview_url={this.props.preview_url}
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}

@@ -27,11 +27,11 @@ export default class Recommendations extends Component {
 									title={rec.name}
 									artist={rec.artists[0]['name']}
 									album={rec.album.images[1].url}
-									preview={rec.preview_url}
+									preview_url={rec.preview_url}
 									handlerPlaySong = {this.props.handlerPlaySong}
 									handlerPauseSong = {this.props.handlerPauseSong}
 									playing = {this.checkPlaying(rec.id)}
-									handlerPlaylist = {this.props.handlerPlaylist}
+									handlerAddToPlaylist = {this.props.handlerAddToPlaylist}
 								/>
 							)
 						)}

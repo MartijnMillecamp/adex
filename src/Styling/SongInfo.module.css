@@ -22,13 +22,30 @@
     color: black;
 }
 
+.artistSearch{
+    font-style: italic;
+    color: #b5ffbf
+}
+
 .background{
-    background-color: #BDE1C5;
+    background-color: var(--backgroundcolor);
     border-radius: 5px;
     width: 150px;
     height: 50px;
     justify-content: space-between;
     align-items: center;
+}
+
+.backgroundSearch{
+    background-color: #000000;
+    border-radius: 5px;
+    width: 80%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    border: solid;
+    border-width: 1px;
+    border-color: var(--backgroundcolor);
 }
 
 .text{
@@ -38,4 +55,9 @@
 
 .buttons{
     margin-right: 5px;
+}
+
+.icon{
+    width: 20px;
+    height: 20px;
 }

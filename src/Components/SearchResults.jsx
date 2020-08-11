@@ -22,6 +22,10 @@ export default class SearchResults extends Component{
 		super(props)
 	}
 	
+	checkPlaying(id){
+		return this.props.playing === id
+	}
+	
 	
 	render(){
 		const styleContainer = classnames('container-columns', styles.containerSearch);
@@ -41,10 +45,12 @@ export default class SearchResults extends Component{
 								title={song.name}
 								artist={song.artists[0]['name']}
 								album={song.album.images[0]['url']}
-								handlerAddToPlaylist={this.props.addToPlaylist}
+								preview_url={song.preview_url}
+								handlerAddToPlaylist={this.props.handlerAddToPlaylist}
 								handlerPlaySong = {this.props.handlerPlaySong}
 								handlerPauseSong = {this.props.handlerPauseSong}
-								playing = {this.props.playing}
+								handlerStopSearch ={this.props.handlerStopSearch}
+								playing = {this.checkPlaying(song.id)}
 							/>
 						)
 					)}

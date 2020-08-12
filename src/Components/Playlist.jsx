@@ -33,7 +33,7 @@ export default class Playlist extends Component{
 					const topSongs = resData.items;
 					let added = 0;
 					let index = 0;
-					while (added < 3 || index === 20){
+					while (added < 1 || index === 20){
 						if (topSongs[index]['preview_url'] !== null){
 							this.addToPlaylist(topSongs[index]);
 							added += 1

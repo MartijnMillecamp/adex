@@ -47,7 +47,6 @@ export default class Recommendations extends Component {
 	render(){
 		const list = this.props.recommendations;
 		const styleContainerRecommendations = classnames('container-columns', styles.container);
-		console.log(list)
 		const empty = list.length === 0;
 		return(
 				<>

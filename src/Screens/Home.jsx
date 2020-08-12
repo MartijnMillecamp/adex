@@ -7,7 +7,9 @@ import {addToArrayObjects} from '../Utils/addToArray';
 
 import {search} from '../Utils/Spotify';
 import {getRecommendation} from '../Utils/Spotify';
-
+import {orderList} from "../Utils/orderList";
+import {filterNoPreview} from "../Utils/filterPreview";
+import {filterPlaylist} from "../Utils/filterPreview";
 
 import Playlist from "../Components/Playlist";
 import classnames from 'classnames'
@@ -171,20 +173,11 @@ export default class Home extends Component {
 	
 	
 	async getRecommendations() {
-		//TODO only update recommendations creating rec dict?
 		//TODO decide how to show all recommendations (tabs, list, ...)
-		//TODO decide if recommendations of different songs are mixed or not
-		function filterNoPreview(recommendations){
-			const newList = [];
-			const length = recommendations.length;
-			for (let i = 0; i < length; i++){
-				let rec = recommendations[i]
-				if (rec.preview_url !== null){
-					newList.push(rec)
-				}
-			}
-			return newList
-		}
+		//TODO filter recommendations that are in playlist
+		//shows to user that recommendations are being updated
+		this.updateRecommendations([]);
+		
 		
 		//stop audio from playing when update
 		this.stopPlayingSong()
@@ -195,16 +188,24 @@ export default class Home extends Component {
 		
 		const seeds = this.state.sources;
 		let recommendations = [];
+		let finishedSeeds = 0;
 		const accessToken = this.props.tokenObject['access_token'];
 		for (let i=0; i < seeds.length; i++){
 			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken);
 			for (let j = 0; j < recommendationsSeed.length; j++){
 				recommendations = addToArrayObjects(recommendations, recommendationsSeed[j])
 			}
+			finishedSeeds += 1
 		}
-		const recommendationsFlat = recommendations.flat(1)
-		const recFiltered = filterNoPreview(recommendationsFlat);
-		this.updateRecommendations(recFiltered)
+		if (finishedSeeds === seeds.length){
+			const recommendationsFlat = recommendations.flat(1);
+			const recFilteredPreview = filterNoPreview(recommendationsFlat);
+			const recFilteredPlaylist = filterPlaylist(recFilteredPreview, this.state.playlist)
+			const recOrdered = orderList(recFilteredPlaylist, this.state.sliderValueDict);
+			
+			this.updateRecommendations(recOrdered)
+		}
+		
 	}
 	
 	
@@ -239,7 +240,6 @@ export default class Home extends Component {
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					handlerAddSource = {this.handlerAddSource}
 					handlerRemoveSource = {this.handlerRemoveSource}
-					
 				/>
 				<div
 					className = {styleContainerCol2}

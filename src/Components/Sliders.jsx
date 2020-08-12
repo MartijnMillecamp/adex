@@ -11,14 +11,10 @@ import classnames from 'classnames'
 
 
 export default class Sliders extends Component{
-
 	
 	render(){
-		
 		const styleContainerSliders = classnames("container-columns", styles.containerSliders);
-		function valuetext(value) {
-			return `${value}°C`;
-		}
+		
 		
 		return (
 			<div className={styleContainerSliders}>
@@ -27,12 +23,14 @@ export default class Sliders extends Component{
 					color = {this.props.colorDict['danceability']}
 					icon = {this.props.iconDict['danceability']}
 					handlerSliderChange = {this.props.handlerSliderChange}
+					values={[this.props.sliderValueDict['danceability']*100]}
 				/>
 				<VerticalSlider
 					feature={"energy"}
 					color = {this.props.colorDict['energy']}
 					icon = {this.props.iconDict['energy']}
 					handlerSliderChange = {this.props.handlerSliderChange}
+					values={[this.props.sliderValueDict['energy']*100]}
 				
 				
 				/>
@@ -41,6 +39,7 @@ export default class Sliders extends Component{
 					color = {this.props.colorDict['happiness']}
 					icon = {this.props.iconDict['happiness']}
 					handlerSliderChange = {this.props.handlerSliderChange}
+					values={[this.props.sliderValueDict['happiness']*100]}
 				
 				
 				/>
@@ -49,6 +48,7 @@ export default class Sliders extends Component{
 					color = {this.props.colorDict['popularity']}
 					icon = {this.props.iconDict['popularity']}
 					handlerSliderChange = {this.props.handlerSliderChange}
+					values={[this.props.sliderValueDict['popularity']]}
 				
 				
 				/>

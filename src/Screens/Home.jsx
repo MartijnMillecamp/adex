@@ -40,7 +40,7 @@ export default class Home extends Component {
 				danceability: 0.50,
 				energy: 0.50,
 				happiness: 0.50,
-				popularity: 0.50
+				popularity: 50
 			},
 			search : false,
 			searchResults: [],
@@ -65,7 +65,9 @@ export default class Home extends Component {
 	
 	handlerSliderChange(value, slider){
 		const values = this.state.sliderValueDict;
-		values[slider] = value / 100;
+		if (slider !== 'popularity'){
+			values[slider] = value / 100;
+		}
 		this.setState({sliderValueDict: values})
 		this.getRecommendations()
 	}
@@ -95,7 +97,6 @@ export default class Home extends Component {
 		const recommendations = removeFromArrayOfObjects(this.state.recommendations, 'id', song);
 		//use utils function to check already in list
 		const newPlaylist = addToArrayObjects(this.state.playlist, song);
-		console.log(newPlaylist)
 		this.setState({
 			playlist: newPlaylist,
 			recommendations: recommendations,
@@ -211,14 +212,14 @@ export default class Home extends Component {
 			"https://api.spotify.com/v1/recommendations",
 			`?authorization=${accessToken}`,
 			`&seed_tracks=${seedSong.id}`,
-			`&min_danceability=${this.state.sliderValueDict['danceability'] - 0.05}`,
-			`&max_danceability=${this.state.sliderValueDict['danceability'] + 0.05}`,
-			// `&min_energy=${this.state.sliderValueDict['energy'] - 0.05}`,
-			// `&max_energy=${this.state.sliderValueDict['energy'] + 0.05}`,
-			// `&min_valence=${this.state.sliderValueDict['happiness'] - 0.05}`,
-			// `&max_valence=${this.state.sliderValueDict['happiness'] + 0.05}`,
-			// `&min_popularity=${this.state.sliderValueDict['popularity'] - 0.05}`,
-			// `&max_popularity=${this.state.sliderValueDict['popularity'] + 0.05}`,
+			`&min_danceability=${this.state.sliderValueDict['danceability'] - 0.1}`,
+			`&max_danceability=${this.state.sliderValueDict['danceability'] + 0.1}`,
+			`&min_energy=${this.state.sliderValueDict['energy'] - 0.1}`,
+			`&max_energy=${this.state.sliderValueDict['energy'] + 0.1}`,
+			`&min_valence=${this.state.sliderValueDict['happiness'] - 0.1}`,
+			`&max_valence=${this.state.sliderValueDict['happiness'] + 0.1}`,
+			`&min_popularity=${this.state.sliderValueDict['popularity'] - 10}`,
+			`&max_popularity=${this.state.sliderValueDict['popularity'] + 10}`,
 		].join('');
 		
 		const AuthStr = 'Bearer ' + accessToken;
@@ -282,6 +283,7 @@ export default class Home extends Component {
 							colorDict={colorDict}
 							iconDict={iconDict}
 							handlerSliderChange={this.handlerSliderChange}
+							sliderValueDict={this.state.sliderValueDict}
 						/>
 					}
 				</div>

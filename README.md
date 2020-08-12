@@ -68,12 +68,27 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 ## Docker
-docker run \
+1. change redirect uri (login.jsx)
+2. docker build -t adex:dev .
+3. docker run \
     -it \
     --rm \
     -v ${PWD}:/app \
     -v /app/node_modules \
     -p 3001:3000 \
     -e CHOKIDAR_USEPOLLING=true \
-    sample:dev
+    adex:dev
+4. change redirect uri  
+4. create zip
+    ```zip -r adex.zip ./adex```
+5. put zip on server
+6. unzip 
+7. cd adex
+8. podman build -t adex:dev .
+9. podman run \
+    -dit \
+    --name adex \
+    -p 3005:3000\
+    adex:dev
+
     

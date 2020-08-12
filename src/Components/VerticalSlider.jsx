@@ -12,10 +12,14 @@ const domain = [0, 100];
 const defaultValues = [50];
 
 class VerticalSlider extends Component {
-	state = {
-		values: defaultValues.slice(),
-		update: defaultValues.slice(),
-	};
+	constructor(props){
+		super(props)
+		this.state = {
+			values: this.props.values,
+			update: defaultValues.slice(),
+		};
+	}
+	
 	
 	onUpdate = update => {
 		this.setState({ update })

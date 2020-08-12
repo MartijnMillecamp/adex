@@ -12,6 +12,8 @@ export default class Login extends Component {
 		super(props);
 		this.client_id = 'ec702ad09c13419c944c88121847a2f6';
 		this.redirect_uri = 'http://localhost:3000/callback';
+		// this.redirect_uri = 'http://localhost:3001/callback';
+		// this.redirect_uri = 'http://picasso.experiments.cs.kuleuven.be:3005/callback'
 		this.scopes = [
 			'user-read-email'
 		].join('%20');

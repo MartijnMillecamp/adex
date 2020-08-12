@@ -21,7 +21,6 @@ export function addToArrayObjects(array, object) {
 	}
 	if (add){
 		const newArray = [...array, object];
-		console.log(newArray)
 		return newArray
 	}
 	else{

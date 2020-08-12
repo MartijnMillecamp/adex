@@ -6,6 +6,8 @@ import {removeFromArrayOfObjects} from '../Utils/removeFromArray';
 import {addToArrayObjects} from '../Utils/addToArray';
 
 import {search} from '../Utils/Spotify';
+import {getRecommendation} from '../Utils/Spotify';
+
 
 import Playlist from "../Components/Playlist";
 import classnames from 'classnames'
@@ -16,10 +18,6 @@ import Sliders from "../Components/Sliders";
 import axios from 'axios'
 import SearchField from "../Components/SearchField"
 import SearchResults from "../Components/SearchResults"
-
-
-
-//import images
 import danceability from '../Images/danceability.svg'
 import energy from '../Images/energy.svg'
 import happiness from '../Images/happiness.svg'
@@ -197,37 +195,19 @@ export default class Home extends Component {
 		
 		const seeds = this.state.sources;
 		let recommendations = [];
+		const accessToken = this.props.tokenObject['access_token'];
 		for (let i=0; i < seeds.length; i++){
-			const recommendationsSeed = await this.getRecommendation(seeds[i]);
-			recommendations.push(recommendationsSeed)
+			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken);
+			for (let j = 0; j < recommendationsSeed.length; j++){
+				recommendations = addToArrayObjects(recommendations, recommendationsSeed[j])
+			}
 		}
 		const recommendationsFlat = recommendations.flat(1)
 		const recFiltered = filterNoPreview(recommendationsFlat);
 		this.updateRecommendations(recFiltered)
 	}
 	
-	async getRecommendation(seedSong){
-		const accessToken = this.props.tokenObject['access_token'];
-		const recommendationLink = [
-			"https://api.spotify.com/v1/recommendations",
-			`?authorization=${accessToken}`,
-			`&seed_tracks=${seedSong.id}`,
-			`&min_danceability=${this.state.sliderValueDict['danceability'] - 0.1}`,
-			`&max_danceability=${this.state.sliderValueDict['danceability'] + 0.1}`,
-			`&min_energy=${this.state.sliderValueDict['energy'] - 0.1}`,
-			`&max_energy=${this.state.sliderValueDict['energy'] + 0.1}`,
-			`&min_valence=${this.state.sliderValueDict['happiness'] - 0.1}`,
-			`&max_valence=${this.state.sliderValueDict['happiness'] + 0.1}`,
-			`&min_popularity=${this.state.sliderValueDict['popularity'] - 10}`,
-			`&max_popularity=${this.state.sliderValueDict['popularity'] + 10}`,
-		].join('');
-		
-		const AuthStr = 'Bearer ' + accessToken;
-		const res = await axios.get(recommendationLink, { 'headers': { 'Authorization': AuthStr } })
-		const resData = res.data;
-		return resData['tracks'];
-		
-	}
+	
 	
 	render() {
 		const colorDict ={
@@ -284,6 +264,7 @@ export default class Home extends Component {
 							iconDict={iconDict}
 							handlerSliderChange={this.handlerSliderChange}
 							sliderValueDict={this.state.sliderValueDict}
+							//todo create better default values
 						/>
 					}
 				</div>

@@ -6,10 +6,10 @@ import styles from '../Styling/Playlist.module.css';
 import '../Styling/global.css'
 
 import classnames from 'classnames'
+import {getTopSong} from "../Utils/Spotify";
 
 
 export default class Playlist extends Component{
-	//todo check sources
 	//TODO show values of song?
 	constructor(props){
 		super(props);
@@ -20,29 +20,22 @@ export default class Playlist extends Component{
 		this.getTopSongs()
 	}
 	
-	getTopSongs() {
+	async getTopSongs() {
+		//todo update slider values
 		const accessToken = this.props.tokenObject['access_token'];
-		const topLink = [
-			"https://api.spotify.com/v1/me/top/tracks"
-		].join('');
-		
-		const AuthStr = 'Bearer ' + accessToken;
-		
-		axios.get(topLink, { 'headers': { 'Authorization': AuthStr } })
-			.then(res => {
-					const resData = res.data;
-					const topSongs = resData.items;
-					let added = 0;
-					let index = 0;
-					while (added < 1 || index === 20){
-						if (topSongs[index]['preview_url'] !== null){
-							this.addToPlaylist(topSongs[index]);
-							added += 1
-						}
-						index += 1;
-					}
-				}
-			)
+		let topSong = await getTopSong(accessToken);
+		this.addToPlaylist(topSong);
+		const danceability = topSong['danceability'];
+		const energy = topSong['energy'];
+		const happiness = topSong['valence'];
+		const popularity = topSong['popularity'];
+		const sliderValueDict = {
+			danceability : danceability,
+			energy: energy,
+			happiness: happiness,
+			popularity: popularity
+		};
+		this.props.handlerInitSliderValues(sliderValueDict);
 	}
 	
 	addToPlaylist(song){

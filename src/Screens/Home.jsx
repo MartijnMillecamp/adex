@@ -57,6 +57,7 @@ export default class Home extends Component {
 		this.handlerSearchClick = this.handlerSearchClick.bind(this);
 		this.handlerSearch = this.handlerSearch.bind(this);
 		this.handlerStopSearch = this.handlerStopSearch.bind(this);
+		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this)
 		
 	}
 	
@@ -178,12 +179,17 @@ export default class Home extends Component {
 			searchResults: [],
 		});
 	}
+	
+	handlerInitSliderValues(sliderValueDict){
+		this.setState({
+			sliderValueDict: sliderValueDict
+		})
+	}
 
 	
 	
 	async getRecommendations() {
 		//TODO decide how to show all recommendations (tabs, list, ...)
-		//TODO show to user that recommendations are being updated
 		this.updateRecommenderStatus('updating');
 		this.updateRecommendations([]);
 		
@@ -199,7 +205,6 @@ export default class Home extends Component {
 		let finishedSeeds = 0;
 		const accessToken = this.props.tokenObject['access_token'];
 		const seeds = this.state.sources;
-		console.log(seeds)
 		
 		for (let i=0; i < seeds.length; i++){
 			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken);
@@ -256,6 +261,7 @@ export default class Home extends Component {
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					handlerAddSource = {this.handlerAddSource}
 					handlerRemoveSource = {this.handlerRemoveSource}
+					handlerInitSliderValues = {this.handlerInitSliderValues}
 				/>
 				<div
 					className = {styleContainerCol2}

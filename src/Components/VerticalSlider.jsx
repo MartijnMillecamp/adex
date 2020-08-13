@@ -16,14 +16,14 @@ class VerticalSlider extends Component {
 		super(props)
 		this.state = {
 			values: this.props.values,
-			update: defaultValues.slice(),
 		};
 	}
 	
+	static getDerivedStateFromProps(props, state) {
+		//important to change icon
+		return {values: props.values };
+	}
 	
-	onUpdate = update => {
-		this.setState({ update })
-	};
 	
 	onChange = values => {
 		const value = values[0]

@@ -76,16 +76,14 @@ export default class Home extends Component {
 	handlerAddSource(song){
 		this.setState({
 			sources: [...this.state.sources, song]
-		});
-		this.getRecommendations()
+		}, () => this.getRecommendations());
 	}
 	
 	handlerRemoveSource(song){
 		const sources = removeFromArrayOfObjects(this.state.sources, 'id', song);
 		this.setState({
 			sources: sources
-		});
-		this.getRecommendations()
+		}, () => this.getRecommendations());
 	}
 	
 	updateRecommenderStatus(status){
@@ -197,10 +195,12 @@ export default class Home extends Component {
 		});
 		
 		
-		const seeds = this.state.sources;
 		let recommendations = [];
 		let finishedSeeds = 0;
 		const accessToken = this.props.tokenObject['access_token'];
+		const seeds = this.state.sources;
+		console.log(seeds)
+		
 		for (let i=0; i < seeds.length; i++){
 			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken);
 			for (let j = 0; j < recommendationsSeed.length; j++){

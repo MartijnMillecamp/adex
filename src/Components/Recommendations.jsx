@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import Recommendation from "./Recommendation";
 import styles from '../Styling/Recommendations.module.css';
 import classnames from 'classnames'
+import spinner from '../Images/spinner.gif'
 
 
 export default class Recommendations extends Component {
+	//todo error message when no rec anymore vs updating
 	constructor(props){
 		super(props)
 	}
@@ -12,6 +14,7 @@ export default class Recommendations extends Component {
 	checkPlaying(id){
 		return this.props.playing === id
 	}
+	
 	
 	renderList(list){
 		return (
@@ -34,14 +37,45 @@ export default class Recommendations extends Component {
 		)
 	}
 	
-	renderEmpty(){
+	renderUpdate(){
+		const spinnerStyle =classnames(styles.spinner)
 		return (
 			<>
-			<p>Sorry, we could not find good recommendations</p>
-			<br/>
-			<p>Please consider to change source songs or your preferred audio features</p>
+			<img
+				src={spinner}
+				alt="loading..."
+				key="spinner"
+				className={spinnerStyle}
+			/>
 			</>
 		)
+	}
+	
+	renderEmpty(){
+		const styleEmpty = classnames(styles.empty)
+		return (
+			<span
+				className={styleEmpty}
+			>
+				Sorry, we could not find good recommendations.
+				Please change your features or add a new song as source in your playlist.
+			</span>
+		)
+	}
+	
+	renderSwitch(list){
+		if (this.props.status === 'empty'){
+			return this.renderEmpty()
+		}
+		else if (this.props.status === 'updating'){
+			return this.renderUpdate()
+		}
+		else if (this.props.status === 'finished'){
+			return this.renderList(list)
+		}
+		else{
+			this.renderList(list)
+		}
 	}
 	
 	render(){
@@ -51,7 +85,9 @@ export default class Recommendations extends Component {
 		return(
 				<>
 					<div className={styleContainerRecommendations}>
-						{empty ? this.renderEmpty() : this.renderList(list)}
+						{this.renderSwitch(list)}
+						
+					
 					</div>
 				</>
 		)

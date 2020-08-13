@@ -1,5 +1,15 @@
 .container{
-    width: 40%;
+    width: 45%;
     margin-left: 10px;
+    margin-top: 10px;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+.spinner{
+    width: 200px;
+    height: 200px;
+}
+.empty{
+    color: whitesmoke
 }

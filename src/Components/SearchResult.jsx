@@ -12,7 +12,6 @@ import addToPlaylist from '../Images/addToPlaylist.svg'
 
 
 export default class SearchResult extends Component{
-	//TODO remove search after adding
 	constructor(props){
 		super(props);
 		

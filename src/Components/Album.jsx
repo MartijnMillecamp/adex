@@ -9,7 +9,6 @@ import classnames from 'classnames'
 import '../Styling/global.css'
 
 export default class Album extends Component{
-	//todo search results that are not playable
 	constructor(props){
 		super(props);
 		this.handlePlay = this.handlePlay.bind(this);

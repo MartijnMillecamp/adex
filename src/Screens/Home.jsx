@@ -44,6 +44,7 @@ export default class Home extends Component {
 			},
 			search : false,
 			searchResults: [],
+			status: 'empty'
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -87,6 +88,12 @@ export default class Home extends Component {
 		this.getRecommendations()
 	}
 	
+	updateRecommenderStatus(status){
+		this.setState({
+			status: status
+		})
+	}
+	
 	updateRecommendations(recommendations) {
 		this.setState({
 			recommendations: recommendations
@@ -95,6 +102,10 @@ export default class Home extends Component {
 	
 	handlerAddToPlaylist(song){
 		const recommendations = removeFromArrayOfObjects(this.state.recommendations, 'id', song);
+		//update rendering recommendations
+		if (recommendations.length === 0){
+			this.updateRecommenderStatus('empty')
+		}
 		//use utils function to check already in list
 		const newPlaylist = addToArrayObjects(this.state.playlist, song);
 		this.setState({
@@ -174,8 +185,8 @@ export default class Home extends Component {
 	
 	async getRecommendations() {
 		//TODO decide how to show all recommendations (tabs, list, ...)
-		//TODO filter recommendations that are in playlist
-		//shows to user that recommendations are being updated
+		//TODO show to user that recommendations are being updated
+		this.updateRecommenderStatus('updating');
 		this.updateRecommendations([]);
 		
 		
@@ -202,7 +213,12 @@ export default class Home extends Component {
 			const recFilteredPreview = filterNoPreview(recommendationsFlat);
 			const recFilteredPlaylist = filterPlaylist(recFilteredPreview, this.state.playlist)
 			const recOrdered = orderList(recFilteredPlaylist, this.state.sliderValueDict);
-			
+			if (recOrdered.length === 0){
+				this.updateRecommenderStatus('empty')
+			}
+			else{
+				this.updateRecommenderStatus('finished')
+			}
 			this.updateRecommendations(recOrdered)
 		}
 		
@@ -225,7 +241,7 @@ export default class Home extends Component {
 			'popularity': popularity
 			
 		};
-		const styleContainerHome = classnames('container-columns');
+		const styleContainerHome = classnames('container-columns', styles.container);
 		const styleContainerCol2 = classnames('container-rows', styles.column2);
 		return (
 			<div className={styleContainerHome}>
@@ -278,6 +294,7 @@ export default class Home extends Component {
 					playing = {this.state.playing}
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					sliderValues = {this.state.sliderValueDict}
+					status = {this.state.status}
 				/>
 			</div>
 		)

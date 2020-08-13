@@ -9,7 +9,8 @@ import classnames from 'classnames'
 
 
 export default class Playlist extends Component{
-	
+	//todo check sources
+	//TODO show values of song?
 	constructor(props){
 		super(props);
 		this.addToPlaylist = this.addToPlaylist.bind(this)

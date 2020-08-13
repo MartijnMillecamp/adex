@@ -93,7 +93,7 @@ export default class SongInfo extends Component{
 		const styleBackgroundSearch = classnames(styles.backgroundSearch, 'container-columns');
 		
 		
-		
+		//TODO add explanations
 		return(
 			<>
 			<div className={this.props.search ? styleBackgroundSearch : styleBackground}>

@@ -78,7 +78,6 @@ export default class Home extends Component {
 	}
 	
 	handlerAddSource(song){
-		console.log('add source')
 		this.setState({
 			sources: [...this.state.sources, song]
 		}, () => this.getRecommendations());
@@ -157,6 +156,14 @@ export default class Home extends Component {
 		}
 	}
 	
+	stopAllSongs(){
+		this.stopPlayingSong()
+		this.setState({
+			playing: null
+		});
+	}
+
+	
 	handlerPauseSong(id, preview){
 		this.setState({
 			playing: null
@@ -170,11 +177,19 @@ export default class Home extends Component {
 	}
 	
 	async handlerSearch(query){
-		const accessToken = this.props.tokenObject['access_token'];
-		const searchResults = await search(query, accessToken);
-		this.setState({
-			searchResults : searchResults
-		})
+		let searchResults = [];
+		if (query !== ""){
+			const accessToken = this.props.tokenObject['access_token'];
+			searchResults = await search(query, accessToken);
+			this.setState({
+				searchResults : searchResults
+			})
+		}
+		else{
+			this.setState({
+				searchResults : searchResults
+			})
+		}
 	}
 	
 	handlerStopSearch(){
@@ -182,6 +197,7 @@ export default class Home extends Component {
 			search: false,
 			searchResults: [],
 		});
+		this.stopAllSongs();
 	}
 	
 	handlerInitSliderValues(sliderValueDict){
@@ -193,7 +209,6 @@ export default class Home extends Component {
 	
 	
 	async getRecommendations() {
-		console.log('getRecommendations', this.state.sources)
 		//TODO decide how to show all recommendations (tabs, list, ...)
 		//TODO error when too long updating?
 		this.updateRecommenderStatus('updating');
@@ -201,10 +216,7 @@ export default class Home extends Component {
 		
 		
 		//stop audio from playing when update
-		this.stopPlayingSong()
-		this.setState({
-			playing: null
-		});
+		this.stopAllSongs()
 		
 		
 		let recommendations = [];
@@ -281,6 +293,8 @@ export default class Home extends Component {
 						handlerSearchClick = {this.handlerSearchClick}
 						active = {this.state.search}
 						handlerSearch = {this.handlerSearch}
+						handlerStopSearch = {this.handlerStopSearch}
+						results = {this.state.searchResults}
 					/>
 					{this.state.search ?
 						<SearchResults

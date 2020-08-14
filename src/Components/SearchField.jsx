@@ -7,32 +7,31 @@ export default class SearchField extends Component{
 	constructor(props){
 		super(props);
 		this.searchClick = this.searchClick.bind(this);
+		this.stopSearch = this.stopSearch.bind(this);
 		this.handleTyping = this.handleTyping.bind(this);
-		this.search = this.search.bind(this)
+		this.search = this.search.bind(this);
 		this.state = {
 			query : "",
-			active: this.props.active
 		}
 	}
 	
 	static getDerivedStateFromProps(props, state) {
-		if (props.active){
-			return {active: props.active}
+		if (!props.active){
+			return {query: ""}
 		}
 		else{
-			return {
-				active: props.active,
-				query: ""
-			}
-		}
-		//important to change to blank input again
-		return{
-			active: props.active
+			return {query: state.query}
 		}
 	}
 	
 	searchClick(){
 		this.props.handlerSearchClick()
+	}
+	
+	stopSearch(){
+		if(this.props.results.length === 0 || this.query === ""){
+			this.props.handlerStopSearch()
+		}
 	}
 	
 	search(event){
@@ -49,13 +48,16 @@ export default class SearchField extends Component{
 	
 	
 	
+	
+	
 	render(){
 		return(
 			<input
 				type="text"
 				className={styles.SearchField}
 				placeholder="Search..."
-				onClick={this.searchClick}
+				onFocus={this.searchClick}
+				onBlur={this.stopSearch}
 				onKeyPress={this.search}
 				value={this.state.query}
 				onChange={this.handleTyping}

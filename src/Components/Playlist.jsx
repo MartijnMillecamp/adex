@@ -11,6 +11,7 @@ import {getTopSong} from "../Utils/Spotify";
 
 export default class Playlist extends Component{
 	//TODO show values of song?
+	//TODO show profile of playlist
 	constructor(props){
 		super(props);
 		this.addToPlaylist = this.addToPlaylist.bind(this)
@@ -24,18 +25,19 @@ export default class Playlist extends Component{
 		//todo update slider values
 		const accessToken = this.props.tokenObject['access_token'];
 		let topSong = await getTopSong(accessToken);
-		this.addToPlaylist(topSong);
 		const danceability = topSong['danceability'];
 		const energy = topSong['energy'];
 		const happiness = topSong['valence'];
 		const popularity = topSong['popularity'];
 		const sliderValueDict = {
-			danceability : danceability,
-			energy: energy,
-			happiness: happiness,
-			popularity: popularity
+			danceability : danceability.toFixed(2),
+			energy: energy.toFixed(2),
+			happiness: Math.round(100 * happiness) /100,
+			popularity: Math.round(popularity)
 		};
 		this.props.handlerInitSliderValues(sliderValueDict);
+		this.addToPlaylist(topSong);
+		
 	}
 	
 	addToPlaylist(song){

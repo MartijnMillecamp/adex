@@ -62,10 +62,13 @@ export default class Home extends Component {
 	}
 	
 	componentDidMount(){
+		console.log('didMount')
 		this.getRecommendations()
 	}
 	
 	handlerSliderChange(value, slider){
+		//todo detect loop?
+		console.log('sliderchange')
 		const values = this.state.sliderValueDict;
 		if (slider !== 'popularity'){
 			values[slider] = value / 100;
@@ -75,6 +78,7 @@ export default class Home extends Component {
 	}
 	
 	handlerAddSource(song){
+		console.log('add source')
 		this.setState({
 			sources: [...this.state.sources, song]
 		}, () => this.getRecommendations());
@@ -109,8 +113,8 @@ export default class Home extends Component {
 		const newPlaylist = addToArrayObjects(this.state.playlist, song);
 		this.setState({
 			playlist: newPlaylist,
-			recommendations: recommendations,
-		})
+			// recommendations: recommendations,
+		});
 		//stop playing if added to playlist
 		if (this.state.playing === song.id){
 			this.stopPlayingSong()
@@ -189,7 +193,9 @@ export default class Home extends Component {
 	
 	
 	async getRecommendations() {
+		console.log('getRecommendations', this.state.sources)
 		//TODO decide how to show all recommendations (tabs, list, ...)
+		//TODO error when too long updating?
 		this.updateRecommenderStatus('updating');
 		this.updateRecommendations([]);
 		
@@ -205,9 +211,14 @@ export default class Home extends Component {
 		let finishedSeeds = 0;
 		const accessToken = this.props.tokenObject['access_token'];
 		const seeds = this.state.sources;
+		let totalNumber = 40;
+		let numberPerSeed = 5;
+		if (seeds.length !== 0){
+			numberPerSeed = Math.round(totalNumber / seeds.length)
+		}
 		
 		for (let i=0; i < seeds.length; i++){
-			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken);
+			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken, numberPerSeed);
 			for (let j = 0; j < recommendationsSeed.length; j++){
 				recommendations = addToArrayObjects(recommendations, recommendationsSeed[j])
 			}

@@ -36,7 +36,6 @@ export default class SearchResults extends Component{
 			<div
 				className={styleContainer}
 			>
-				<div>
 					{list.map(song =>
 						(
 							<SearchResult
@@ -54,7 +53,6 @@ export default class SearchResults extends Component{
 							/>
 						)
 					)}
-				</div>
 			</div>
 			
 			

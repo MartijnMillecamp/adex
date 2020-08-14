@@ -17,12 +17,14 @@ export async function search(query, accessToken){
 	return resData['tracks']['items'];
 }
 
-export async function getRecommendation(seedSong, sliderValueDict, accessToken){
+export async function getRecommendation(seedSong, sliderValueDict, accessToken, numberPerSeed){
+	console.log("getRecommendation")
 	const range = 0.1;
 	const recommendationLink = [
 		"https://api.spotify.com/v1/recommendations",
 		`?authorization=${accessToken}`,
 		`&seed_tracks=${seedSong.id}`,
+		`&limit=${numberPerSeed}`,
 		// `&min_danceability=${sliderValueDict['danceability'] - range}`,
 		// `&max_danceability=${sliderValueDict['danceability'] + range}`,
 		// `&min_energy=${sliderValueDict['energy'] - range}`,
@@ -52,6 +54,8 @@ export async function getRecommendation(seedSong, sliderValueDict, accessToken){
 }
 
 export async function getAudioFeatures(song, accessToken){
+	//todo check too many requests
+	// console.log('getAudioFeatures')
 	const idSong = song['id'];
 	const request = [
 		"https://api.spotify.com/v1/audio-features/",

@@ -30,10 +30,11 @@ export default class SongInfo extends Component{
 			preview: this.props.preview,
 			album: this.props.album
 		};
-		this.props.handlerAddToPlaylist(songData);
 		if (this.props.search){
 			this.props.handlerStopSearch();
 		}
+		this.props.handlerAddToPlaylist(songData);
+		
 	}
 	
 	renderRecInfo(){

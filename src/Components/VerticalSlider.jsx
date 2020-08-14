@@ -13,28 +13,20 @@ const defaultValues = [50];
 
 class VerticalSlider extends Component {
 	constructor(props){
-		super(props)
-		this.state = {
-			values: this.props.values,
-		};
+		super(props);
 	}
 	
-	static getDerivedStateFromProps(props, state) {
-		//important to change icon
-		return {values: props.values };
-	}
 	
+
 	
 	onChange = values => {
-		const value = values[0]
-		this.setState({ values })
+		console.log("on slider change", values, this.props.values)
+		const value = values[0];
 		this.props.handlerSliderChange(value, this.props.feature)
 	};
 	
 	render() {
-		const {
-			state: { values, update },
-		} = this;
+		const values = this.props.values;
 		
 		const styleContainerMusicSlider = classnames('container-rows', styles.container);
 		const styleSliderIcon = classnames(styles.icon)

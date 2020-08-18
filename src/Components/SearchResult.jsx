@@ -26,7 +26,7 @@ export default class SearchResult extends Component{
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}
-					small = {true}
+					style = {'search'}
 					playable = {false}
 				/>
 				<SongInfo

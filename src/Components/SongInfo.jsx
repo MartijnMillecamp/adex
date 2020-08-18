@@ -27,9 +27,10 @@ export default class SongInfo extends Component{
 			id: this.props.id,
 			title: this.props.title,
 			artist: this.props.artist,
-			preview: this.props.preview,
+			preview: this.props.preview_url,
 			album: this.props.album
 		};
+		console.log(songData)
 		if (this.props.search){
 			this.props.handlerStopSearch();
 		}

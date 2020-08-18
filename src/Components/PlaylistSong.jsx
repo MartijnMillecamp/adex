@@ -64,7 +64,7 @@ export default class PlaylistSong extends Component{
 		const styleDelete = classnames(styles.deleteSong);
 		const styleIcon = classnames(styles.icon);
 		
-		const styleContainer = classnames('container-columns', styles.container)
+		const styleContainer = classnames('container-columns', styles.container);
 		
 		return(
 			<>
@@ -79,7 +79,7 @@ export default class PlaylistSong extends Component{
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}
-					small = {true}
+					style = {'playlist'}
 					playable = {true}
 				
 				/>

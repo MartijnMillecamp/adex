@@ -48,7 +48,7 @@ export async function getRecommendation(seedSong, sliderValueDict, accessToken, 
 		let audioFeatures = await getAudioFeatures(tracks[i], accessToken)
 		let seedInfo = {
 			seedId: seedSong.id,
-			seedTitle: seedSong.name,
+			seedTitle: seedSong.title,
 			seedArtist:seedSong.artist,
 			seedAlbum:seedSong.album,
 			seedPreview_url: seedSong.preview_url

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../Styling/global.css';
 import styles from '../Styling/ExplanationFull.module.css';
 import classnames from 'classnames';
+import ExplanationSeed from "./ExplanationSeed";
 
 
 export default class ExplanationFull extends Component{
@@ -17,7 +18,15 @@ export default class ExplanationFull extends Component{
 					<span>test</span>
 				</div>
 				<div className={styleContainerRow2}>
-					<span>test2</span>
+					<ExplanationSeed
+						key={"exp_seed_" + this.props.id}
+						seedId={this.props.seedId}
+						seedTitle={this.props.seedTitle}
+						seedArtist={this.props.seedArtist}
+						seedAlbum={this.props.seedAlbum}
+						seedPreview_url={this.props.seedPreview_url}
+					
+					/>
 				</div>
 				
 			</div>

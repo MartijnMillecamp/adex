@@ -27,6 +27,20 @@
 
 }
 
+.explSeed{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 5px;
+}
+
 .playRec{
     width: 40px;
     height: 40px;
@@ -36,3 +50,4 @@
     width: 20px;
     height: 20px;
 }
+

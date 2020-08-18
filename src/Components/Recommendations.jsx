@@ -22,8 +22,14 @@ export default class Recommendations extends Component {
 						id={rec.id}
 						title={rec.name}
 						artist={rec.artists[0]['name']}
-						album={rec.album.images[1].url}
+						album={rec.album.images[0].url}
 						preview_url={rec.preview_url}
+						
+						seedId={rec.seedId}
+						seedTitle={rec.seedTitle}
+						seedArtist={rec.seedArtist}
+						seedAlbum={rec.seedAlbum}
+						seedPreview_url={rec.seedPreview_url}
 						
 						danceability={rec.danceability}
 						energy={rec.energy}

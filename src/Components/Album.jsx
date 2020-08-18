@@ -45,14 +45,16 @@ export default class Album extends Component{
 	}
 	
 	renderPlay(){
-		const styleIconRec = classnames(styles.playRec);
-		const styleIconPlaylist = classnames(styles.playPlaylist);
+		let style = classnames(styles.playPlaylist);
+		if (this.props.style === 'recommendation'){
+			style = classnames(style.playRec)
+		}
 		return(
 			<img
 				src={play}
 				alt="Play"
 				onClick={this.handlePlay}
-				className={this.props.small ? styleIconPlaylist : styleIconRec }
+				className={style}
 			
 			/>
 		)
@@ -80,17 +82,31 @@ export default class Album extends Component{
 		}
 	}
 	
+	switchStyleDiv(){
+		const styleCoverDiv = classnames(styles.cover, 'container-rows');
+		const stylePlaylistDiv = classnames(styles.playlist, 'container-rows');
+		const styleExplSeedDiv = classnames(styles.explSeed, 'container-rows')
+		if (this.props.style === 'explSeed'){
+			return styleExplSeedDiv
+		}
+		else if (this.props.style === 'recommendation'){
+			return styleCoverDiv
+		}
+		else{
+			return stylePlaylistDiv
+		}
+	}
+	
 	
 	
 	render(){
 		const background = "url(" + this.props.album + ")";
-		const styleCoverDiv = classnames(styles.cover, 'container-rows');
-		const stylePlaylistDiv = classnames(styles.playlist, 'container-rows');
+		// console.log(background)
 		return(
 			<>
 			<div
 				style={{backgroundImage: background}}
-				className={this.props.small ? stylePlaylistDiv : styleCoverDiv }
+				className={this.switchStyleDiv()}
 			>
 				{this.playable ?
 					(this.renderButton())

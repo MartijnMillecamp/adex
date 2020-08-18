@@ -24,7 +24,7 @@ export default class Recommendation extends Component{
 				handlerPlaySong = {this.props.handlerPlaySong}
 				handlerPauseSong = {this.props.handlerPauseSong}
 				playing = {this.props.playing}
-				small = {false}
+				style = {'recommendation'}
 				playable = {true}
 			
 			/>
@@ -48,6 +48,12 @@ export default class Recommendation extends Component{
 				happiness={this.props.happiness}
 				popularity={this.props.popularity}
 				sliderValueDict={this.props.sliderValueDict}
+				
+				seedId={this.props.seedId}
+				seedTitle={this.props.seedTitle}
+				seedArtist={this.props.seedArtist}
+				seedAlbum={this.props.seedAlbum}
+				seedPreview_url={this.props.seedPreview_url}
 			
 			
 			/>
@@ -66,6 +72,8 @@ export default class Recommendation extends Component{
 					id={this.props.id}
 					title={this.props.title}
 					artist={this.props.artist}
+					album={this.props.album}
+					preview_url={this.props.preview_url}
 					handlerAddToPlaylist={this.props.handlerAddToPlaylist}
 					search={false}
 				/>

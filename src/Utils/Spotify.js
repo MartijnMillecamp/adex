@@ -18,7 +18,7 @@ export async function search(query, accessToken){
 }
 
 export async function getRecommendation(seedSong, sliderValueDict, accessToken, numberPerSeed){
-	const range = 0.1;
+	// const range = 0.1;
 	const recommendationLink = [
 		"https://api.spotify.com/v1/recommendations",
 		`?authorization=${accessToken}`,
@@ -46,15 +46,20 @@ export async function getRecommendation(seedSong, sliderValueDict, accessToken, 
 	let recommendations = [];
 	for (let i = 0; i < tracks.length; i++){
 		let audioFeatures = await getAudioFeatures(tracks[i], accessToken)
-		let recommendation = Object.assign(tracks[i], audioFeatures)
+		let seedInfo = {
+			seedId: seedSong.id,
+			seedTitle: seedSong.name,
+			seedArtist:seedSong.artist,
+			seedAlbum:seedSong.album,
+			seedPreview_url: seedSong.preview_url
+		};
+		let recommendation = Object.assign(tracks[i], audioFeatures, seedInfo)
 		recommendations = [...recommendations, recommendation]
 	}
 	return recommendations
 }
 
 export async function getAudioFeatures(song, accessToken){
-	//todo check too many requests
-	// console.log('getAudioFeatures')
 	const idSong = song['id'];
 	const request = [
 		"https://api.spotify.com/v1/audio-features/",

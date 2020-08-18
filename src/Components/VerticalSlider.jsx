@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Slider, { Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
-import { SliderRail, Handle, Track, Tick } from './CompoundSliderUtils'
+import Slider, { Rail, Handles, Tracks} from 'react-compound-slider'
+import { SliderRail, Handle, Track} from './CompoundSliderUtils'
 import styles from '../Styling/VerticalSlider.module.css'
 import classnames from 'classnames'
 
@@ -9,13 +9,8 @@ import '../Styling/global.css'
 
 
 const domain = [0, 100];
-const defaultValues = [50];
 
 class VerticalSlider extends Component {
-	constructor(props){
-		super(props);
-	}
-	
 	
 
 	
@@ -41,6 +36,7 @@ class VerticalSlider extends Component {
 				<img
 					src={this.props.icon}
 					className = {styleSliderIcon}
+					alt={"icon"}
 				/>
 				<Slider
 					vertical

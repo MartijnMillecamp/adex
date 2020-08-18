@@ -46,7 +46,7 @@ export default class Album extends Component{
 	
 	renderPlay(){
 		const styleIconRec = classnames(styles.playRec);
-		const styleIconPlaylist = classnames(styles.playPlaylist)
+		const styleIconPlaylist = classnames(styles.playPlaylist);
 		return(
 			<img
 				src={play}
@@ -86,8 +86,6 @@ export default class Album extends Component{
 		const background = "url(" + this.props.album + ")";
 		const styleCoverDiv = classnames(styles.cover, 'container-rows');
 		const stylePlaylistDiv = classnames(styles.playlist, 'container-rows');
-		const styleIconRec = classnames(styles.playRec);
-		const styleIconPlaylist = classnames(styles.playPlaylist)
 		return(
 			<>
 			<div

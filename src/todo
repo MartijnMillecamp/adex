@@ -1,0 +1,9 @@
+add explanations
+add barchart
+add seeds to recommendation
+add highlight in barchart when hover
+add scatterplot
+add random order
+add saving to playlist
+set max to sources (already max 40 songs => not needed?)
+check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)

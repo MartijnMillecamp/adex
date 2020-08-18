@@ -6,10 +6,7 @@ import spinner from '../Images/spinner.gif'
 
 
 export default class Recommendations extends Component {
-	//todo error message when no rec anymore vs updating
-	constructor(props){
-		super(props)
-	}
+	
 	
 	checkPlaying(id){
 		return this.props.playing === id
@@ -27,6 +24,13 @@ export default class Recommendations extends Component {
 						artist={rec.artists[0]['name']}
 						album={rec.album.images[1].url}
 						preview_url={rec.preview_url}
+						
+						danceability={rec.danceability}
+						energy={rec.energy}
+						happiness={rec.happiness}
+						popularity={rec.popularity}
+						sliderValueDict={this.props.sliderValueDict}
+						
 						handlerPlaySong = {this.props.handlerPlaySong}
 						handlerPauseSong = {this.props.handlerPauseSong}
 						playing = {this.checkPlaying(rec.id)}

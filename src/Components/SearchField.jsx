@@ -3,7 +3,6 @@ import styles from '../Styling/SearchField.module.css';
 
 
 export default class SearchField extends Component{
-	//todo what if you do not want to search
 	constructor(props){
 		super(props);
 		this.searchClick = this.searchClick.bind(this);

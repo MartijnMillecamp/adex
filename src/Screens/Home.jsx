@@ -17,7 +17,6 @@ import '../Styling/global.css'
 import styles from '../Styling/Home.module.css';
 
 import Sliders from "../Components/Sliders";
-import axios from 'axios'
 import SearchField from "../Components/SearchField"
 import SearchResults from "../Components/SearchResults"
 import danceability from '../Images/danceability.svg'
@@ -67,8 +66,6 @@ export default class Home extends Component {
 	}
 	
 	handlerSliderChange(value, slider){
-		//todo detect loop?
-		console.log('sliderchange')
 		const values = this.state.sliderValueDict;
 		if (slider !== 'popularity'){
 			values[slider] = value / 100;
@@ -223,12 +220,13 @@ export default class Home extends Component {
 		let finishedSeeds = 0;
 		const accessToken = this.props.tokenObject['access_token'];
 		const seeds = this.state.sources;
+		//limit the number or requests to 40 songs
 		let totalNumber = 40;
 		let numberPerSeed = 5;
 		if (seeds.length !== 0){
 			numberPerSeed = Math.round(totalNumber / seeds.length)
 		}
-		
+		//request recommendations
 		for (let i=0; i < seeds.length; i++){
 			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken, numberPerSeed);
 			for (let j = 0; j < recommendationsSeed.length; j++){
@@ -236,6 +234,7 @@ export default class Home extends Component {
 			}
 			finishedSeeds += 1
 		}
+		//if all recommendations are in
 		if (finishedSeeds === seeds.length){
 			const recommendationsFlat = recommendations.flat(1);
 			const recFilteredPreview = filterNoPreview(recommendationsFlat);
@@ -311,7 +310,6 @@ export default class Home extends Component {
 							iconDict={iconDict}
 							handlerSliderChange={this.handlerSliderChange}
 							sliderValueDict={this.state.sliderValueDict}
-							//todo create better default values
 						/>
 					}
 				</div>
@@ -326,6 +324,7 @@ export default class Home extends Component {
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					sliderValues = {this.state.sliderValueDict}
 					status = {this.state.status}
+					sliderValueDict={this.state.sliderValueDict}
 				/>
 			</div>
 		)

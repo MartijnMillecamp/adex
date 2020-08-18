@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 
 import PlaylistSong from './PlaylistSong'
 import styles from '../Styling/Playlist.module.css';

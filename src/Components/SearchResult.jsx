@@ -5,18 +5,12 @@ import '../Styling/global.css'
 import classnames from 'classnames'
 import Album from './Album'
 import SongInfo from './SongInfo'
-import ReactTooltip from "react-tooltip";
-import addToPlaylist from '../Images/addToPlaylist.svg'
+
 
 
 
 
 export default class SearchResult extends Component{
-	constructor(props){
-		super(props);
-		
-	}
-	
 	
 	render(){
 		const styleContainer = classnames('container-columns', styles.container)

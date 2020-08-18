@@ -1,0 +1,18 @@
+.containerAll{
+    background-color: #D6FFDF;
+    justify-content: flex-start;
+    width:100%;
+    height: 120px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.containerRow1{
+    justify-content: space-around;
+    height: 60%;
+}
+
+.containerRow2{
+    height: 40%;
+}

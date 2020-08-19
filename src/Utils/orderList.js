@@ -8,6 +8,7 @@ export function orderList(recommendations, sliderValuesDict){
 	recommendations.sort(function (a, b) {
 			return a.fit - b.fit
 	})
+	console.log(recommendations)
 	return recommendations
 	
 }
@@ -17,7 +18,8 @@ function calculateFit(song, sliderValuesDict){
 	const diffEnergy = Math.abs(song['energy'] - sliderValuesDict['energy']) * 100;
 	const diffHappiness = Math.abs(song['valence'] - sliderValuesDict['happiness']) * 100;
 	const diffPopularity = Math.abs(song['popularity'] - sliderValuesDict['popularity']);
-	const diff = diffDanceability + diffEnergy + diffHappiness + diffPopularity
+	const diff = diffDanceability + diffEnergy + diffHappiness + diffPopularity;
+	console.log(diffDanceability, diffEnergy, diffHappiness, diffPopularity, diff, song.name);
 	return diff
 }
 

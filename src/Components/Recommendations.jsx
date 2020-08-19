@@ -33,7 +33,7 @@ export default class Recommendations extends Component {
 						
 						danceability={rec.danceability}
 						energy={rec.energy}
-						happiness={rec.happiness}
+						happiness={rec.valence}
 						popularity={rec.popularity}
 						sliderValueDict={this.props.sliderValueDict}
 						
@@ -41,6 +41,9 @@ export default class Recommendations extends Component {
 						handlerPauseSong = {this.props.handlerPauseSong}
 						playing = {this.checkPlaying(rec.id)}
 						handlerAddToPlaylist = {this.props.handlerAddToPlaylist}
+						
+						colorDict={this.props.colorDict}
+						iconDict={this.props.iconDict}
 					/>
 				)
 			)

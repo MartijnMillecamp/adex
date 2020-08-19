@@ -322,9 +322,9 @@ export default class Home extends Component {
 					tokenObject = {this.props.tokenObject}
 					playing = {this.state.playing}
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
-					sliderValues = {this.state.sliderValueDict}
 					status = {this.state.status}
 					sliderValueDict={this.state.sliderValueDict}
+					colorDict={colorDict}
 				/>
 			</div>
 		)

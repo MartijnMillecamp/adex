@@ -66,6 +66,9 @@ export default class Recommendation extends Component{
 				seedArtist={this.props.seedArtist}
 				seedAlbum={this.props.seedAlbum}
 				seedPreview_url={this.props.seedPreview_url}
+				
+				colorDict={this.props.colorDict}
+				iconDict={this.props.iconDict}
 			
 			
 			/>

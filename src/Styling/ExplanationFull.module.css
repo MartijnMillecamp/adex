@@ -11,9 +11,14 @@
 .containerRow1{
     justify-content: space-around;
     height: 60%;
+    align-items: flex-end;
 }
 
 .containerRow2{
     height: 40%;
     width: 100%;
+}
+
+.album{
+    min-width: 40px;
 }

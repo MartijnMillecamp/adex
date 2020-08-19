@@ -3,25 +3,44 @@ import '../Styling/global.css';
 import styles from '../Styling/ExplanationFull.module.css';
 import classnames from 'classnames';
 import ExplanationSeed from "./ExplanationSeed";
-import SliderBar from "./SliderBar"
+import ExplanationFeatures from "./ExplanationFeatures";
+import Album from './Album'
 
 export default class ExplanationFull extends Component{
 	render(){
 		const styleContainer=classnames('container-rows', styles.containerAll);
 		const styleContainerRow1=classnames('container-columns', styles.containerRow1);
 		const styleContainerRow2=classnames('container-columns', styles.containerRow2);
-		
-		const val1 = 20;
-		const val2= 40;
+		const styleContainerAlbum=classnames(styles.album);
 		return (
 			<div className={styleContainer}>
 				<div className={styleContainerRow1}>
-					<SliderBar
-						sliderValue={val1}
-						barValue={val2}
-						color={"#7CD2ED"}
+					<div
+						className={styleContainerAlbum}
+					>
+						<Album
+							key={"album_exp" + this.props.id}
+							id={this.props.id}
+							album={this.props.album}
+							preview_url={this.props.preview_url}
+							handlerPlaySong = {this.props.handlerPlaySong}
+							handlerPauseSong = {this.props.handlerPauseSong}
+							playing = {this.props.playing}
+							size = {'explSeed'}
+							playable = {true}
+						/>
+					</div>
+					
+					<ExplanationFeatures
+						key={"exp_features" + this.props.id}
+						danceability={this.props.danceability}
+						energy={this.props.energy}
+						happiness={this.props.happiness}
+						popularity={this.props.popularity}
+						sliderValueDict={this.props.sliderValueDict}
+						colorDict={this.props.colorDict}
+						iconDict={this.props.iconDict}
 					/>
-					<span>test</span>
 				</div>
 				<div className={styleContainerRow2}>
 					<ExplanationSeed

@@ -3,7 +3,7 @@ import '../Styling/global.css';
 import styles from '../Styling/ExplanationFull.module.css';
 import classnames from 'classnames';
 import ExplanationSeed from "./ExplanationSeed";
-
+import SliderBar from "./SliderBar"
 
 export default class ExplanationFull extends Component{
 	render(){
@@ -11,10 +11,15 @@ export default class ExplanationFull extends Component{
 		const styleContainerRow1=classnames('container-columns', styles.containerRow1);
 		const styleContainerRow2=classnames('container-columns', styles.containerRow2);
 		
+		const val1 = 20;
+		const val2= 40;
 		return (
 			<div className={styleContainer}>
 				<div className={styleContainerRow1}>
-					<span>test</span>
+					<SliderBar
+						sliderValue={val1}
+						barValue={val2}
+					/>
 					<span>test</span>
 				</div>
 				<div className={styleContainerRow2}>

@@ -79,7 +79,7 @@ export default class PlaylistSong extends Component{
 					handlerPlaySong = {this.props.handlerPlaySong}
 					handlerPauseSong = {this.props.handlerPauseSong}
 					playing = {this.props.playing}
-					style = {'playlist'}
+					size = {'playlist'}
 					playable = {true}
 				
 				/>

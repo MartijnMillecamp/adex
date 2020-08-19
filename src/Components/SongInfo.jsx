@@ -6,6 +6,7 @@ import addToPlaylist from '../Images/addToPlaylist.svg'
 import addToPlaylistGreen from '../Images/addToPlaylist-green.svg'
 
 import question from '../Images/questionmark.svg'
+import questionYellow from '../Images/questionmark-yellow.svg'
 import ReactTooltip from "react-tooltip";
 
 
@@ -18,6 +19,7 @@ export default class SongInfo extends Component{
 	constructor(props){
 		super(props);
 		this.addToPlaylist = this.addToPlaylist.bind(this)
+		this.toggleExplanation = this.toggleExplanation.bind(this)
 	}
 	
 	
@@ -27,7 +29,7 @@ export default class SongInfo extends Component{
 			id: this.props.id,
 			title: this.props.title,
 			artist: this.props.artist,
-			preview: this.props.preview_url,
+			preview_url: this.props.preview_url,
 			album: this.props.album
 		};
 		console.log(songData)
@@ -84,21 +86,37 @@ export default class SongInfo extends Component{
 		
 	}
 	
+	toggleExplanation(){
+		console.log('toggle')
+		this.props.toggleExplanation()
+	}
 	
 	
+	switchBackgroundStyle(){
+		const styleBackground = classnames(styles.background, 'container-columns');
+		const styleBackgroundSearch = classnames(styles.backgroundSearch, 'container-columns');
+		const styleBackgroundExplanation = classnames(styles.backgroundExplanation, 'container-columns');
+		if (this.props.search){
+			return styleBackgroundSearch
+		}
+		else if (this.props.explanation){
+			return styleBackgroundExplanation
+		}
+		else{
+			return styleBackground
+		}
+	}
 	
 	
 	
 	render(){
-		const styleBackground = classnames(styles.background, 'container-columns');
+		
 		const styleButtons = classnames('container-rows', styles.buttons);
-		const styleBackgroundSearch = classnames(styles.backgroundSearch, 'container-columns');
 		
 		
-		//TODO add explanations
 		return(
 			<>
-			<div className={this.props.search ? styleBackgroundSearch : styleBackground}>
+			<div className={this.switchBackgroundStyle()}>
 				{this.props.search ? this.renderSearchInfo() : this.renderRecInfo()}
 				<div className={styleButtons}>
 					<img
@@ -113,9 +131,11 @@ export default class SongInfo extends Component{
 					{this.props.search ? (null) : (
 						<>
 						<img
-							src={question}
+							src={this.props.explanation? questionYellow : question}
 							data-tip="Why is this song recommended"
-							alt="Why" />
+							alt="Why"
+							onClick={this.toggleExplanation}
+						/>
 						<ReactTooltip/>
 						</>
 					)}

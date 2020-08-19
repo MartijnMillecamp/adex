@@ -46,7 +46,7 @@ export default class Album extends Component{
 	
 	renderPlay(){
 		let style = classnames(styles.playPlaylist);
-		if (this.props.style === 'recommendation'){
+		if (this.props.size === 'recommendation'){
 			style = classnames(style.playRec)
 		}
 		return(
@@ -61,14 +61,17 @@ export default class Album extends Component{
 	}
 	
 	renderPause(){
-		const styleIconRec = classnames(styles.playRec);
-		const styleIconPlaylist = classnames(styles.playPlaylist)
+		let style = classnames(styles.playPlaylist);
+		if (this.props.size === 'recommendation'){
+			style = classnames(style.playRec)
+		}
+		
 		return(
 			<img
 				src={pause}
 				alt="Pause"
 				onClick={this.handlePause}
-				className={this.props.small ? styleIconPlaylist : styleIconRec }
+				className={style }
 			/>
 		)
 	}
@@ -86,10 +89,10 @@ export default class Album extends Component{
 		const styleCoverDiv = classnames(styles.cover, 'container-rows');
 		const stylePlaylistDiv = classnames(styles.playlist, 'container-rows');
 		const styleExplSeedDiv = classnames(styles.explSeed, 'container-rows')
-		if (this.props.style === 'explSeed'){
+		if (this.props.size === 'explSeed'){
 			return styleExplSeedDiv
 		}
-		else if (this.props.style === 'recommendation'){
+		else if (this.props.size === 'recommendation'){
 			return styleCoverDiv
 		}
 		else{

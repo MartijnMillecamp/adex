@@ -11,7 +11,18 @@ export default class Recommendation extends Component{
 		super(props);
 		this.state = {
 			explanation: true
-		}
+		};
+		this.toggleExplanation = this.toggleExplanation.bind(this)
+	}
+	
+	toggleExplanation(){
+		console.log('toggle');
+		const old = this.state.explanation;
+		const invert = old ? false : true;
+		console.log(invert)
+		this.setState({
+			explanation: !old
+		})
 	}
 	
 	renderAlbum(){
@@ -24,7 +35,7 @@ export default class Recommendation extends Component{
 				handlerPlaySong = {this.props.handlerPlaySong}
 				handlerPauseSong = {this.props.handlerPauseSong}
 				playing = {this.props.playing}
-				style = {'recommendation'}
+				size = {'recommendation'}
 				playable = {true}
 			
 			/>
@@ -42,6 +53,7 @@ export default class Recommendation extends Component{
 				handlerPauseSong = {this.props.handlerPauseSong}
 				playing = {this.props.playing}
 				playable = {true}
+				toggleExplanation = {this.toggleExplanation}
 				
 				danceability={this.props.danceability}
 				energy={this.props.energy}
@@ -76,8 +88,10 @@ export default class Recommendation extends Component{
 					preview_url={this.props.preview_url}
 					handlerAddToPlaylist={this.props.handlerAddToPlaylist}
 					search={false}
+					toggleExplanation = {this.toggleExplanation}
+					explanation={this.state.explanation}
 				/>
-				{this.state.explanation ? this.renderExplanation() : this.renderExplanation()}
+				{this.state.explanation ? this.renderExplanation() : this.renderAlbum()}
 				
 			</div>
 			</>

@@ -36,6 +36,15 @@
     align-items: center;
 }
 
+.backgroundExplanation{
+    background-color: var(--backgroundcolor);
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .backgroundSearch{
     background-color: #000000;
     border-radius: 5px;

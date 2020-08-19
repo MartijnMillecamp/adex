@@ -17,7 +17,7 @@ export default class ExplanationSeed extends Component{
 					album={this.props.seedAlbum}
 					preview_url={null}
 					
-					style = {'explSeed'}
+					size = {'explSeed'}
 					playable = {false}
 				
 				/>

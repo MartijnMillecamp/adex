@@ -19,6 +19,7 @@ export default class ExplanationFull extends Component{
 					<SliderBar
 						sliderValue={val1}
 						barValue={val2}
+						color={"#7CD2ED"}
 					/>
 					<span>test</span>
 				</div>

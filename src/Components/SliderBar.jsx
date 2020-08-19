@@ -5,42 +5,58 @@ import classnames from 'classnames';
 
 export default class SliderBar extends Component{
 	
-	
+	getY(totalHeight, value){
+		const pixels = (value / 100) * totalHeight
+		return totalHeight - pixels
+	}
 	
 	render(){
-		const totalHeight = 100;
+		const totalHeight = 50;
 		const totalWidth = 20;
-		const topSlider = totalHeight-this.props.sliderValue;
-		const topBar = totalHeight - this.props.barValue;
-		const styleContainer = classnames(styles.container)
-		const styleSliderContainer = {
-			position: "relative",
-			width: "6px",
-			height: this.props.sliderValue + "px",
-			backgroundColor: "blue",
-			top: topSlider + "px",
-			left: "7px"
-		};
-		const styleBar = {
-			position: "relative",
-			width: totalWidth + 'px',
-			height: this.props.barValue + "px",
-			backgroundColor: "red",
-			opacity: "0.8",
-			top: topBar + "px",
+		const sliderWidth = 4;
+		const handleWidth = 10;
+		const handleHeight = 6;
+		const handleRadius = 3;
+		const topSlider = this.getY(totalHeight, this.props.sliderValue);
+		const topBar = this.getY(totalHeight, this.props.barValue);
+		const styleSVG = {
+			width: totalWidth,
+			height: totalHeight,
 		};
 		
+		
 		return(
-			<div
-				className={styleContainer}
+			<svg
+				style={styleSVG}
 			>
-				<div
-					style={styleSliderContainer}
-				></div>
-				<div
-					style={styleBar}
-				></div>
-			</div>
+				<rect
+					height={handleHeight}
+					width={handleWidth}
+					y={topSlider}
+					x={(totalWidth - handleWidth)/2}
+					rx={handleRadius}
+					ry={handleRadius}
+					fill={this.props.color}
+				></rect>
+				<rect
+					height={this.props.sliderValue}
+					width={sliderWidth}
+					y={topSlider}
+					x={(totalWidth - sliderWidth)/2}
+					fill={this.props.color}
+				></rect>
+				<rect
+					height={this.props.barValue}
+					width={totalWidth}
+					y={topBar}
+					x={0}
+					fill={this.props.color}
+					opacity={0.7}
+					stroke={'#000000'}
+					strokeWidth={"1px"}
+				></rect>
+			
+			</svg>
 		)
 	}
 }

@@ -15,7 +15,7 @@ export default class Login extends Component {
 		// this.redirect_uri = 'http://localhost:3001/callback';
 		// this.redirect_uri = 'http://picasso.experiments.cs.kuleuven.be:3005/callback';
 		this.scopes = [
-			'user-read-email'
+			'playlist-modify-private'
 		].join('%20');
 		this.state = this.initToken()
 	}
@@ -78,7 +78,7 @@ export default class Login extends Component {
 		const tokenString = JSON.stringify({
 			access_token: hashObj.access_token,
 			expires: new Date(Date.now() + (hashObj.expires_in * 1000))
-		})
+		});
 		
 		localStorage.setItem('spotify_token', tokenString );
 		

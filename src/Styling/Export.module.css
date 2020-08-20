@@ -1,0 +1,12 @@
+.container{
+    align-items: center;
+    justify-content: flex-start;
+    color: whitesmoke;
+}
+
+.containerButton{
+    align-items: center;
+    justify-content: flex-start;
+    color: whitesmoke;
+    margin: 20px;
+}

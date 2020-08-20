@@ -27,12 +27,12 @@ export default class SongInfo extends Component{
 	addToPlaylist(){
 		const songData = {
 			id: this.props.id,
+			uri: this.props.uri,
 			title: this.props.title,
 			artist: this.props.artist,
 			preview_url: this.props.preview_url,
 			album: this.props.album
 		};
-		console.log(songData)
 		if (this.props.search){
 			this.props.handlerStopSearch();
 		}

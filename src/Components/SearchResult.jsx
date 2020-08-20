@@ -32,6 +32,7 @@ export default class SearchResult extends Component{
 				<SongInfo
 					key={"songinfo_search_" + this.props.id}
 					id={this.props.id}
+					uri={this.props.uri}
 					title={this.props.title}
 					artist={this.props.artist}
 					handlerAddToPlaylist={this.props.handlerAddToPlaylist}

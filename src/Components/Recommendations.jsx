@@ -36,6 +36,7 @@ export default class Recommendations extends Component {
 					<Recommendation
 						key={"rec_" + rec.id}
 						id={rec.id}
+						uri={rec.uri}
 						title={rec.name}
 						artist={rec.artists[0]['name']}
 						album={rec.album.images[1].url}

@@ -19,6 +19,9 @@ import styles from '../Styling/Home.module.css';
 import Sliders from "../Components/Sliders";
 import SearchField from "../Components/SearchField"
 import SearchResults from "../Components/SearchResults"
+import Export from '../Screens/Export'
+
+
 import danceability from '../Images/danceability.svg'
 import energy from '../Images/energy.svg'
 import happiness from '../Images/happiness.svg'
@@ -43,7 +46,8 @@ export default class Home extends Component {
 			},
 			search : false,
 			searchResults: [],
-			status: 'empty'
+			status: 'empty',
+			export: false
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -56,12 +60,14 @@ export default class Home extends Component {
 		this.handlerSearchClick = this.handlerSearchClick.bind(this);
 		this.handlerSearch = this.handlerSearch.bind(this);
 		this.handlerStopSearch = this.handlerStopSearch.bind(this);
-		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this)
+		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this);
+		this.handlerExport = this.handlerExport.bind(this);
 		
 	}
 	
+	
+	
 	componentDidMount(){
-		console.log('didMount')
 		this.getRecommendations()
 	}
 	
@@ -203,6 +209,12 @@ export default class Home extends Component {
 			sliderValueDict: sliderValueDict
 		})
 	}
+	
+	handlerExport(){
+		this.setState({
+			export: true
+		})
+	}
 
 	
 	
@@ -252,9 +264,16 @@ export default class Home extends Component {
 		
 	}
 	
+	renderExport(){
+		return(
+			<Export
+				playlist={this.state.playlist}
+				tokenObject={this.props.tokenObject}
+			/>
+		)
+	}
 	
-	
-	render() {
+	renderHome(){
 		const colorDict ={
 			'danceability': '#9CE09F',
 			'energy': '#E25151',
@@ -271,9 +290,9 @@ export default class Home extends Component {
 		};
 		const styleContainerHome = classnames('container-columns', styles.container);
 		const styleContainerCol2 = classnames('container-rows', styles.column2);
+		
 		return (
 			<div className={styleContainerHome}>
-			
 				<Playlist
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
@@ -285,6 +304,7 @@ export default class Home extends Component {
 					handlerAddSource = {this.handlerAddSource}
 					handlerRemoveSource = {this.handlerRemoveSource}
 					handlerInitSliderValues = {this.handlerInitSliderValues}
+					handlerExport = {this.handlerExport}
 				/>
 				<div
 					className = {styleContainerCol2}
@@ -328,6 +348,16 @@ export default class Home extends Component {
 				/>
 			</div>
 		)
+	}
+	
+	
+	
+	render() {
+		return(
+			this.state.export ? this.renderExport() : this.renderHome()
+		)
+		
+		
 	}
 	
 	

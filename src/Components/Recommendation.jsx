@@ -55,6 +55,7 @@ export default class Recommendation extends Component{
 			<ExplanationFull
 				key={"exp_" + this.props.id}
 				id={this.props.id}
+				uri={this.props.uri}
 				album={this.props.album}
 				preview_url={this.props.preview_url}
 				handlerPlaySong = {this.props.handlerPlaySong}
@@ -99,6 +100,7 @@ export default class Recommendation extends Component{
 				<SongInfo
 					key={"songinfo_" + this.props.id}
 					id={this.props.id}
+					uri={this.props.uri}
 					title={this.props.title}
 					artist={this.props.artist}
 					album={this.props.album}

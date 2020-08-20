@@ -93,3 +93,42 @@ export async function getTopSong(accessToken) {
 	}
 	return topSong
 }
+
+export async function getSpotifyId(accessToken) {
+	const topLink = [
+		"https://api.spotify.com/v1/me"
+	].join('');
+	const AuthStr = 'Bearer ' + accessToken;
+	const res = await axios.get(topLink, { 'headers': { 'Authorization': AuthStr } })
+	return res.data.id
+}
+
+export async function addPlaylist(name, spotifyId, accessToken) {
+	const data = {
+		name: name,
+		public: false
+	};
+	const request = [
+		"https://api.spotify.com/v1/users/",
+		`${spotifyId}`,
+		`/playlists`,
+	].join('');
+	const AuthStr = 'Bearer ' + accessToken;
+	const res = await axios.post(request, data, { 'headers': { 'Authorization': AuthStr } });
+	return res.data.id
+	
+}
+
+export async function addSongsToPlaylist(playlistId, tracks, accessToken) {
+	const data = {
+		uris: tracks,
+	};
+	const request = [
+		"https://api.spotify.com/v1/playlists/",
+		`${playlistId}`,
+		`/tracks`,
+	].join('');
+	const AuthStr = 'Bearer ' + accessToken;
+	const res = await axios.post(request, data, { 'headers': { 'Authorization': AuthStr } });
+	return res
+}

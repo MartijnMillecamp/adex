@@ -25,7 +25,7 @@ export default class SearchResults extends Component{
 	render(){
 		const styleContainer = classnames('container-columns', styles.containerSearch);
 		const list = this.props.results;
-		
+		console.log(list);
 		return(
 			<>
 			<div
@@ -36,6 +36,7 @@ export default class SearchResults extends Component{
 							<SearchResult
 								key={"search_" + song.id}
 								id={song.id}
+								uri={song.uri}
 								title={song.name}
 								artist={song.artists[0]['name']}
 								album={song.album.images[0]['url']}

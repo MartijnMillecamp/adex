@@ -2,9 +2,27 @@
     width: 20%;
     margin-left: 10px;
     flex-wrap: nowrap;
+    height: 100%;
+    overflow: scroll;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.containerPlaylist{
+    width: 100%;
+    margin-left: 10px;
+    flex-wrap: nowrap;
+    height: 90%;
+    overflow: scroll;
 }
 
 .header{
     color: whitesmoke;
     margin-top: 10px;
+}
+
+.button{
+    border-radius: 5px;
+    height: 20px;
+    margin: 5px;
 }

@@ -8,6 +8,7 @@ import classnames from 'classnames'
 import {getTopSong} from "../Utils/Spotify";
 
 
+
 export default class Playlist extends Component{
 	//TODO show values of song?
 	//TODO show profile of playlist
@@ -42,6 +43,7 @@ export default class Playlist extends Component{
 	addToPlaylist(song){
 		const songData = {
 			id: song.id,
+			uri: song.uri,
 			title: song.name,
 			artist: song.artists[0]['name'],
 			preview_url: song.preview_url,
@@ -56,17 +58,21 @@ export default class Playlist extends Component{
 	
 	render(){
 		const list = this.props.playlist;
-		const styleContainerPlaylist = classnames('container-rows', styles.container);
+		const styleContainer = classnames('container-rows', styles.container);
+		const styleContainerPlaylist = classnames('container-rows', styles.containerPlaylist);
 		const styleHeader = classnames(styles.header);
+		const styleButton = classnames(styles.button)
 		return(
-			<div className={styleContainerPlaylist}>
-				<h1 className={styleHeader}> Your Playlist </h1>
-				<div>
+			<div className={styleContainer}>
+				<div className={styleContainerPlaylist}>
+					<h1 className={styleHeader}> Your Playlist </h1>
+					
 					{list.map(song =>
 						(
 							<PlaylistSong
 								key={"playlist_" + song.id}
 								id={song.id}
+								uri={song.uri}
 								title={song.title}
 								artist={song.artist}
 								preview_url={song.preview_url}
@@ -81,6 +87,10 @@ export default class Playlist extends Component{
 						)
 					)}
 				</div>
+				<button
+					className={styleButton}
+					onClick={this.props.handlerExport}
+				>Export Playlist</button>
 				
 			</div>
 		)

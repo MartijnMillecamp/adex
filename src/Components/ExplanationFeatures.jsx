@@ -6,7 +6,7 @@ import SliderBar from "./SliderBar"
 
 export default class ExplanationFeatures extends Component{
 	render(){
-		const styleContainer=classnames('container-columns', styles.container)
+		const styleContainer=classnames('container-columns', styles.container);
 		return(
 			<>
 			<div
@@ -24,7 +24,7 @@ export default class ExplanationFeatures extends Component{
 					feature={"energy"}
 					color = {this.props.colorDict['energy']}
 					sliderValue={Math.round(this.props.sliderValueDict['energy']*100)}
-					barValue={Math.round(this.props.danceability * 100)}
+					barValue={Math.round(this.props.energy * 100)}
 				/>
 				<SliderBar
 					key={"sliderBar_happiness" + this.props.id}

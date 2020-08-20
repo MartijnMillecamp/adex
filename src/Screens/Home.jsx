@@ -133,6 +133,7 @@ export default class Home extends Component {
 				playing: null
 			})
 		}
+		this.handlerRemoveSource(song)
 	}
 	
 	handlerPlaySong(id, audio){

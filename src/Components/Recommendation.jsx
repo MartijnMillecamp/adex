@@ -10,19 +10,27 @@ export default class Recommendation extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			explanation: true
+			explanation: false
 		};
 		this.toggleExplanation = this.toggleExplanation.bind(this)
 	}
 	
+	
+	componentDidUpdate(prevProps, prevState){
+		if (prevProps.allExplanation !== this.props.allExplanation){
+			this.setState({explanation: this.props.allExplanation})
+		}
+	}
+	
+	
+	
+	
+	
 	toggleExplanation(){
-		console.log('toggle');
 		const old = this.state.explanation;
-		const invert = old ? false : true;
-		console.log(invert)
 		this.setState({
-			explanation: !old
-		})
+			explanation: !old,
+		});
 	}
 	
 	renderAlbum(){
@@ -75,6 +83,12 @@ export default class Recommendation extends Component{
 		)
 	}
 	
+	switchRenderAlbumExplanation(){
+		return(
+			this.state.explanation ? this.renderExplanation() : this.renderAlbum()
+		)
+	}
+	
 	
 	
 	render(){
@@ -94,7 +108,7 @@ export default class Recommendation extends Component{
 					toggleExplanation = {this.toggleExplanation}
 					explanation={this.state.explanation}
 				/>
-				{this.state.explanation ? this.renderExplanation() : this.renderAlbum()}
+				{this.switchRenderAlbumExplanation()}
 				
 			</div>
 			</>

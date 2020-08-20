@@ -87,7 +87,6 @@ export default class SongInfo extends Component{
 	}
 	
 	toggleExplanation(){
-		console.log('toggle')
 		this.props.toggleExplanation()
 	}
 	

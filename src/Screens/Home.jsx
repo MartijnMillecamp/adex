@@ -315,7 +315,6 @@ export default class Home extends Component {
 					}
 				</div>
 				
-				
 				<Recommendations
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}

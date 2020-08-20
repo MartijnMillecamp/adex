@@ -1,16 +1,47 @@
-.container{
+.col3{
     width: 45%;
+    margin-left: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    overflow: scroll;
+}
+
+.container{
+    width: 100%;
     margin-left: 10px;
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    height: 90%;
+    overflow: scroll;
 }
 
 .spinner{
     width: 200px;
     height: 200px;
 }
+
 .empty{
+    margin-top: 20px;
     color: whitesmoke
+}
+
+label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+    margin: 5px;
+    height: 40px;
+}
+
+.span{
+    color: whitesmoke;
+    font-size: 13px;
+    line-height: 40px;
 }

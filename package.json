@@ -16,6 +16,7 @@
     "react-compound-slider": "^2.5.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "react-switch": "^5.0.1",
     "react-tooltip": "^4.2.7"
   },
   "scripts": {

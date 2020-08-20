@@ -84,6 +84,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 5. put zip on server
 6. unzip 
 7. cd adex
+8. podman stop adex
+9. podman rm adex
 8. podman build -t adex:dev .
 9. podman run \
     -dit \

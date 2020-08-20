@@ -1,7 +1,6 @@
 ---------------------
 Bugs
 --------------------
-remove first song of playlist
 check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)
 test with other accounts
 handlewidth expl when values are too big or too small
@@ -15,12 +14,16 @@ set max to sources (already max 40 songs => not needed?)
 -----------------------
 New features
 ----------------------
-
 toggle all explanations
-recommendations in list
-add highlight in barchart when hover
-add scatterplot
 add saving to playlist
+add scatterplot
+
+
+----------------------
+Style improvements
+----------------------
+
+add highlight in barchart when hover
 add transition in toggling explanations
 add profile of playlist
 add flow of research

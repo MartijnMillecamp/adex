@@ -15,6 +15,8 @@ set max to sources (already max 40 songs => not needed?)
 New features
 ----------------------
 add scatterplot
+add logging
+add within subject random order
 
 
 ----------------------

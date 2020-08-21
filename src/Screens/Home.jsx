@@ -20,6 +20,8 @@ import Sliders from "../Components/Sliders";
 import SearchField from "../Components/SearchField"
 import SearchResults from "../Components/SearchResults"
 import Export from '../Screens/Export'
+import Scatterplot from "../Components/Scatterplot";
+
 
 
 import danceability from '../Images/danceability.svg'
@@ -333,7 +335,12 @@ export default class Home extends Component {
 							sliderValueDict={this.state.sliderValueDict}
 						/>
 					}
+					<Scatterplot
+						data={this.state.recommendations}
+					/>
+				
 				</div>
+				
 				
 				<Recommendations
 					handlerPlaySong = {this.handlerPlaySong}

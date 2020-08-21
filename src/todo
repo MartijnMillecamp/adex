@@ -15,6 +15,9 @@ set max to sources (already max 40 songs => not needed?)
 New features
 ----------------------
 add scatterplot
+    update pattern
+    do not render axis multiple times
+    add lines/tick for slidervalue
 add logging
 add within subject random order
 

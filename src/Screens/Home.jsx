@@ -337,6 +337,7 @@ export default class Home extends Component {
 					}
 					<Scatterplot
 						data={this.state.recommendations}
+						sliderValueDict={this.state.sliderValueDict}
 					/>
 				
 				</div>

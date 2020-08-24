@@ -13,6 +13,10 @@ export default class Scatterplot extends Component{
 		this.refSVG = React.createRef()
 	}
 	
+	componentDidMount(){
+		this.initColorscale()
+	}
+	
 	findMax(array){
 		const maxXData = Math.max.apply(Math, array.map(function(o) { return o['energy']; }));
 		const maxYData = Math.max.apply(Math, array.map(function(o) { return o['danceability']; }));
@@ -44,6 +48,344 @@ export default class Scatterplot extends Component{
 		return [minX, minY, minC, minS]
 	}
 	
+	initColorscale(){
+		const svg = d3.select(this.refSVG.current);
+		
+		//append colorscale
+		const svgDefs = svg.append('defs');
+		const mainGradient = svgDefs
+			.append('linearGradient')
+			.attr('id', 'mainGradient')
+			.attr("gradientTransform", 'rotate(90)')
+		;
+		mainGradient
+			.append('stop')
+			.attr('stop-color', '#FFFFD5')
+			.attr('offset', '0%');
+		mainGradient
+			.append('stop')
+			.attr('stop-color', '#2EA8B9')
+			.attr('offset', '50%');
+		mainGradient
+			.append('stop')
+			.attr('stop-color', '#021D4F')
+			.attr('offset', '100%');
+	}
+	
+	appendAxis(width, height, margin) {
+		const data = [
+			{
+				id: 1,
+				x: margin.left + (width / 2),
+				y: margin.top + height + margin.bottom - 2,
+				text: "Energy",
+				fontSize: 10,
+				fontWeight: 'bold',
+				rotate: 0
+			},
+			{
+				id: 2,
+				x: margin.left / 2,
+				y: margin.top + (height / 2),
+				text: "Danceability",
+				fontSize: 10,
+				fontWeight: 'bold',
+				rotate: -90
+			}
+		
+		
+		]
+		
+		const svg = d3.select(this.refSVG.current);
+		let axisLabels = svg.selectAll('.axisLabels')
+			.data(data, function (d) {
+				return d.id
+			});
+		
+		axisLabels
+			.attr('x', function (d) {
+				return d.x
+			})
+			.attr('y', function (d) {
+				return d.y
+			})
+			.text(function (d) {
+				return d.text
+			})
+			.style('text-anchor', "middle")
+			.style('fill', "#ffffff")
+			.style('font-size', function (d) {
+				return d.fontSize
+			})
+			.style('font-weight', function (d) {
+				return d.fontWeight
+			})
+			.attr('transform', function (d) {
+				return "rotate(" + d.rotate + "," + d.x + "," + d.y + ")";
+			})
+		;
+		
+		axisLabels
+			.enter()
+			.append('text')
+			.attr('class', 'axisLabels')
+			.attr('x', function (d) {
+				return d.x
+			})
+			.attr('y', function (d) {
+				return d.y
+			})
+			.text(function (d) {
+				return d.text
+			})
+			.style('text-anchor', "middle")
+			.style('fill', "#ffffff")
+			.style('font-size', function (d) {
+				return d.fontSize
+			})
+			.style('font-weight', function (d) {
+				return d.fontWeight
+			})
+			.attr('transform', function (d) {
+				return "rotate(" + d.rotate + ")";
+			})
+	}
+	
+	drawLegendPopularity(width, height, margin, max){
+		const xLegend = margin.left + width + (margin.right/2);
+		const yLegendStart = margin.top + (height/2)
+		const data = [
+			{
+				id: 1,
+				x: xLegend,
+				y: yLegendStart + 50,
+				radius: 16},
+			{
+				id: 2,
+				x: xLegend,
+				y: yLegendStart + 85,
+				radius: 12},
+			{
+				id: 3,
+				x: xLegend,
+				y: yLegendStart + 110,
+				radius: 8},
+			{
+				id: 4,
+				x: xLegend,
+				y: yLegendStart + 130,
+				radius: 4}
+		];
+		
+		const svg = d3.select(this.refSVG.current);
+		let legend = svg.selectAll('.legendPopularity')
+			.data(data, function (d) {
+				return d.id
+			});
+		
+		//update existing targets
+		legend
+			.attr('cx', function (d) {return d.x})
+			.attr('cy', function (d) {return d.y})
+			.attr('r', function (d) {return d.radius})
+			.style('stroke', "#ffffff")
+			.style('stroke-width', '1px')
+			.style('fill', '#1e1e1e')
+		
+		;
+		
+		legend
+			.enter()
+			.append('circle')
+			.attr('class', 'legendPopularity')
+			.attr('cx', function (d) {
+				return d.x
+			})
+			.attr('cy', function (d) {
+				return d.y
+			})
+			.attr('r', function (d) {
+				return d.radius
+			})
+			.style('stroke', "#ffffff")
+			.style('stroke-width', '1px')
+			.style('fill', '#1e1e1e')
+		
+		const dataText = [
+			{
+				id: 5,
+				text: 'Popularity',
+				x: xLegend,
+				y: yLegendStart + 20,
+				fontSize: 12,
+				fontWeight: 'bold'
+			},
+			{
+				id: 6,
+				text: max,
+				x: xLegend,
+				y: yLegendStart + 50,
+				fontSize: 10,
+				fontWeight: 'normal'
+			},
+			
+		];
+		
+		let popularityLabels = svg.selectAll('.popularityLabels')
+			.data(dataText, function (d) {
+				return d.id
+			});
+		
+		popularityLabels
+			.attr('x', function (d) {
+				return d.x
+			})
+			.attr('y', function (d) {
+				return d.y
+			})
+			.text(function (d) {
+				return d.text
+			})
+			.style('text-anchor', 'middle')
+			.style('fill', "#ffffff")
+			.style('font-size', function (d) {return d.fontSize})
+			.style('font-weight', function (d) {return d.fontWeight})
+		
+		;
+		
+		
+		popularityLabels
+			.enter()
+			.append('text')
+			.attr('class', 'popularityLabels')
+			.attr('x', function (d) {
+				return d.x
+			})
+			.attr('y', function (d) {
+				return d.y
+			})
+			.text(function (d) {
+				return d.text
+			})
+			.style('text-anchor', 'middle')
+			.style('fill', "#ffffff")
+			.style('font-size', function (d) {
+				return d.fontSize
+			})
+	}
+	
+	drawLegendHappiness(width, margin){
+		const svg = d3.select(this.refSVG.current);
+		
+		const widthRect = 14;
+		const heightRect = 100;
+		
+		const xLegend = margin.left + width + (margin.right/3) - (widthRect/2);
+		const yLegendStart = margin.top + 10;
+		const marginTitle = 20;
+		const marginLabel = 2;
+		
+		
+		
+		
+		const data=[
+			{
+				id: 1,
+				x: xLegend,
+				y: yLegendStart + marginTitle
+			}
+		];
+		let legend = svg.selectAll('.legendHappiness')
+			.data(data, function (d) {
+				return d.id
+			});
+		
+		
+		
+		//update existing
+		legend
+			.attr('x', function (d) {return d.x})
+			.attr('y', function (d) {return d.y})
+			.attr('width', widthRect)
+			.attr('height', heightRect)
+			.style('stroke', "#ffffff")
+			.style('stroke-width', '1px')
+			.style('fill', 'url(#mainGradient)')
+		
+		;
+		
+		legend
+			.enter()
+			.append('rect')
+			.attr('class', 'legendHappiness')
+			.attr('x', function (d) {return d.x})
+			.attr('y', function (d) {return d.y})
+			.attr('width', widthRect)
+			.attr('height', heightRect)
+			.style('stroke', "#ffffff")
+			.style('stroke-width', '1px')
+			.style('fill', 'url(#mainGradient)')
+		
+		const dataText = [
+			{
+				id: 7,
+				text: 'Happiness',
+				x: margin.left + width + (margin.right/2),
+				y: yLegendStart + marginTitle/2,
+				fontSize: 12,
+				anchor: 'middle',
+				fontWeight: 'bold'
+			},
+			{
+				id: 8,
+				text: 'Happy',
+				x: xLegend + widthRect + marginLabel,
+				y: yLegendStart + marginTitle + 10,
+				fontSize: 10,
+				anchor: 'left',
+				fontWeight: 'normal'
+			},
+			{
+				id: 9,
+				text: 'Sad',
+				x: xLegend + widthRect + marginLabel,
+				y: yLegendStart + marginTitle + heightRect ,
+				fontSize: 10,
+				anchor: 'left',
+				fontWeight: 'normal'
+			},
+		]
+		
+		let happinessLabels = svg.selectAll('.happinessLabels')
+			.data(dataText, function (d) {
+				return d.id
+			});
+		
+		happinessLabels
+			.attr('x', function (d) {return d.x})
+			.attr('y', function (d) {return d.y})
+			.text(function (d) {return d.text})
+			.style('text-anchor', function (d) {return d.anchor})
+			.style('fill', "#ffffff")
+			.style('font-size', function (d) {return d.fontSize})
+			.style('font-weight', function (d) {return d.fontWeight})
+		;
+		
+		happinessLabels
+			.enter()
+			.append('text')
+			.attr('class', 'happinessLabels')
+			.attr('x', function (d) {return d.x})
+			.attr('y', function (d) {return d.y})
+			.text(function (d) {return d.text})
+			.style('text-anchor', function (d) {return d.anchor})
+			.style('fill', "#ffffff")
+			.style('font-size', function (d) {return d.fontSize})
+			.style('font-weight', function (d) {return d.fontWeight})
+		
+		
+	}
+	
 	
 	drawTargets(width, height, xScale, yScale, margin){
 		const danceabilityTarget = yScale(this.props.sliderValueDict['danceability']);
@@ -57,7 +399,7 @@ export default class Scatterplot extends Component{
 				y2: danceabilityTarget + margin.top,
 				color: this.props.colorDict['danceability'],
 				value: Math.round(this.props.sliderValueDict['danceability'] * 100),
-				xLabel: margin.left/2,
+				xLabel: margin.left - 10,
 				yLabel: danceabilityTarget + margin.top
 			},
 			{
@@ -127,7 +469,9 @@ export default class Scatterplot extends Component{
 					return d.value
 				})
 				.style('text-anchor', 'middle')
-				.style('fill', "#ffffff");
+				.style('fill', "#ffffff")
+				.style('font-size', '12px')
+			;
 			
 			
 			targetLabels
@@ -158,9 +502,9 @@ export default class Scatterplot extends Component{
 		const [minX, minY, minC, minS] = this.findMin(data);
 		
 		
-		const margin = {top: 20, right: 20, bottom: 40, left:40};
-		const width = 300 - margin.left - margin.right;
-		const height = 300 - margin.top - margin.bottom;
+		const margin = {top: 0, right: 100, bottom: 40, left: 50};
+		const width = 350 - margin.left - margin.right;
+		const height = 350 - margin.top - margin.bottom;
 		const svg = d3.select(this.refSVG.current);
 		
 		
@@ -180,16 +524,21 @@ export default class Scatterplot extends Component{
 		
 		//set up radius
 		var radius = d3.scaleSqrt()
-			.range([2,10]);
+			.range([4,16]);
 		radius.domain([minS, maxS]).nice();
 		
 		//set up color
 		//https://github.com/d3/d3-scale-chromatic
+		// https://observablehq.com/@d3/working-with-color
 		var colorScale = d3.scaleSequential()
 			.domain([minC, maxC])
-			.interpolator(d3.interpolateYlGn);
+			.interpolator(d3.interpolateYlGnBu);
 		
 		this.drawTargets(width, height, xScale, yScale, margin);
+		this.drawLegendPopularity(width, height, margin, maxS);
+		this.drawLegendHappiness(width, margin);
+		this.appendAxis(width, height, margin);
+		
 		
 		
 		var bubbles = svg.selectAll('.bubble')
@@ -199,14 +548,19 @@ export default class Scatterplot extends Component{
 			.enter()
 				.append('circle')
 				.attr('class', 'bubble')
-				.attr('cx', function(d){
-					return xMap(d);
-				})
+				.attr('cx', function(d){return xMap(d);})
 				.attr('cy', function(d){ return yMap(d); })
 				.attr('r', function(d){ return radius(d.popularity); })
-				.style('fill', function(d){
-					return colorScale(d.valence);
-				});
+				.style('fill', function(d){return colorScale(d.valence);})
+				.style('opacity', 0.5 )
+				.on('mouseover', function (d) {
+					d3.select(this).style('opacity',1)
+				})
+				.on('mouseout', function (d) {
+					d3.select(this).style('opacity',0.5)
+				})
+		
+		;
 		
 		bubbles
 			.exit()

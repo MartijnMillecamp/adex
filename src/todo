@@ -3,6 +3,8 @@ Bugs
 --------------------
 check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)
 test with other accounts
+layout different screen size
+    why is toggle explanations moving
 handlewidth expl when values are too big or too small
 set max to sources (already max 40 songs => not needed?)
 
@@ -18,8 +20,12 @@ add scatterplot
     add legend
     opacity on hover
     tooltip
+    axes
 add logging
 add within subject random order
+add questionnaire
+    need for cognition
+    post task
 
 
 ----------------------

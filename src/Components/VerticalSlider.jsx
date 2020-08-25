@@ -25,11 +25,7 @@ class VerticalSlider extends Component {
 		
 		const styleContainerMusicSlider = classnames('container-rows', styles.container);
 		const styleSliderIcon = classnames(styles.icon)
-		const styleSlider = {
-			position: 'relative',
-			height: '100%',
-			touchAction: 'none',
-		};
+		const styleSlider = classnames(styles.slider);
 		
 		return (
 			<div className={styleContainerMusicSlider}>
@@ -39,12 +35,13 @@ class VerticalSlider extends Component {
 					alt={"icon"}
 				/>
 				<Slider
+					className={styleSlider}
 					vertical
 					reversed
 					mode={2}
 					step={1}
 					domain={domain}
-					rootStyle={styleSlider}
+					// rootStyle={styleSlider}
 					onUpdate={this.onUpdate}
 					onChange={this.onChange}
 					values={values}

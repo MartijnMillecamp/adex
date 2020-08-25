@@ -10,7 +10,8 @@ import * as d3 from 'd3';
 export default class Scatterplot extends Component{
 	constructor(props){
 		super(props);
-		this.refSVG = React.createRef()
+		this.refSVG = React.createRef();
+		this.refDiv = React.createRef();
 	}
 	
 	componentDidMount(){
@@ -151,7 +152,7 @@ export default class Scatterplot extends Component{
 			})
 	}
 	
-	drawLegendPopularity(width, height, margin, max){
+	drawLegendPopularity(width, height, margin, min, max){
 		const xLegend = margin.left + width + (margin.right/2);
 		const yLegendStart = margin.top + (height/2)
 		const data = [
@@ -213,7 +214,7 @@ export default class Scatterplot extends Component{
 		
 		const dataText = [
 			{
-				id: 5,
+				id: 1,
 				text: 'Popularity',
 				x: xLegend,
 				y: yLegendStart + 20,
@@ -221,10 +222,18 @@ export default class Scatterplot extends Component{
 				fontWeight: 'bold'
 			},
 			{
-				id: 6,
+				id: 2,
 				text: max,
 				x: xLegend,
 				y: yLegendStart + 50,
+				fontSize: 10,
+				fontWeight: 'normal'
+			},
+			{
+				id: 3,
+				text: min,
+				x: xLegend + 15,
+				y: yLegendStart + 133,
 				fontSize: 10,
 				fontWeight: 'normal'
 			},
@@ -274,13 +283,13 @@ export default class Scatterplot extends Component{
 			})
 	}
 	
-	drawLegendHappiness(width, margin){
+	drawLegendHappiness(width, margin, min, max){
 		const svg = d3.select(this.refSVG.current);
 		
 		const widthRect = 14;
 		const heightRect = 100;
 		
-		const xLegend = margin.left + width + (margin.right/3) - (widthRect/2);
+		const xLegend = margin.left + width + (margin.right/2) - (widthRect/2);
 		const yLegendStart = margin.top + 10;
 		const marginTitle = 20;
 		const marginLabel = 2;
@@ -338,7 +347,7 @@ export default class Scatterplot extends Component{
 			},
 			{
 				id: 8,
-				text: 'Happy',
+				text: max,
 				x: xLegend + widthRect + marginLabel,
 				y: yLegendStart + marginTitle + 10,
 				fontSize: 10,
@@ -347,7 +356,7 @@ export default class Scatterplot extends Component{
 			},
 			{
 				id: 9,
-				text: 'Sad',
+				text: min,
 				x: xLegend + widthRect + marginLabel,
 				y: yLegendStart + marginTitle + heightRect ,
 				fontSize: 10,
@@ -385,7 +394,6 @@ export default class Scatterplot extends Component{
 		
 		
 	}
-	
 	
 	drawTargets(width, height, xScale, yScale, margin){
 		const danceabilityTarget = yScale(this.props.sliderValueDict['danceability']);
@@ -496,6 +504,18 @@ export default class Scatterplot extends Component{
 		
 	}
 	
+	initTooltip(){
+		let Tooltip = d3.select(this.refDiv)
+			.append("div")
+			.style("opacity", 0)
+			.attr("class", "tooltip")
+			.style("background-color", "white")
+			.style("border", "solid")
+			.style("border-width", "2px")
+			.style("border-radius", "5px")
+			.style("padding", "5px")
+	}
+	
 	render(){
 		const data = this.props.data;
 		const [maxX, maxY, maxC, maxS] = this.findMax(data);
@@ -535,45 +555,74 @@ export default class Scatterplot extends Component{
 			.interpolator(d3.interpolateYlGnBu);
 		
 		this.drawTargets(width, height, xScale, yScale, margin);
-		this.drawLegendPopularity(width, height, margin, maxS);
-		this.drawLegendHappiness(width, margin);
+		this.drawLegendPopularity(width, height, margin, minS, maxS);
+		this.drawLegendHappiness(width, margin, Math.round(minC *100), Math.round(maxC *100));
 		this.appendAxis(width, height, margin);
 		
+		// https://www.d3-graph-gallery.com/graph/interactivity_tooltip.html
+		let Tooltip = d3.select(this.refDiv.current)
+			.style("opacity", 0)
+		;
 		
+		let mouseover = function(d) {
+			// console.log('over')
+			d3.select(this)
+				.style('opacity',1)
+				.style('stroke', '#fff')
+				.style('stroke-width', '1px')
+			Tooltip
+				.html(d.name + "<br> by " + d.artists[0].name)
+				.style("left", d3.event.pageX + 20 + "px")
+				.style("top", d3.event.pageY + "px")
+				.style("opacity", 1)
+		};
 		
-		var bubbles = svg.selectAll('.bubble')
-			.data(data);
+		let mouseout = function(d) {
+			// console.log('leave')
 			
+			d3.select(this)
+				.style('opacity',0.5)
+				.style('stroke', 'none')
+			Tooltip
+				.style("opacity", 0);
+		};
+		
+		const bubbles = svg.selectAll('.bubble')
+			.data(data);
+		
 		bubbles
 			.enter()
-				.append('circle')
-				.attr('class', 'bubble')
-				.attr('cx', function(d){return xMap(d);})
-				.attr('cy', function(d){ return yMap(d); })
-				.attr('r', function(d){ return radius(d.popularity); })
-				.style('fill', function(d){return colorScale(d.valence);})
-				.style('opacity', 0.5 )
-				.on('mouseover', function (d) {
-					d3.select(this).style('opacity',1)
-				})
-				.on('mouseout', function (d) {
-					d3.select(this).style('opacity',0.5)
-				})
+			.append('circle')
+			.attr('class', 'bubble')
+			.attr('cx', function(d){return xMap(d);})
+			.attr('cy', function(d){ return yMap(d); })
+			.attr('r', function(d){ return radius(d.popularity); })
+			.style('fill', function(d){return colorScale(d.valence);})
+			.style('opacity', 0.5 )
+			.on('mouseover', mouseover)
+			.on('mouseout', mouseout)
 		
 		;
 		
 		bubbles
 			.exit()
-				.remove();
+			.remove();
 		
 		
 			
 		return (
-			<svg
-				ref={this.refSVG}
-				width={width+margin.left + margin.right}
-				height={height + margin.top + margin.bottom}
-			/>
+			<>
+				<svg
+					ref={this.refSVG}
+					width={width+margin.left + margin.right}
+					height={height + margin.top + margin.bottom}
+				/>
+				<div
+					id={"tooltipContainer"}
+					className={styles.tooltip}
+					ref={this.refDiv}
+				></div>
+			</>
 			
 		);
 	}

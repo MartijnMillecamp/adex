@@ -78,6 +78,9 @@ export default class Home extends Component {
 		if (slider !== 'popularity'){
 			values[slider] = value / 100;
 		}
+		else{
+			values[slider] = value;
+		}
 		this.setState({sliderValueDict: values})
 		this.getRecommendations()
 	}

@@ -16,6 +16,7 @@ set max to sources (already max 40 songs => not needed?)
 -----------------------
 New features
 ----------------------
+layout sliders (200px + icons smaller)
 add scatterplot
     add legend
     opacity on hover
@@ -35,6 +36,5 @@ Style improvements
 add highlight in barchart when hover
 add transition in toggling explanations
 add profile of playlist
-add flow of research
 
 

@@ -10,3 +10,11 @@
     font-size: 13px;
     fill: white;
 }
+
+.tooltip{
+    position: absolute;
+    background-color: var(--backgroundcolor);
+    border: solid;
+    border-radius: 5px;
+    padding: 5px;
+}

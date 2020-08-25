@@ -3,6 +3,7 @@ import '../Styling/global.css';
 import styles from '../Styling/Scatterplot.module.css';
 import classnames from 'classnames';
 import * as d3 from 'd3';
+import Tooltip from './Tooltip'
 
 
 
@@ -11,7 +12,13 @@ export default class Scatterplot extends Component{
 	constructor(props){
 		super(props);
 		this.refSVG = React.createRef();
-		this.refDiv = React.createRef();
+		this.state = {
+			tooltip: false,
+			xTooltip: 0,
+			yTooltip : 0,
+			titleTooltip : "",
+			artistTooltip: "",
+		}
 	}
 	
 	componentDidMount(){
@@ -504,19 +511,11 @@ export default class Scatterplot extends Component{
 		
 	}
 	
-	initTooltip(){
-		let Tooltip = d3.select(this.refDiv)
-			.append("div")
-			.style("opacity", 0)
-			.attr("class", "tooltip")
-			.style("background-color", "white")
-			.style("border", "solid")
-			.style("border-width", "2px")
-			.style("border-radius", "5px")
-			.style("padding", "5px")
-	}
+	
+	
 	
 	render(){
+		let component = this;
 		const data = this.props.data;
 		const [maxX, maxY, maxC, maxS] = this.findMax(data);
 		const [minX, minY, minC, minS] = this.findMin(data);
@@ -559,32 +558,29 @@ export default class Scatterplot extends Component{
 		this.drawLegendHappiness(width, margin, Math.round(minC *100), Math.round(maxC *100));
 		this.appendAxis(width, height, margin);
 		
-		// https://www.d3-graph-gallery.com/graph/interactivity_tooltip.html
-		let Tooltip = d3.select(this.refDiv.current)
-			.style("opacity", 0)
-		;
-		
-		let mouseover = function(d) {
-			// console.log('over')
+		let mouseOver = function(d){
 			d3.select(this)
 				.style('opacity',1)
 				.style('stroke', '#fff')
-				.style('stroke-width', '1px')
-			Tooltip
-				.html(d.name + "<br> by " + d.artists[0].name)
-				.style("left", d3.event.pageX + 20 + "px")
-				.style("top", d3.event.pageY + "px")
-				.style("opacity", 1)
-		};
+				.style('stroke-width', '1px');
+			
+			component.setState({
+				tooltip: true,
+				titleTooltip: d.name,
+				artistTooltip: d.artists[0].name,
+				xTooltip: (d3.event.pageX + 10) + "px",
+				yTooltip: d3.event.pageY + "px",
+			});
+		}
+		
 		
 		let mouseout = function(d) {
-			// console.log('leave')
-			
 			d3.select(this)
 				.style('opacity',0.5)
 				.style('stroke', 'none')
-			Tooltip
-				.style("opacity", 0);
+			component.setState(
+				{tooltip: false}
+			)
 		};
 		
 		const bubbles = svg.selectAll('.bubble')
@@ -599,7 +595,7 @@ export default class Scatterplot extends Component{
 			.attr('r', function(d){ return radius(d.popularity); })
 			.style('fill', function(d){return colorScale(d.valence);})
 			.style('opacity', 0.5 )
-			.on('mouseover', mouseover)
+			.on('mouseover', mouseOver)
 			.on('mouseout', mouseout)
 		
 		;
@@ -617,11 +613,14 @@ export default class Scatterplot extends Component{
 					width={width+margin.left + margin.right}
 					height={height + margin.top + margin.bottom}
 				/>
-				<div
-					id={"tooltipContainer"}
-					className={styles.tooltip}
-					ref={this.refDiv}
-				></div>
+			{this.state.tooltip ?
+				<Tooltip
+					left = {this.state.xTooltip}
+					top = {this.state.yTooltip}
+					title = {this.state.titleTooltip}
+					artist = {this.state.artistTooltip}
+				/>
+				: null }
 			</>
 			
 		);

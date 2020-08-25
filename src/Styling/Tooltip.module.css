@@ -1,0 +1,26 @@
+.title{
+    font-weight: bolder;
+    color: #1B9E18;
+    margin-left: 10px;
+
+}
+
+.artist{
+    font-style: italic;
+    color: black;
+    margin-left: 10px;
+}
+
+.background{
+    background-color: var(--backgroundcolor);
+    border-radius: 5px;
+    width: 160px;
+    height: 50px;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 12px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

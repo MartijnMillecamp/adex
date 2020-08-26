@@ -16,17 +16,12 @@ set max to sources (already max 40 songs => not needed?)
 -----------------------
 New features
 ----------------------
-layout sliders (200px + icons smaller)
-add scatterplot
-    add legend
-    opacity on hover
-    tooltip
-    axes
 add logging
 add within subject random order
 add questionnaire
     need for cognition
     post task
+link scatterplot with list of recommendations
 
 
 ----------------------

@@ -188,7 +188,7 @@ export default class Home extends Component {
 	async handlerSearch(query){
 		let searchResults = [];
 		if (query !== ""){
-			const accessToken = this.props.tokenObject['access_token'];
+			const accessToken = this.props.location.state.tokenObject['access_token'];
 			searchResults = await search(query, accessToken);
 			this.setState({
 				searchResults : searchResults
@@ -236,7 +236,7 @@ export default class Home extends Component {
 		
 		let recommendations = [];
 		let finishedSeeds = 0;
-		const accessToken = this.props.tokenObject['access_token'];
+		const accessToken = this.props.location.state.tokenObject['access_token'];
 		const seeds = this.state.sources;
 		//limit the number or requests to 40 songs
 		let totalNumber = 40;
@@ -273,7 +273,7 @@ export default class Home extends Component {
 		return(
 			<Export
 				playlist={this.state.playlist}
-				tokenObject={this.props.tokenObject}
+				tokenObject={this.props.location.state.tokenObject}
 			/>
 		)
 	}
@@ -302,7 +302,7 @@ export default class Home extends Component {
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
 					playlist = {this.state.playlist}
-					tokenObject = {this.props.tokenObject}
+					tokenObject = {this.props.location.state.tokenObject}
 					playing = {this.state.playing}
 					handlerDeleteFromPlaylist = {this.handlerDeleteFromPlaylist}
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
@@ -351,7 +351,7 @@ export default class Home extends Component {
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
 					recommendations = {this.state.recommendations}
-					tokenObject = {this.props.tokenObject}
+					tokenObject = {this.props.location.state.tokenObject}
 					playing = {this.state.playing}
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					status = {this.state.status}

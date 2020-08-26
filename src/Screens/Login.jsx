@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import Home from './Home.jsx'
+import {Redirect} from 'react-router-dom';
+
 
 
 
@@ -90,13 +91,17 @@ export default class Login extends Component {
 	
 	
 	render(){
+		console.log(this.state.token)
 		// fragment https://reactjs.org/docs/fragments.html
 		return(
 			<Fragment>
 				{
 					this.state.loggedIn
 						? (
-							<Home tokenObject = {this.state.token} />
+							this.props.history.push({
+								pathname: '/Home',
+								state: { tokenObject: this.state.token }
+							})
 						)
 						: (
 							<button className="btn btn-md btn-violet" onClick={this.loginBtnClick.bind(this)}>Log in with Spotify</button>

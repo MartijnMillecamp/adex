@@ -10,9 +10,7 @@ export default function App() {
 		<Router>
 				<Switch>
 					<Route path="/Home" component={Home}/>
-					<Route path="/Export">
-						<Export />
-					</Route>
+					<Route path="/Export" component={Export} />
 					<Route path="/" component={Login}/>
 				</Switch>
 		</Router>

@@ -91,7 +91,6 @@ export default class Login extends Component {
 	
 	
 	render(){
-		console.log(this.state.token)
 		// fragment https://reactjs.org/docs/fragments.html
 		return(
 			<Fragment>
@@ -100,7 +99,7 @@ export default class Login extends Component {
 						? (
 							this.props.history.push({
 								pathname: '/Home',
-								state: { tokenObject: this.state.token }
+								state: this.state.token
 							})
 						)
 						: (

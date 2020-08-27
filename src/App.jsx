@@ -4,6 +4,7 @@ import Login from './Screens/Login'
 import {BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import Home from './Screens/Home'
 import Export from "./Screens/Export";
+import NFC from "./Screens/NFC"
 
 export default function App() {
 	return (
@@ -11,7 +12,8 @@ export default function App() {
 				<Switch>
 					<Route path="/Home" component={Home}/>
 					<Route path="/Export" component={Export} />
-					<Route path="/" component={Login}/>
+					<Route path="/Login" component={Login}/>
+					<Route path="/" component={NFC}/>
 				</Switch>
 		</Router>
 	);

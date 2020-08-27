@@ -19,7 +19,6 @@ export default class Export extends Component{
 		const spotifyId = await getSpotifyId(accessToken);
 		const playlistId = await addPlaylist(title, spotifyId, accessToken);
 		let tracks = [];
-		console.log(playlist)
 		let length = this.props.location.state.playlist.length;
 		for (let i=0; i<length; i++){
 			let song = this.props.location.state.playlist[i];

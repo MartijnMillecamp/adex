@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+./Client/node_modules
 /.pnp
 .pnp.js
 
@@ -25,3 +26,5 @@ yarn-error.log*
 .idea/
 
 src/assets/
+
+Client/node_modules/.bin/

@@ -26,6 +26,7 @@ yarn-error.log*
 .idea/
 
 src/assets/
+/Client/srs/assets/
 
 Client/node_modules/.bin/
 

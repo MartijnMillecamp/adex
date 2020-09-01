@@ -1,6 +1,8 @@
 ---------------------
 Bugs
 --------------------
+home not able to render after logging in
+change color encoding (high-low)
 check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)
 test with other accounts
 layout different screen size
@@ -17,6 +19,7 @@ set max to sources (already max 40 songs => not needed?)
 New features
 ----------------------
 add logging
+tooltip waarde in explanations
 add within subject random order
 add questionnaire
     need for cognition

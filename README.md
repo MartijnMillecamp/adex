@@ -69,8 +69,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Docker
 1. change redirect uri (login.jsx)
-2. docker build -t adex:dev .
-3. docker run \
+2. podman build -t adex:dev .
+3. podman run \
     -it \
     --rm \
     -v ${PWD}:/app \

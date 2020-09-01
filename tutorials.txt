@@ -1,0 +1,18 @@
+1. create a mongoDB container with authentication
+    https://phoenixnap.com/kb/docker-mongodb
+    podman run -it -v /data/db:/mongodata -p 3006:27017 --name mongodb -d mongo
+2. add authentication
+    https://docs.mongodb.com/manual/tutorial/enable-authentication/
+    podman exec -it mongodb mongo
+    use admin
+    db.createUser(
+      {
+        user: "martijn",
+        pwd: "4dminp4sw0rd" ,
+        roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+      }
+    )
+
+3. connect a node server to mongoDB
+    https://codesquery.com/connect-node-js-with-mongodb-using-mongoose/
+

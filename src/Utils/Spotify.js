@@ -72,12 +72,13 @@ export async function getAudioFeatures(song, accessToken){
 }
 
 export async function getTopSong(accessToken) {
+	console.log(accessToken)
 	//todo test with 'empty' account
 	const topLink = [
 		"https://api.spotify.com/v1/me/top/tracks"
 	].join('');
 	const AuthStr = 'Bearer ' + accessToken;
-	const res = await axios.get(topLink, { 'headers': { 'Authorization': AuthStr } })
+	const res = await axios.get(topLink, { 'headers': { 'Authorization': AuthStr } });
 	const resData = res.data;
 	const topSongs = resData.items;
 	let added = 0;

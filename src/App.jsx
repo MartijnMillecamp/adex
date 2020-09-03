@@ -14,7 +14,7 @@ export default function App() {
 					<Route path="/Export" component={Export} />
 					<Route path="/Login" component={Login}/>
 					<Route path="/NFC" component={NFC}/>
-					<Route path="/" component={Login}/>
+					<Route path="/" component={NFC}/>
 				</Switch>
 		</Router>
 	);

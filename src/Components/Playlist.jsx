@@ -23,8 +23,7 @@ export default class Playlist extends Component{
 	
 	async getTopSongs() {
 		//todo update slider values
-		const accessToken = this.props.tokenObject['access_token'];
-		let topSong = await getTopSong(accessToken);
+		let topSong = await getTopSong(this.props.accessToken);
 		const danceability = topSong['danceability'];
 		const energy = topSong['energy'];
 		const happiness = topSong['valence'];

@@ -49,6 +49,7 @@ export default class Home extends Component {
 			search : false,
 			searchResults: [],
 			status: 'empty',
+			accessToken: JSON.parse(localStorage.getItem('spotify_token'))['access_token'],
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -65,6 +66,8 @@ export default class Home extends Component {
 		this.handlerExport = this.handlerExport.bind(this);
 		
 	}
+	
+	
 	
 	
 	
@@ -187,7 +190,7 @@ export default class Home extends Component {
 	async handlerSearch(query){
 		let searchResults = [];
 		if (query !== ""){
-			const accessToken = this.props.location.state.access_token;
+			const accessToken = this.state.accessToken;
 			searchResults = await search(query, accessToken);
 			this.setState({
 				searchResults : searchResults
@@ -219,7 +222,7 @@ export default class Home extends Component {
 			pathname: '/Export',
 			state: {
 				playlist : this.state.playlist,
-				access_token : this.props.location.state.access_token
+				access_token : this.state.accessToken,
 			}
 		})
 	}
@@ -239,7 +242,7 @@ export default class Home extends Component {
 		
 		let recommendations = [];
 		let finishedSeeds = 0;
-		const accessToken = this.props.location.state.access_token;
+		const accessToken = this.state.accessToken;
 		const seeds = this.state.sources;
 		//limit the number or requests to 40 songs
 		let totalNumber = 40;
@@ -278,13 +281,9 @@ export default class Home extends Component {
 				pathname: '/Export',
 				state: {
 					playlist : this.state.playlist,
-					access_token : this.props.location.state.access_token
+					access_token : this.state.accessToken,
 				}
 			})
-			// <Export
-			// 	playlist={this.state.playlist}
-			// 	tokenObject={this.props.location.state}
-			// />
 		)
 	}
 	
@@ -312,7 +311,7 @@ export default class Home extends Component {
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
 					playlist = {this.state.playlist}
-					tokenObject = {this.props.location.state}
+					accessToken = {this.state.accessToken}
 					playing = {this.state.playing}
 					handlerDeleteFromPlaylist = {this.handlerDeleteFromPlaylist}
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
@@ -361,7 +360,6 @@ export default class Home extends Component {
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
 					recommendations = {this.state.recommendations}
-					tokenObject = {this.props.location.state.tokenObject}
 					playing = {this.state.playing}
 					handlerAddToPlaylist = {this.handlerAddToPlaylist}
 					status = {this.state.status}

@@ -9,6 +9,9 @@ layout different screen size
     why is toggle explanations moving
 handlewidth expl when values are too big or too small
 set max to sources (already max 40 songs => not needed?)
+fix wrapping on mobile phone
+fix logging out
+    refactor accessToken and tokenobject
 
 
 
@@ -20,6 +23,7 @@ New features
 ----------------------
 add logging
 tooltip waarde in explanations
+color code happiness
 add within subject random order
 add questionnaire
     need for cognition

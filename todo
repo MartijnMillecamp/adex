@@ -39,4 +39,14 @@ add highlight in barchart when hover
 add transition in toggling explanations
 add profile of playlist
 
+----------------------
+Deployment
+---------------------
+update nodeServer
+    new code
+    new port? => update code here + spotify dashboard
+create new mongo
+check if data is persistant
+check if container takes existing db into account
+crontab?
 

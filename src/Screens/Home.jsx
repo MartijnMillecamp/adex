@@ -64,7 +64,7 @@ export default class Home extends Component {
 		this.handlerStopSearch = this.handlerStopSearch.bind(this);
 		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this);
 		this.handlerExport = this.handlerExport.bind(this);
-		
+		console.log(this.props.history)
 	}
 	
 	

@@ -4,6 +4,9 @@ import styles from '../Styling/NFC.module.css';
 import classnames from 'classnames';
 import * as Survey from "survey-react";
 
+import {addUser} from '../Utils/API.js'
+import {addUserLocal} from "../Utils/API";
+
 
 
 export default class NFC extends Component{
@@ -26,7 +29,7 @@ export default class NFC extends Component{
 		let total = 0;
 		let reversed = [3,4,5,7,8,9,12,16,17];
 		for (let i = 1; i < nbQuestions +1; i++){
-			let rawScore = parseInt(data['question' + i])
+			let rawScore = parseInt(data['question' + i]);
 			if (reversed.indexOf(i) !== -1 ){
 				total += (5 - rawScore)
 			}
@@ -35,11 +38,17 @@ export default class NFC extends Component{
 			}
 		}
 		const userId = this.generateUserId();
+		let firstVersion = 1;
+		if (userId % 2 === 1){
+			firstVersion = 2
+		}
+		addUserLocal(userId, total)
 		this.props.history.push({
 			pathname: '/Login',
 			state: {
 				nfc : total,
-				userId : userId
+				userId : userId,
+				version: firstVersion,
 			}
 		})
 	}

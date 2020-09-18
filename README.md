@@ -12,11 +12,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
@@ -27,47 +22,24 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+#Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##MongoDB
+podman run -d --name mongoAdex -p 3007:27017 \
+     -v ./data:/data/db \
+     -e MONGO_INITDB_ROOT_USERNAME=admin \
+     -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:4.4
+     
+##Node server
+1. zip -r nodeServer.zip ./nodeServer
+2. place zip on server
+3. unzip
+4. cd nodeServer
+5. docker build -t nodeserver:mongo .
+6. docker run --publish 3008:5000 --detach --name nodeserver --restart on-failure:5 nodeserver:mongo
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-## Docker
+## Dockerizing app
 1. change redirect uri (login.jsx)
 2. podman build -t adex:dev .
 3. podman run \
@@ -75,19 +47,19 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
     --rm \
     -v ${PWD}:/app \
     -v /app/node_modules \
-    -p 3001:3000 \
+    -p 3008:3000 \
     -e CHOKIDAR_USEPOLLING=true \
     adex:dev
 4. change redirect uri  
-4. create zip
+5. create zip
     ```zip -r adex.zip ./adex```
-5. put zip on server
-6. unzip 
-7. cd adex
-8. podman stop adex
-9. podman rm adex
-8. podman build -t adex:dev .
-9. podman run \
+6. put zip on server
+7. unzip 
+8. cd adex
+9. podman stop adex
+10. podman rm adex
+11. podman build -t adex:dev .
+12. podman run \
     -dit \
     --name adex \
     -p 3005:3000\

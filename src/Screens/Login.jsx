@@ -89,6 +89,8 @@ export default class Login extends Component {
 	
 	
 	
+	
+	
 	render(){
 		// fragment https://reactjs.org/docs/fragments.html
 		return(
@@ -102,7 +104,7 @@ export default class Login extends Component {
 							})
 						)
 						: (
-							<button className="btn btn-md btn-violet" onClick={this.loginBtnClick.bind(this)}>Log in with Spotify</button>
+							this.login()
 						)
 				}
 			</Fragment>

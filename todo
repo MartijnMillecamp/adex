@@ -1,6 +1,7 @@
 ---------------------
 Bugs
 --------------------
+show explanations when new rec
 home not able to render after logging in
 change color encoding (high-low)
 check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)
@@ -12,7 +13,7 @@ set max to sources (already max 40 songs => not needed?)
 fix wrapping on mobile phone
 fix logging out
     refactor accessToken and tokenobject
-
+use local cache instead of state history
 
 
 
@@ -22,6 +23,7 @@ fix logging out
 New features
 ----------------------
 add logging
+add explanation pages
 tooltip waarde in explanations
 color code happiness
 add within subject random order
@@ -42,11 +44,8 @@ add profile of playlist
 ----------------------
 Deployment
 ---------------------
-update nodeServer
-    new code
-    new port? => update code here + spotify dashboard
-create new mongo
-check if data is persistant
-check if container takes existing db into account
-crontab?
+update nodeServer local
+    final db model interaction
+update nodeServer online
+
 

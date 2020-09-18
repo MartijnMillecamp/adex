@@ -32,6 +32,7 @@ export default class Album extends Component{
 	
 	
 	handlePlay(){
+		
 		this.props.handlerPlaySong(this.props.id, this.audio)
 		this.audio.play();
 		this.setState({playing: true});

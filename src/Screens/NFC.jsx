@@ -42,7 +42,9 @@ export default class NFC extends Component{
 		if (userId % 2 === 1){
 			firstVersion = 2
 		}
-		addUserLocal(userId, total)
+		let gender = survey.data['question19'];
+		let age = survey.data['question20'];
+		addUserLocal(userId, total, gender, age);
 		this.props.history.push({
 			pathname: '/Login',
 			state: {
@@ -82,17 +84,17 @@ export default class NFC extends Component{
 			{"type":"rating","name":"question17","title":"It’s enough for me that something gets the job done; I don’t" +
 			" care how or why it works.","isRequired":true,"rateValues":[1,2,3,4,5]},
 			{"type":"rating","name":"question18","title":"I usually end up deliberating about issues even when they do not" +
-			" affect me personally.","isRequired":true,"rateValues":[1,2,3,4,5]}
+			" affect me personally.","isRequired":true,"rateValues":[1,2,3,4,5]},
+			{"type":"dropdown","name":"question19","title":"I identify myself as","isRequired":true,"choices":[{"value":"Female","text":"Female"},{"value":"Male","text":"Male"},{"value":"Equal","text":"Genderequeer"}]},
+			{"type":"text","name":"question20","title":"How old are you","isRequired":true,"inputType":"number","min":"18","step":1}
 			],
-			"description":"For each of the statements below, please indicate whether or not the statement is characteristic of you or of what you believe. For example, if the statement is extremely uncharacteristic of you or of what you believe about yourself (not at all like you) please rate a \"1\". If the statement is extremely characteristic of you or of what you believe about yourself (very much like you) please rate a \"5\". You should use the following scale as you rate each of the statements below. 1=\"Extremely uncharacteristic of me\" 2=\"Somewhat uncharacteristic of me\" 3=\"uncertain\" 4=\"Somewhat characteristic of me\" 5=\"Extremely characteristic of me\""}]}
-		let test = {"pages":[{"name":"page1","elements":[
-			{"type":"rating","name":"question1","title":"I prefer complex to simple problems","isRequired":true,"rateValues":[1,2,3,4,5]}
-		],
-			"description":"For each of the statements below, please indicate whether or not the statement is characteristic of you or of what you believe. For example, if the statement is extremely uncharacteristic of you or of what you believe about yourself (not at all like you) please rate a \"1\". If the statement is extremely characteristic of you or of what you believe about yourself (very much like you) please rate a \"5\". You should use the following scale as you rate each of the statements below. 1=\"Extremely uncharacteristic of me\" 2=\"Somewhat uncharacteristic of me\" 3=\"uncertain\" 4=\"Somewhat characteristic of me\" 5=\"Extremely characteristic of me\""}]}
-		
-		
+			"description":"For each of the statements below, please indicate whether or not the statement is characteristic of you or of what you believe. For example, if the statement is extremely uncharacteristic of you or of what you believe about yourself (not at all like you) please rate a \"1\". If the statement is extremely characteristic of you or of what you believe about yourself (very much like you) please rate a \"5\". \nYou should use the following scale as you rate each of the statements below.\n1=\"Extremely uncharacteristic of me\" \n2=\"Somewhat uncharacteristic of me\" \n3=\"uncertain\" \n4=\"Somewhat characteristic of me\" \n5=\"Extremely characteristic of me\""}
+		]}
 		return(
 			<Survey.Survey json={ surveyJSON } onComplete={ this.calculateNFC } />
 		);
 	}
 }
+
+
+

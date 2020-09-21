@@ -14,9 +14,9 @@ export default class Welcome extends Component{
 	}
 	
 	clickButton(){
-		addInteractionLocal()
+		// addInteractionLocal();
 		this.props.history.push({
-			pathname: '/NFC',
+			pathname: '/Protocol',
 		})
 	}
 	

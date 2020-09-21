@@ -1,10 +1,12 @@
 import axios from 'axios'
 
 
-export async function addUser(userId, nfc){
+export async function addUser(userId, nfc, gender, age){
 	const data = {
 		userId: userId,
 		nfc: nfc,
+		gender: gender,
+		age: age,
 	};
 	const request = [
 		"http://picasso.experiments.cs.kuleuven.be:3008/api/user",
@@ -13,10 +15,12 @@ export async function addUser(userId, nfc){
 	return true
 }
 
-export async function addUserLocal(userId, nfc){
+export async function addUserLocal(userId, nfc, gender, age){
 	const data = {
 		userId: userId,
 		nfc: nfc,
+		gender: gender,
+		age: age,
 	};
 	const request = [
 		"http://localhost:5000/api/user",

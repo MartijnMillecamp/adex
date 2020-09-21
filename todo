@@ -14,6 +14,7 @@ fix wrapping on mobile phone
 fix logging out
     refactor accessToken and tokenobject
 use local cache instead of state history
+scatterplot search
 
 
 

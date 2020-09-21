@@ -99,8 +99,7 @@ export default class Login extends Component {
 					this.state.loggedIn
 						? (
 							this.props.history.push({
-								pathname: '/Home',
-								state: this.state.token
+								pathname: '/InfoSliders',
 							})
 						)
 						: (

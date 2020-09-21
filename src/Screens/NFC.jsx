@@ -23,6 +23,29 @@ export default class NFC extends Component{
 		return userDateString + randomNbString;
 	}
 	
+	setVersion(userId){
+		if (userId % 4 === 0){
+			localStorage.setItem('task', 1);
+			localStorage.setItem('version', 1)
+		}
+		else if (userId % 4 === 1){
+			localStorage.setItem('task', 2);
+			localStorage.setItem('version', 1)
+		}
+		else if (userId % 4 === 2){
+			localStorage.setItem('task', 1);
+			localStorage.setItem('version', 2)
+		}
+		else if (userId % 4 === 3){
+			localStorage.setItem('task', 2);
+			localStorage.setItem('version', 2)
+		}
+		else{
+			localStorage.setItem('task', 2);
+			localStorage.setItem('version', 2)
+		}
+	}
+	
 	calculateNFC(survey){
 		const data = survey.data;
 		let nbQuestions = 18;
@@ -38,20 +61,14 @@ export default class NFC extends Component{
 			}
 		}
 		const userId = this.generateUserId();
-		let firstVersion = 1;
-		if (userId % 2 === 1){
-			firstVersion = 2
-		}
+		
 		let gender = survey.data['question19'];
 		let age = survey.data['question20'];
 		addUserLocal(userId, total, gender, age);
+		localStorage.setItem('userId', userId );
+		
 		this.props.history.push({
 			pathname: '/Login',
-			state: {
-				nfc : total,
-				userId : userId,
-				version: firstVersion,
-			}
 		})
 	}
 	

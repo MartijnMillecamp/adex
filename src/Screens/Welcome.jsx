@@ -3,7 +3,6 @@ import '../Styling/global.css'
 import logo from '../Images/KUL.png'
 import classnames from 'classnames'
 import styles from '../Styling/Welcome.module.css';
-import {addInteractionLocal} from "../Utils/API";
 
 
 

@@ -8,6 +8,7 @@ import NFC from "./Screens/NFC"
 import Welcome from "./Screens/Welcome"
 import Protocol from "./Screens/Protocol"
 import InfoSliders from "./Screens/InfoSliders"
+import InfoExplanations from "./Screens/InfoExplanations";
 
 export default function App() {
 	return (
@@ -17,6 +18,7 @@ export default function App() {
 					<Route path="/NFC" component={NFC}/>
 					<Route path="/Login" component={Login}/>
 					<Route path="/InfoSliders" component={InfoSliders}/>
+					<Route path="/InfoExplanations" component={InfoExplanations}/>
 					<Route path="/Home" component={Home}/>
 					<Route path="/Export" component={Export} />
 					

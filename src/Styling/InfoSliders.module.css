@@ -1,6 +1,5 @@
-.imageContainer{
-    align-items: flex-start;
-    margin-top: 10px;
+.image{
+    height: 200px;
 }
 
 .textContainer{
@@ -19,4 +18,9 @@
     border-width: 1px;
     border-color: white;
     margin-left: 50px;
+}
+
+.containerCenter{
+    align-items: center;
+    width: 100%;
 }

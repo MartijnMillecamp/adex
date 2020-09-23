@@ -1,11 +1,9 @@
 import React, { Component} from 'react'
 import '../Styling/global.css';
-import styles from '../Styling/NFC.module.css';
-import classnames from 'classnames';
 import * as Survey from "survey-react";
 
-import {addUser} from '../Utils/API.js'
-import {addUserLocal} from "../Utils/API";
+// import {addResponse} from '../Utils/API.js'
+import {addPostTaskLocal} from "../Utils/API";
 
 
 
@@ -44,10 +42,11 @@ export default class Posttask extends Component{
 	
 	goToNext(survey){
 		const data = survey.data;
-		//todo store data
 		const userId = localStorage.getItem('userId');
+		const nfc = localStorage.getItem('nfc');
+		const versionUI = localStorage.getItem('version');
+		addPostTaskLocal(userId, nfc, versionUI, data);
 		const nbTested = localStorage.getItem('nbTested');
-		console.log(nbTested);
 		if (parseInt(nbTested) === 0){
 			this.setVersionSecond(userId);
 			this.props.history.push({

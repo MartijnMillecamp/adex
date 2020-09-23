@@ -10,6 +10,10 @@ import Protocol from "./Screens/Protocol"
 import InfoSliders from "./Screens/InfoSliders"
 import InfoExplanations from "./Screens/InfoExplanations";
 import Posttask from "./Screens/Posttask";
+import Final from "./Screens/Final";
+import Thanks from "./Screens/Thanks";
+
+
 
 
 export default function App() {
@@ -24,6 +28,10 @@ export default function App() {
 					<Route path="/Home" component={Home}/>
 					<Route path="/Export" component={Export} />
 					<Route path="/Posttask" component={Posttask} />
+					<Route path="/Final" component={Final} />
+					<Route path="/Thanks" component={Thanks} />
+					
+					
 					
 					<Route path="/" component={Welcome}/>
 				

@@ -24,6 +24,7 @@ color code happiness
 New features
 ----------------------
 add logging
+Store online instead of local
 only enable continue after 8 songs
 tooltip generate recommendations based on this song
 add explanation pages
@@ -32,8 +33,9 @@ add within subject random order
 add questionnaire
     need for cognition
     post task
-link scatterplot with list of recommendations
+script valid users
 colorcoding happiness more yellow
+New version without the experiment, but with logging (long term study)
 
 
 ----------------------

@@ -67,6 +67,8 @@ export default class NFC extends Component{
 		let age = survey.data['question20'];
 		addUserLocal(userId, total, gender, age);
 		localStorage.setItem('userId', userId );
+		localStorage.setItem('nfc', total );
+		
 		this.setVersion(userId)
 		
 		this.props.history.push({

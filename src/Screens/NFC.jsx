@@ -44,6 +44,7 @@ export default class NFC extends Component{
 			localStorage.setItem('task', 2);
 			localStorage.setItem('version', 2)
 		}
+		localStorage.setItem('nbTested', 0)
 	}
 	
 	calculateNFC(survey){
@@ -66,6 +67,7 @@ export default class NFC extends Component{
 		let age = survey.data['question20'];
 		addUserLocal(userId, total, gender, age);
 		localStorage.setItem('userId', userId );
+		this.setVersion(userId)
 		
 		this.props.history.push({
 			pathname: '/Login',

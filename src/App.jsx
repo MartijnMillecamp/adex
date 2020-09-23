@@ -9,6 +9,8 @@ import Welcome from "./Screens/Welcome"
 import Protocol from "./Screens/Protocol"
 import InfoSliders from "./Screens/InfoSliders"
 import InfoExplanations from "./Screens/InfoExplanations";
+import Posttask from "./Screens/Posttask";
+
 
 export default function App() {
 	return (
@@ -21,6 +23,7 @@ export default function App() {
 					<Route path="/InfoExplanations" component={InfoExplanations}/>
 					<Route path="/Home" component={Home}/>
 					<Route path="/Export" component={Export} />
+					<Route path="/Posttask" component={Posttask} />
 					
 					<Route path="/" component={Welcome}/>
 				

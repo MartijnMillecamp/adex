@@ -10,6 +10,15 @@ export default class Export extends Component{
 	constructor(props){
 		super(props);
 		this.exportPlaylist = this.exportPlaylist.bind(this)
+		this.goToPostTaskQuestionnaire = this.goToPostTaskQuestionnaire.bind(this)
+	}
+	
+	
+	
+	goToPostTaskQuestionnaire(){
+		this.props.history.push({
+			pathname: '/PostTask',
+		})
 	}
 	
 	
@@ -26,12 +35,7 @@ export default class Export extends Component{
 		}
 		const created = await addSongsToPlaylist(playlistId, tracks, accessToken);
 		if (created){
-			this.props.history.push({
-				pathname: '/Likert',
-				state: {
-					access_token : this.props.location.state.access_token
-				}
-			})
+			this.goToPostTaskQuestionnaire();
 		}
 	}
 	
@@ -66,7 +70,9 @@ export default class Export extends Component{
 						<button
 							onClick={this.exportPlaylist}
 						>Yes</button>
-						<button>No</button>
+						<button
+							onClick={this.goToPostTaskQuestionnaire}
+						>No</button>
 					</div>
 				</div>
 				

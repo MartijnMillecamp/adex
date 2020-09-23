@@ -37,8 +37,9 @@ export default class Protocol extends Component{
 				<div
 					className={styleTextContainer}
 				>
-					<p>As illustrated by the figure, the experiment will follow next steps
-						<ul>
+					<p>As illustrated by the figure, the experiment will follow next steps					</p>
+					
+					<ul>
 							<li>On the next page you will be asked to fill in a questionnaire about your thinking style.</li>
 							<li>Afterwards you will be asked to login to your Spotify account.</li>
 							<li>In the next step, you will get a small tutorial about the application.</li>
@@ -47,7 +48,6 @@ export default class Protocol extends Component{
 							<li>Repeat steps 4 and 5 but in a different version of the application.</li>
 							<li>Fill in a final questionnaire.</li>
 						</ul>
-					</p>
 					
 				</div>
 				<button

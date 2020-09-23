@@ -60,7 +60,7 @@ export default class Playlist extends Component{
 		const styleContainer = classnames('container-rows', styles.container);
 		const styleContainerPlaylist = classnames('container-rows', styles.containerPlaylist);
 		const styleHeader = classnames(styles.header);
-		const styleButton = classnames(styles.button)
+		const styleButton = classnames(styles.button);
 		return(
 			<div className={styleContainer}>
 				<div className={styleContainerPlaylist}>
@@ -89,7 +89,7 @@ export default class Playlist extends Component{
 				<button
 					className={styleButton}
 					onClick={this.props.handlerExport}
-				>Export Playlist</button>
+				>Continue</button>
 				
 			</div>
 		)

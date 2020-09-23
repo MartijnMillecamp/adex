@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import './Styling/global.css';
 import App from './App.jsx';
 import * as serviceWorker from './serviceWorker';
-
-
 import { BrowserRouter } from "react-router-dom";
+
+
+
+
 
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <App/>
+      <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

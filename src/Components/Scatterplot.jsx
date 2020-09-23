@@ -68,15 +68,15 @@ export default class Scatterplot extends Component{
 		;
 		mainGradient
 			.append('stop')
-			.attr('stop-color', '#FFFFD5')
+			.attr('stop-color', '#78200A')
 			.attr('offset', '0%');
 		mainGradient
 			.append('stop')
-			.attr('stop-color', '#2EA8B9')
+			.attr('stop-color', '#FF8A48')
 			.attr('offset', '50%');
 		mainGradient
 			.append('stop')
-			.attr('stop-color', '#021D4F')
+			.attr('stop-color', '#FFE5CE')
 			.attr('offset', '100%');
 	}
 	
@@ -551,7 +551,7 @@ export default class Scatterplot extends Component{
 		// https://observablehq.com/@d3/working-with-color
 		var colorScale = d3.scaleSequential()
 			.domain([minC, maxC])
-			.interpolator(d3.interpolateYlGnBu);
+			.interpolator(d3.interpolateOranges);
 		
 		this.drawTargets(width, height, xScale, yScale, margin);
 		this.drawLegendPopularity(width, height, margin, minS, maxS);

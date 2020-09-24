@@ -28,6 +28,7 @@ export default class SearchResult extends Component{
 					playing = {this.props.playing}
 					size = {'search'}
 					playable = {false}
+					handlerLogging={this.props.handlerLogging}
 				/>
 				<SongInfo
 					key={"songinfo_search_" + this.props.id}
@@ -40,7 +41,7 @@ export default class SearchResult extends Component{
 					preview_url={this.props.preview_url}
 					search={true}
 					handlerStopSearch={this.props.handlerStopSearch}
-					
+					handlerLogging={this.props.handlerLogging}
 				/>
 			</div>
 		)

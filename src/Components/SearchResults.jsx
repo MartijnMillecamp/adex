@@ -46,6 +46,7 @@ export default class SearchResults extends Component{
 								handlerPauseSong = {this.props.handlerPauseSong}
 								handlerStopSearch ={this.props.handlerStopSearch}
 								playing = {this.checkPlaying(song.id)}
+								handlerLogging = {this.props.handlerLogging}
 							/>
 						)
 					)}

@@ -15,9 +15,9 @@ class VerticalSlider extends Component {
 
 	
 	onChange = values => {
-		console.log("on slider change", values, this.props.values)
 		const value = values[0];
-		this.props.handlerSliderChange(value, this.props.feature)
+		this.props.handlerSliderChange(value, this.props.feature);
+		this.props.handlerLogging('changeSlider', this.props.feature, value);
 	};
 	
 	render() {

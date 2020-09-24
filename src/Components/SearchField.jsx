@@ -37,7 +37,8 @@ export default class SearchField extends Component{
 		if (event.charCode === 13) {
 			const query = event.target.value;
 			this.setState({ query: query });
-			this.props.handlerSearch(query)
+			this.props.handlerSearch(query);
+			this.props.handlerLogging('search', query, 1);
 		}
 	}
 	

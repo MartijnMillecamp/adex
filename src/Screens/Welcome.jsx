@@ -3,17 +3,28 @@ import '../Styling/global.css'
 import logo from '../Images/KUL.png'
 import classnames from 'classnames'
 import styles from '../Styling/Welcome.module.css';
-
+import {addInteractionLocal} from '../Utils/API'
 
 
 export default class Welcome extends Component{
 	constructor(props){
 		super(props)
-		this.clickButton = this.clickButton.bind(this)
+		this.clickButton = this.clickButton.bind(this);
+		this.generateUserId = this.generateUserId.bind(this);
+	}
+	
+	generateUserId(){
+		const userDate = new Date().getTime();
+		const randomNb = Math.round(Math.random() * 100);
+		const userDateString = userDate.toString();
+		const randomNbString = randomNb.toString();
+		return userDateString + randomNbString;
 	}
 	
 	clickButton(){
-		// addInteractionLocal();
+		const userId = this.generateUserId();
+		localStorage.setItem('userId', userId );
+		addInteractionLocal(userId, -1, 0, 'Welcome', 'click', 1);
 		this.props.history.push({
 			pathname: '/Protocol',
 		})
@@ -23,7 +34,7 @@ export default class Welcome extends Component{
 		const styleHeaderDiv = classnames(styles.header);
 		const styleHeaderLogo = classnames(styles.logo);
 		const styleContainerText = classnames(styles.container);
-		const styleButton = classnames(styles.button)
+		const styleButton = classnames(styles.button);
 		
 		return(
 			<>

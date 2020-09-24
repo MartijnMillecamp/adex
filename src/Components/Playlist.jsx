@@ -14,15 +14,20 @@ export default class Playlist extends Component{
 	//TODO show profile of playlist
 	constructor(props){
 		super(props);
-		this.addToPlaylist = this.addToPlaylist.bind(this)
+		this.addToPlaylist = this.addToPlaylist.bind(this);
+		this.clickContinue = this.clickContinue.bind(this);
 	}
 	
 	componentDidMount(){
 		this.getTopSongs()
 	}
 	
+	clickContinue(){
+		this.props.handlerLogging('homeContinue', 'click', 1);
+		this.props.handlerExport()
+	}
+	
 	async getTopSongs() {
-		//todo update slider values
 		let topSong = await getTopSong(this.props.accessToken);
 		const danceability = topSong['danceability'];
 		const energy = topSong['energy'];
@@ -82,13 +87,14 @@ export default class Playlist extends Component{
 								handlerDeleteFromPlaylist = {this.props.handlerDeleteFromPlaylist}
 								handlerAddSource = {this.props.handlerAddSource}
 								handlerRemoveSource = {this.props.handlerRemoveSource}
+								handlerLogging = {this.props.handlerLogging}
 							/>
 						)
 					)}
 				</div>
 				<button
 					className={styleButton}
-					onClick={this.props.handlerExport}
+					onClick={this.clickContinue}
 				>Continue</button>
 				
 			</div>

@@ -1,11 +1,11 @@
 import React, { Component} from 'react'
 import '../Styling/global.css';
-import styles from '../Styling/NFC.module.css';
-import classnames from 'classnames';
 import * as Survey from "survey-react";
 
-import {addUser} from '../Utils/API.js'
+// import {addUser} from '../Utils/API.js'
 import {addUserLocal} from "../Utils/API";
+import {addInteractionLocal} from "../Utils/API";
+
 
 
 
@@ -15,13 +15,7 @@ export default class NFC extends Component{
 		this.calculateNFC = this.calculateNFC.bind(this)
 	}
 	
-	generateUserId(){
-		const userDate = new Date().getTime();
-		const randomNb = Math.round(Math.random() * 100);
-		const userDateString = userDate.toString();
-		const randomNbString = randomNb.toString();
-		return userDateString + randomNbString;
-	}
+	
 	
 	setVersion(userId){
 		if (userId % 4 === 0){
@@ -61,15 +55,16 @@ export default class NFC extends Component{
 				total += (rawScore -1)
 			}
 		}
-		const userId = this.generateUserId();
+		localStorage.setItem('nfc', total );
 		
+		const userId = localStorage.getItem('userId');
 		let gender = survey.data['question19'];
 		let age = survey.data['question20'];
 		addUserLocal(userId, total, gender, age);
-		localStorage.setItem('userId', userId );
-		localStorage.setItem('nfc', total );
 		
-		this.setVersion(userId)
+		this.setVersion(userId);
+		
+		addInteractionLocal(userId, total, 0, 'NFC', 'click', 1);
 		
 		this.props.history.push({
 			pathname: '/Login',

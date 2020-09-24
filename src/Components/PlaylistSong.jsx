@@ -13,10 +13,6 @@ import sourceGrey from '../Images/source-grey.svg'
 import Album from "./Album";
 
 
-
-
-
-
 export default class PlaylistSong extends Component{
 	constructor(props){
 		super(props);
@@ -29,6 +25,7 @@ export default class PlaylistSong extends Component{
 	}
 	
 	deleteFromPlaylist(){
+		this.props.handlerLogging('deleteFromPlaylist', 'click', 1);
 		this.props.handlerDeleteFromPlaylist({id: this.props.id})
 	}
 	
@@ -46,13 +43,17 @@ export default class PlaylistSong extends Component{
 			album: this.props.album
 		};
 		this.props.handlerAddSource(songData)
+		this.props.handlerLogging('addSource', 'click', 1);
+		
 	}
 	
 	handlerRemoveSource(){
 		this.setState({
 			source: false
 		});
-		this.props.handlerRemoveSource({id: this.props.id})
+		this.props.handlerRemoveSource({id: this.props.id});
+		this.props.handlerLogging('removeSource', 'click', 1);
+		
 	}
 	
 	render(){
@@ -81,7 +82,7 @@ export default class PlaylistSong extends Component{
 					playing = {this.props.playing}
 					size = {'playlist'}
 					playable = {true}
-				
+					handlerLogging = {this.props.handlerLogging}
 				/>
 				<div className={styleBackground}>
 					<div className={styleText}>
@@ -110,12 +111,18 @@ export default class PlaylistSong extends Component{
 						/>
 						<ReactTooltip/>
 						{this.state.source ?
-							(<img
-								src={source}
-								alt="Input"
-								onClick={this.handlerRemoveSource}
-								className={styleIcon}
-							/>)
+							(<>
+								<img
+									src={source}
+									alt="Input"
+									onClick={this.handlerRemoveSource}
+									className={styleIcon}
+									data-tip="Stop generating recommendations based on this song"
+								/>
+								<ReactTooltip/>
+							</>
+							
+							)
 							
 							: (<img
 								src={sourceGrey}

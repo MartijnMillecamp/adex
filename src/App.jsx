@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Login from './Screens/Login'
 
 import {BrowserRouter as Router, Switch, Route,} from "react-router-dom";

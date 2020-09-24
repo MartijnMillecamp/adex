@@ -33,16 +33,28 @@ export default class Album extends Component{
 	
 	handlePlay(){
 		
-		this.props.handlerPlaySong(this.props.id, this.audio)
+		this.props.handlerPlaySong(this.props.id, this.audio);
 		this.audio.play();
 		this.setState({playing: true});
 		this.audio.addEventListener('ended', this.handlePause);
+		if (this.props.size === 'recommendation'){
+			this.props.handlerLogging('playRec', 'click', this.props.id);
+		}
+		else{
+			this.props.handlerLogging('playPlaylist', 'click', this.props.id);
+		}
 	}
 	
 	handlePause(){
 		this.props.handlerPauseSong(this.props.id, this.audio)
 		this.setState({playing: false});
 		this.audio.pause()
+		if (this.props.size === 'recommendation'){
+			this.props.handlerLogging('pauseRec', 'click', this.props.id);
+		}
+		else{
+			this.props.handlerLogging('pausePlaylist', 'click', this.props.id);
+		}
 	}
 	
 	renderPlay(){

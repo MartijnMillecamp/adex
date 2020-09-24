@@ -19,7 +19,6 @@ import styles from '../Styling/Home.module.css';
 import Sliders from "../Components/Sliders";
 import SearchField from "../Components/SearchField"
 import SearchResults from "../Components/SearchResults"
-import Export from '../Screens/Export'
 import Scatterplot from "../Components/Scatterplot";
 
 
@@ -29,7 +28,7 @@ import energy from '../Images/energy.svg'
 import happiness from '../Images/happiness.svg'
 import popularity from '../Images/popularity.svg'
 
-import { useAlert } from 'react-alert'
+import {addInteractionLocal} from "../Utils/API";
 
 
 
@@ -67,7 +66,7 @@ export default class Home extends Component {
 		this.handlerStopSearch = this.handlerStopSearch.bind(this);
 		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this);
 		this.handlerExport = this.handlerExport.bind(this);
-		console.log(this.props.history)
+		this.handlerLogging = this.handlerLogging.bind(this);
 	}
 	
 	
@@ -80,9 +79,16 @@ export default class Home extends Component {
 		const taskDict = {
 			1: "sports",
 			2: "relaxing"
-		}
+		};
 		const situation = taskDict[taskNb]
 		alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
+	}
+	
+	handlerLogging(element, action, value){
+		const userId = localStorage.getItem('userId');
+		const nfc = localStorage.getItem('nfc');
+		const versionUI = localStorage.getItem('version');
+		addInteractionLocal(userId, nfc, versionUI, element, action, value);
 	}
 	
 	
@@ -331,6 +337,7 @@ export default class Home extends Component {
 					handlerRemoveSource = {this.handlerRemoveSource}
 					handlerInitSliderValues = {this.handlerInitSliderValues}
 					handlerExport = {this.handlerExport}
+					handlerLogging = {this.handlerLogging}
 				/>
 				<div
 					className = {styleContainerCol2}
@@ -341,6 +348,8 @@ export default class Home extends Component {
 						handlerSearch = {this.handlerSearch}
 						handlerStopSearch = {this.handlerStopSearch}
 						results = {this.state.searchResults}
+						handlerLogging = {this.handlerLogging}
+					
 					/>
 					{this.state.search ?
 						<SearchResults
@@ -350,6 +359,8 @@ export default class Home extends Component {
 							handlerAddToPlaylist = {this.handlerAddToPlaylist}
 							results={this.state.searchResults}
 							handlerStopSearch={this.handlerStopSearch}
+							handlerLogging = {this.handlerLogging}
+						
 						/>
 						:
 						<Sliders
@@ -357,12 +368,16 @@ export default class Home extends Component {
 							iconDict={iconDict}
 							handlerSliderChange={this.handlerSliderChange}
 							sliderValueDict={this.state.sliderValueDict}
+							handlerLogging = {this.handlerLogging}
+						
 						/>
 					}
 					<Scatterplot
 						data={this.state.recommendations}
 						sliderValueDict={this.state.sliderValueDict}
 						colorDict={colorDict}
+						handlerLogging = {this.handlerLogging}
+					
 					/>
 				
 				</div>
@@ -377,6 +392,8 @@ export default class Home extends Component {
 					status = {this.state.status}
 					sliderValueDict={this.state.sliderValueDict}
 					colorDict={colorDict}
+					handlerLogging = {this.handlerLogging}
+				
 				/>
 			</div>
 		)

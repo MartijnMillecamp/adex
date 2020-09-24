@@ -25,9 +25,8 @@ New features
 ----------------------
 add logging
 Store online instead of local
-only enable continue after 8 songs
+only enable continue after 8 songs + tooltip task
 tooltip generate recommendations based on this song
-add explanation pages
 tooltip waarde in explanations
 add within subject random order
 add questionnaire

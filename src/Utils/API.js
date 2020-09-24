@@ -30,18 +30,21 @@ export async function addUserLocal(userId, nfc, gender, age){
 }
 
 export async function addInteractionLocal(userId, nfc, versionUI, element, action, value){
+	const time = new Date().getTime();
 	const data = {
 		userId: userId,
 		nfc: nfc,
 		versionUI: versionUI,
 		element: element,
 		action: action,
-		value: value
+		value: value,
+		time: time
 	};
 	const request = [
 		"http://localhost:5000/api/interaction",
 	].join('');
 	axios.post(request, data);
+	
 	return true
 }
 

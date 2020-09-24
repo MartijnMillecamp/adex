@@ -3,16 +3,19 @@ import '../Styling/global.css'
 import protocol from '../Images/protocol.png'
 import classnames from 'classnames'
 import styles from '../Styling/Protocol.module.css';
+import {addInteractionLocal} from '../Utils/API'
 
 
 export default class Protocol extends Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.clickButton = this.clickButton.bind(this)
 	}
 	
 	clickButton(){
-		// addInteractionLocal();
+		const userId = localStorage.getItem('userId');
+		addInteractionLocal(userId, -1, 0, 'Protocol', 'click', 1);
+		
 		this.props.history.push({
 			pathname: '/NFC',
 		})

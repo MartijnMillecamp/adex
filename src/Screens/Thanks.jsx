@@ -13,7 +13,7 @@ export default class Thanks extends Component{
 	}
 	
 	clickButton(){
-		// addInteractionLocal();
+		// addInteraction();
 		this.props.history.push({
 			pathname: '/Protocol',
 		})

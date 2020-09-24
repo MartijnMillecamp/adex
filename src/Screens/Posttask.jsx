@@ -2,8 +2,9 @@ import React, { Component} from 'react'
 import '../Styling/global.css';
 import * as Survey from "survey-react";
 
-// import {addResponse} from '../Utils/API.js'
-import {addPostTaskLocal} from "../Utils/API";
+import {addPostTask} from "../Utils/API";
+import {addInteraction} from '../Utils/API'
+
 
 
 
@@ -45,7 +46,8 @@ export default class Posttask extends Component{
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
 		const versionUI = localStorage.getItem('version');
-		addPostTaskLocal(userId, nfc, versionUI, data);
+		addPostTask(userId, nfc, versionUI, data);
+		addInteraction(userId, nfc, versionUI, 'finishPostTask', 'click', 1);
 		const nbTested = localStorage.getItem('nbTested');
 		if (parseInt(nbTested) === 0){
 			this.setVersionSecond(userId);

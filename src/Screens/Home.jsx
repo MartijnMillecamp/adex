@@ -28,7 +28,7 @@ import energy from '../Images/energy.svg'
 import happiness from '../Images/happiness.svg'
 import popularity from '../Images/popularity.svg'
 
-import {addInteractionLocal} from "../Utils/API";
+import {addInteraction} from "../Utils/API";
 
 
 
@@ -88,7 +88,7 @@ export default class Home extends Component {
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
 		const versionUI = localStorage.getItem('version');
-		addInteractionLocal(userId, nfc, versionUI, element, action, value);
+		addInteraction(userId, nfc, versionUI, element, action, value);
 	}
 	
 	

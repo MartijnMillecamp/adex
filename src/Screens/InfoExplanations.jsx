@@ -5,7 +5,7 @@ import styles from '../Styling/InfoExplanations.module.css';
 import explanations from '../Images/explanations.svg'
 import scatterplot from '../Images/scatterplot.svg'
 
-import {addInteractionLocal} from "../Utils/API";
+import {addInteraction} from "../Utils/API";
 
 
 
@@ -20,7 +20,8 @@ export default class InfoExplanations extends Component{
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
 		const versionUI = localStorage.getItem('version');
-		addInteractionLocal(userId, nfc, versionUI, 'InfoExplanations', 'click', 1);		this.props.history.push({
+		addInteraction(userId, nfc, versionUI, 'InfoExplanations', 'click', 1);
+		this.props.history.push({
 			pathname: '/Home',
 		})
 	}
@@ -55,6 +56,7 @@ export default class InfoExplanations extends Component{
 					<img
 						src={explanations}
 						className={styleExplanationImage}
+						alt="explanationsIndividual"
 					/>
 					<div
 						className={styleTextExplanation}
@@ -76,6 +78,7 @@ export default class InfoExplanations extends Component{
 					<img
 						src={scatterplot}
 						className={styleScatterplotImage}
+						alt="scatter plot"
 					/>
 					<div
 						className={styleTextExplanation}

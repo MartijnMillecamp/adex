@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import '../Styling/global.css';
-import styles from '../Styling/Scatterplot.module.css';
-import classnames from 'classnames';
 import * as d3 from 'd3';
 import Tooltip from './Tooltip'
+import {addInteraction} from "../Utils/API";
+
 
 
 
@@ -575,6 +575,10 @@ export default class Scatterplot extends Component{
 		
 		
 		let mouseout = function(d) {
+			const userId = localStorage.getItem('userId');
+			const nfc = localStorage.getItem('nfc');
+			const versionUI = localStorage.getItem('version');
+			addInteraction(userId, nfc, versionUI, 'scatterplot', 'hover', 1);
 			d3.select(this)
 				.style('opacity',0.5)
 				.style('stroke', 'none')

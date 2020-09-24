@@ -1,9 +1,42 @@
-1: login
-2: add recommendation
+1: Welcome (nothing)
+2: Protocol (nothing)
+3: NFC
+    check nfc
+    check gender
+    check age
+4: Login
+5: Check task
+    sport
+    relaxing
+6: add recommendation
     => to playlist + new recommendations
-3: change sliders
-4: play recommendation
-5: play playlist song
-6: search song
-7: add song on playlist
-8: remove song from playlist
+7: change 4 sliders
+    => new recommendations
+8: play recommendation 30s
+9: play and pause recommendation
+10: play playlist song
+11: play  and pause playlist song
+12: search song
+13: play search result
+14: play and pause search result
+15: scroll through search results (todo make nicer)
+16: add search result to playlist
+17: remove song from playlist
+    => new recommendations
+18: open explanation
+19: open and close other explanation
+20: toggle all explanations (todo 2 versions)
+21: hover over songs in scatterplot
+22: continue to export
+23: save playlist
+24: fill in post task
+25: check different task
+26: check different start song
+27: try to go further without 8 songs (todo)
+28: remove song as source
+29: add song as source
+26: add 8 songs (todo)
+27: continue to export
+28: do not save playlist
+29: fill in post task
+30: fill in last questionnaire

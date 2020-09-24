@@ -3,8 +3,8 @@ import '../Styling/global.css';
 import * as Survey from "survey-react";
 
 // import {addUser} from '../Utils/API.js'
-import {addUserLocal} from "../Utils/API";
-import {addInteractionLocal} from "../Utils/API";
+import {addUser} from "../Utils/API";
+import {addInteraction} from "../Utils/API";
 
 
 
@@ -60,11 +60,11 @@ export default class NFC extends Component{
 		const userId = localStorage.getItem('userId');
 		let gender = survey.data['question19'];
 		let age = survey.data['question20'];
-		addUserLocal(userId, total, gender, age);
+		addUser(userId, total, gender, age);
 		
 		this.setVersion(userId);
 		
-		addInteractionLocal(userId, total, 0, 'NFC', 'click', 1);
+		addInteraction(userId, total, 0, 'NFC', 'click', 1);
 		
 		this.props.history.push({
 			pathname: '/Login',

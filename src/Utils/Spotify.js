@@ -18,7 +18,7 @@ export async function search(query, accessToken){
 }
 
 export async function getRecommendation(seedSong, sliderValueDict, accessToken, numberPerSeed){
-	const range = 0.1;
+	// const range = 0.1;
 	const recommendationLink = [
 		"https://api.spotify.com/v1/recommendations",
 		`?authorization=${accessToken}`,

@@ -25,8 +25,13 @@ export default class Recommendations extends Component {
 		const toggled = !this.state.allExplanations;
 		this.setState({
 			allExplanations: toggled
-		})
-		this.props.handlerLogging('toggleAllExplanations', 'click', 1);
+		});
+		if (toggled){
+			this.props.handlerLogging('openAllExplanations', 'click', 1);
+		}
+		else{
+			this.props.handlerLogging('closeAllExplanations', 'click', 1);
+		}
 	}
 	
 	

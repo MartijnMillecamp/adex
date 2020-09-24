@@ -9,7 +9,7 @@ import sliders from '../Images/sliders.png'
 import classnames from 'classnames'
 import styles from '../Styling/InfoSliders.module.css';
 
-import {addInteractionLocal} from "../Utils/API";
+import {addInteraction} from "../Utils/API";
 
 
 
@@ -23,7 +23,7 @@ export default class InfoSliders extends Component{
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
 		const versionUI = localStorage.getItem('version');
-		addInteractionLocal(userId, nfc, versionUI, 'InfoSliders', 'click', 1);
+		addInteraction(userId, nfc, versionUI, 'InfoSliders', 'click', 1);
 		this.props.history.push({
 			pathname: '/InfoExplanations',
 		})

@@ -25,7 +25,7 @@ export default class PlaylistSong extends Component{
 	}
 	
 	deleteFromPlaylist(){
-		this.props.handlerLogging('deleteFromPlaylist', 'click', 1);
+		this.props.handlerLogging('deleteFromPlaylist', 'click', this.props.id);
 		this.props.handlerDeleteFromPlaylist({id: this.props.id})
 	}
 	
@@ -42,8 +42,8 @@ export default class PlaylistSong extends Component{
 			preview_url: this.props.preview_url,
 			album: this.props.album
 		};
-		this.props.handlerAddSource(songData)
-		this.props.handlerLogging('addSource', 'click', 1);
+		this.props.handlerAddSource(songData);
+		this.props.handlerLogging('addSource', 'click', this.props.id);
 		
 	}
 	
@@ -52,7 +52,7 @@ export default class PlaylistSong extends Component{
 			source: false
 		});
 		this.props.handlerRemoveSource({id: this.props.id});
-		this.props.handlerLogging('removeSource', 'click', 1);
+		this.props.handlerLogging('removeSource', 'click', this.props.id);
 		
 	}
 	

@@ -3,7 +3,7 @@ import '../Styling/global.css'
 import logo from '../Images/KUL.png'
 import classnames from 'classnames'
 import styles from '../Styling/Welcome.module.css';
-import {addInteractionLocal} from '../Utils/API'
+import {addInteraction} from '../Utils/API'
 
 
 export default class Welcome extends Component{
@@ -24,7 +24,7 @@ export default class Welcome extends Component{
 	clickButton(){
 		const userId = this.generateUserId();
 		localStorage.setItem('userId', userId );
-		addInteractionLocal(userId, -1, 0, 'Welcome', 'click', 1);
+		addInteraction(userId, -1, 0, 'Welcome', 'click', 1);
 		this.props.history.push({
 			pathname: '/Protocol',
 		})

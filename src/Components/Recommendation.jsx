@@ -31,8 +31,6 @@ export default class Recommendation extends Component{
 		this.setState({
 			explanation: !old,
 		});
-		this.props.handlerLogging('toggleExp', 'click', !old);
-		
 	}
 	
 	renderAlbum(){

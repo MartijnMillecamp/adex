@@ -5,17 +5,22 @@ import classnames from 'classnames'
 
 import ExportSong from '../Components/ExportSong'
 import {addPlaylist, addSongsToPlaylist, getSpotifyId} from "../Utils/Spotify";
+import {addInteraction} from '../Utils/API'
 
 export default class Export extends Component{
 	constructor(props){
 		super(props);
-		this.exportPlaylist = this.exportPlaylist.bind(this)
+		this.exportPlaylist = this.exportPlaylist.bind(this);
 		this.goToPostTaskQuestionnaire = this.goToPostTaskQuestionnaire.bind(this)
 	}
 	
 	
 	
 	goToPostTaskQuestionnaire(){
+		const userId = localStorage.getItem('userId');
+		const nfc = localStorage.getItem('nfc');
+		const versionUI = localStorage.getItem('version');
+		addInteraction(userId, nfc, versionUI, 'goToPostTask', 'click', 1);
 		this.props.history.push({
 			pathname: '/PostTask',
 		})
@@ -35,6 +40,10 @@ export default class Export extends Component{
 		}
 		const created = await addSongsToPlaylist(playlistId, tracks, accessToken);
 		if (created){
+			const userId = localStorage.getItem('userId');
+			const nfc = localStorage.getItem('nfc');
+			const versionUI = localStorage.getItem('version');
+			addInteraction(userId, nfc, versionUI, 'exportPlaylist', 'click', 1);
 			this.goToPostTaskQuestionnaire();
 		}
 	}
@@ -42,7 +51,7 @@ export default class Export extends Component{
 	render(){
 		const styleContainer = classnames('container-rows', styles.container);
 		const styleContainerButton = classnames('container-rows', styles.containerButton);
-		
+		const styleButton = classnames(styles.button);
 		const list=this.props.location.state.playlist;
 		return(
 			<div
@@ -69,9 +78,11 @@ export default class Export extends Component{
 					<div>
 						<button
 							onClick={this.exportPlaylist}
+							className={styleButton}
 						>Yes</button>
 						<button
 							onClick={this.goToPostTaskQuestionnaire}
+							className={styleButton}
 						>No</button>
 					</div>
 				</div>

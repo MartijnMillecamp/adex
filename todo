@@ -13,7 +13,8 @@ set max to sources (already max 40 songs => not needed?)
 fix wrapping on mobile phone
 use local cache instead of state history
 scatterplot under search search
-color code happiness
+scroll search results
+
 
 
 
@@ -23,7 +24,6 @@ color code happiness
 -----------------------
 New features
 ----------------------
-add logging
 Store online instead of local
 only enable continue after 8 songs + tooltip task
 tooltip generate recommendations based on this song

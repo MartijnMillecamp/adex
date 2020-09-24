@@ -1,9 +1,8 @@
 import React, { Component} from 'react'
 import '../Styling/global.css';
 import * as Survey from "survey-react";
-
-// import {addResponse} from '../Utils/API.js'
-import {addFinalLocal} from "../Utils/API";
+import {addFinal} from "../Utils/API";
+import {addInteraction} from '../Utils/API'
 
 
 
@@ -19,7 +18,8 @@ export default class Final extends Component{
 		const data = survey.data;
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
-		addFinalLocal(userId, nfc, data);
+		addFinal(userId, nfc, data);
+		addInteraction(userId, nfc, -1, 'goToThanks', 'click', 1);
 		this.props.history.push({
 			pathname: '/Thanks',
 		})

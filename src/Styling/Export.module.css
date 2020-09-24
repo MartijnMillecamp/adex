@@ -10,3 +10,14 @@
     color: whitesmoke;
     margin: 20px;
 }
+
+.button{
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #268DAE;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    margin: 5px;
+}

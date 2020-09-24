@@ -24,6 +24,7 @@ export default class Sliders extends Component{
 					icon = {this.props.iconDict['danceability']}
 					handlerSliderChange = {this.props.handlerSliderChange}
 					values={[Math.round(this.props.sliderValueDict['danceability']*100)]}
+					handlerLogging={this.props.handlerLogging}
 				/>
 				<VerticalSlider
 					feature={"energy"}
@@ -31,6 +32,7 @@ export default class Sliders extends Component{
 					icon = {this.props.iconDict['energy']}
 					handlerSliderChange = {this.props.handlerSliderChange}
 					values={[Math.round(this.props.sliderValueDict['energy']*100)]}
+					handlerLogging={this.props.handlerLogging}
 				
 				
 				/>
@@ -40,6 +42,7 @@ export default class Sliders extends Component{
 					icon = {this.props.iconDict['happiness']}
 					handlerSliderChange = {this.props.handlerSliderChange}
 					values={[Math.round(this.props.sliderValueDict['happiness']*100)]}
+					handlerLogging={this.props.handlerLogging}
 				
 				
 				/>
@@ -49,6 +52,7 @@ export default class Sliders extends Component{
 					icon = {this.props.iconDict['popularity']}
 					handlerSliderChange = {this.props.handlerSliderChange}
 					values={[Math.round(this.props.sliderValueDict['popularity'])]}
+					handlerLogging={this.props.handlerLogging}
 				
 				
 				/>

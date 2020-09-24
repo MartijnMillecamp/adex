@@ -37,6 +37,8 @@ export default class SongInfo extends Component{
 			this.props.handlerStopSearch();
 		}
 		this.props.handlerAddToPlaylist(songData);
+		this.props.handlerLogging('addToPlaylist', 'click', 1);
+		
 		
 	}
 	
@@ -87,7 +89,14 @@ export default class SongInfo extends Component{
 	}
 	
 	toggleExplanation(){
-		this.props.toggleExplanation()
+		this.props.toggleExplanation();
+		if (this.props.explanation){
+			this.props.handlerLogging('closeExplanation', 'click', 1);
+		}
+		else{
+			this.props.handlerLogging('openExplanation', 'click', 1);
+		}
+		
 	}
 	
 	

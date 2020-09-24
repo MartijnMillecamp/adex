@@ -31,6 +31,8 @@ export default class Recommendation extends Component{
 		this.setState({
 			explanation: !old,
 		});
+		this.props.handlerLogging('toggleExp', 'click', !old);
+		
 	}
 	
 	renderAlbum(){
@@ -45,6 +47,7 @@ export default class Recommendation extends Component{
 				playing = {this.props.playing}
 				size = {'recommendation'}
 				playable = {true}
+				handlerLogging={this.props.handlerLogging}
 			
 			/>
 		)
@@ -78,6 +81,8 @@ export default class Recommendation extends Component{
 				
 				colorDict={this.props.colorDict}
 				iconDict={this.props.iconDict}
+				
+				handlerLoggin={this.props.handlerLogging}
 			
 			
 			/>
@@ -109,6 +114,7 @@ export default class Recommendation extends Component{
 					search={false}
 					toggleExplanation = {this.toggleExplanation}
 					explanation={this.state.explanation}
+					handlerLogging={this.props.handlerLogging}
 				/>
 				{this.switchRenderAlbumExplanation()}
 				

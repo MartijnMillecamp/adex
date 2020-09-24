@@ -26,6 +26,7 @@ export default class Recommendations extends Component {
 		this.setState({
 			allExplanations: toggled
 		})
+		this.props.handlerLogging('toggleAllExplanations', 'click', 1);
 	}
 	
 	
@@ -63,6 +64,7 @@ export default class Recommendations extends Component {
 						iconDict={this.props.iconDict}
 						
 						allExplanation={this.state.allExplanations}
+						handlerLogging={this.props.handlerLogging}
 						
 					/>
 				)

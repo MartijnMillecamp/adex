@@ -9,12 +9,11 @@ import Switch from "react-switch";
 
 export default class Recommendations extends Component {
 	constructor(props){
-		super(props)
-		this.state={
-			allExplanations: false,
-		};
+		super(props);
 		this.toggleExplanations = this.toggleExplanations.bind(this)
 	}
+	
+	
 	
 	
 	checkPlaying(id){
@@ -22,10 +21,8 @@ export default class Recommendations extends Component {
 	}
 	
 	toggleExplanations(){
-		const toggled = !this.state.allExplanations;
-		this.setState({
-			allExplanations: toggled
-		});
+		this.props.handlerToggleAllExplanations();
+		const toggled = !this.props.allExplanations;
 		if (toggled){
 			this.props.handlerLogging('openAllExplanations', 'click', 1);
 		}
@@ -68,7 +65,7 @@ export default class Recommendations extends Component {
 						colorDict={this.props.colorDict}
 						iconDict={this.props.iconDict}
 						
-						allExplanation={this.state.allExplanations}
+						allExplanation={this.props.allExplanations}
 						handlerLogging={this.props.handlerLogging}
 						
 					/>
@@ -118,38 +115,47 @@ export default class Recommendations extends Component {
 		}
 	}
 	
+	renderToggle() {
+		const styleSpan = classnames(styles.span)
+		
+		return (
+			<label>
+						<span
+							className={styleSpan}
+						>Show explanations</span>
+				<Switch
+					onColor="#6EAD7C"
+					onHandleColor="#BDE1C5"
+					handleDiameter={20}
+					uncheckedIcon={false}
+					checkedIcon={false}
+					boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+					activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+					height={15}
+					width={36}
+					className="react-switch"
+					id="material-switch"
+					onChange={this.toggleExplanations}
+					checked={this.props.allExplanations}
+					key={'toggleExplanations'}
+				/>
+			</label>
+		)
+		
+	};
+	
+	
 	render(){
 		const list = this.props.recommendations;
 		const styleContainerRecommendations = classnames('container-columns', styles.container);
 		const styleContainerCol3 = classnames('container-rows', styles.col3);
-		const styleSpan = classnames(styles.span)
 		return(
 				<>
 				<div className={styleContainerCol3}>
 					<div className={styleContainerRecommendations}>
 						{this.renderSwitch(list)}
 					</div>
-					<label>
-						<span
-							className={styleSpan}
-						>Show explanations</span>
-						<Switch
-							onColor="#6EAD7C"
-							onHandleColor="#BDE1C5"
-							handleDiameter={20}
-							uncheckedIcon={false}
-							checkedIcon={false}
-							boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-							activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-							height={15}
-							width={36}
-							className="react-switch"
-							id="material-switch"
-							onChange={this.toggleExplanations}
-							checked={this.state.allExplanations}
-							key={'toggleExplanations'}
-						/>
-					</label>
+					{this.props.version === 1 ? this.renderToggle() : <div/>}
 					
 				
 				</div>

@@ -10,7 +10,7 @@ export default class Recommendation extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			explanation: false
+			explanation: this.props.allExplanation
 		};
 		this.toggleExplanation = this.toggleExplanation.bind(this)
 	}

@@ -1,17 +1,13 @@
 ---------------------
 Bugs
 --------------------
-show explanations when new rec
-home not able to render after logging in
-change color encoding (high-low)
-check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)
+check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)?
+request for /null
+changing sliders to fast after each other causes problems
 test with other accounts
 layout different screen size
     why is toggle explanations moving
-handlewidth expl when values are too big or too small
-set max to sources (already max 40 songs => not needed?)
 fix wrapping on mobile phone
-use local cache instead of state history
 scatterplot under search search
 scroll search results
 

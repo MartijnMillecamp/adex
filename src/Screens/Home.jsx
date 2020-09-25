@@ -52,6 +52,10 @@ export default class Home extends Component {
 			searchResults: [],
 			status: 'empty',
 			accessToken: JSON.parse(localStorage.getItem('spotify_token'))['access_token'],
+			allExplanations: this.initAllExplanations(),
+			task: localStorage.getItem('task'),
+			version: parseInt(localStorage.getItem('version')),
+			
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
 		this.handlerPlaySong = this.handlerPlaySong.bind(this);
@@ -67,7 +71,9 @@ export default class Home extends Component {
 		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this);
 		this.handlerExport = this.handlerExport.bind(this);
 		this.handlerLogging = this.handlerLogging.bind(this);
+		this.handlerToggleAllExplanations = this.handlerToggleAllExplanations.bind(this)
 	}
+	
 	
 	
 	
@@ -87,8 +93,20 @@ export default class Home extends Component {
 	handlerLogging(element, action, value){
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
-		const versionUI = localStorage.getItem('version');
+		const versionUI = this.state.version;
 		addInteraction(userId, nfc, versionUI, element, action, value);
+	}
+	
+	initAllExplanations(){
+		const versionUI = parseInt(localStorage.getItem('version'));
+		return (versionUI === 1)
+	}
+	
+	handlerToggleAllExplanations(){
+		const toggled = !this.state.allExplanations;
+		this.setState({
+			allExplanations: toggled
+		});
 	}
 	
 	
@@ -248,7 +266,6 @@ export default class Home extends Component {
 	
 	
 	async getRecommendations() {
-		//TODO decide how to show all recommendations (tabs, list, ...)
 		//TODO error when too long updating?
 		this.updateRecommenderStatus('updating');
 		this.updateRecommendations([]);
@@ -293,17 +310,7 @@ export default class Home extends Component {
 		
 	}
 	
-	renderExport(){
-		return(
-			this.props.history.push({
-				pathname: '/Export',
-				state: {
-					playlist : this.state.playlist,
-					access_token : this.state.accessToken,
-				}
-			})
-		)
-	}
+
 	
 	renderHome(){
 		const colorDict ={
@@ -393,6 +400,9 @@ export default class Home extends Component {
 					sliderValueDict={this.state.sliderValueDict}
 					colorDict={colorDict}
 					handlerLogging = {this.handlerLogging}
+					handlerToggleAllExplanations={this.handlerToggleAllExplanations}
+					version={this.state.version}
+					allExplanations={this.state.allExplanations}
 				
 				/>
 			</div>

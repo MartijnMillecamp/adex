@@ -28,6 +28,7 @@ export default class ExplanationFull extends Component{
 							playing = {this.props.playing}
 							size = {'explSeed'}
 							playable = {true}
+							handlerLogging={this.props.handlerLogging}
 						/>
 					</div>
 					

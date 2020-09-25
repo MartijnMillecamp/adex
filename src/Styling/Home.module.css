@@ -8,9 +8,11 @@
 
 
 .column2{
-    min-width: 350px;
+    min-width: 400px;
     max-width: 460px;
     width: 25%;
     margin-top: 20px;
     align-items: center;
+    height: 90%;
+    overflow: scroll;
 }

@@ -55,6 +55,7 @@ export default class Home extends Component {
 			allExplanations: this.initAllExplanations(),
 			task: localStorage.getItem('task'),
 			version: parseInt(localStorage.getItem('version')),
+			disabledInput: false
 			
 		};
 		this.updateRecommendations = this.updateRecommendations.bind(this);
@@ -119,7 +120,10 @@ export default class Home extends Component {
 		else{
 			values[slider] = value;
 		}
-		this.setState({sliderValueDict: values})
+		this.setState({
+			sliderValueDict: values,
+			disabledInput: true,
+		});
 		this.getRecommendations()
 	}
 	
@@ -137,9 +141,18 @@ export default class Home extends Component {
 	}
 	
 	updateRecommenderStatus(status){
-		this.setState({
-			status: status
-		})
+		if (status === "updating"){
+			this.setState({
+				status: status,
+				disabledInput: true,
+			});
+		}
+		else{
+			this.setState({
+				status: status
+			})
+		}
+		
 	}
 	
 	updateRecommendations(recommendations) {
@@ -306,6 +319,9 @@ export default class Home extends Component {
 				this.updateRecommenderStatus('finished')
 			}
 			this.updateRecommendations(recOrdered)
+			this.setState({
+				disabledInput: false
+			})
 		}
 		
 	}
@@ -370,22 +386,26 @@ export default class Home extends Component {
 						
 						/>
 						:
-						<Sliders
-							colorDict={colorDict}
-							iconDict={iconDict}
-							handlerSliderChange={this.handlerSliderChange}
-							sliderValueDict={this.state.sliderValueDict}
-							handlerLogging = {this.handlerLogging}
-						
-						/>
+						<>
+							<Sliders
+								colorDict={colorDict}
+								iconDict={iconDict}
+								handlerSliderChange={this.handlerSliderChange}
+								sliderValueDict={this.state.sliderValueDict}
+								handlerLogging = {this.handlerLogging}
+								disabledInput={this.state.disabledInput}
+							
+							/>
+						</>
 					}
 					<Scatterplot
 						data={this.state.recommendations}
 						sliderValueDict={this.state.sliderValueDict}
 						colorDict={colorDict}
 						handlerLogging = {this.handlerLogging}
-					
+						hidden={this.state.search}
 					/>
+					
 				
 				</div>
 				

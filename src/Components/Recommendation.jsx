@@ -80,7 +80,7 @@ export default class Recommendation extends Component{
 				colorDict={this.props.colorDict}
 				iconDict={this.props.iconDict}
 				
-				handlerLoggin={this.props.handlerLogging}
+				handlerLogging={this.props.handlerLogging}
 			
 			
 			/>

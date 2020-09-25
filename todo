@@ -3,13 +3,10 @@ Bugs
 --------------------
 check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)?
 request for /null
-changing sliders to fast after each other causes problems
 test with other accounts
 layout different screen size
     why is toggle explanations moving
 fix wrapping on mobile phone
-scatterplot under search search
-scroll search results
 
 
 
@@ -20,14 +17,9 @@ scroll search results
 -----------------------
 New features
 ----------------------
-Store online instead of local
 only enable continue after 8 songs + tooltip task
-tooltip generate recommendations based on this song
 tooltip waarde in explanations
-add within subject random order
-add questionnaire
-    need for cognition
-    post task
+add option to remove search results
 script valid users
 colorcoding happiness more yellow
 New version without the experiment, but with logging (long term study)

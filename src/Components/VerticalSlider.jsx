@@ -12,7 +12,14 @@ const domain = [0, 100];
 
 class VerticalSlider extends Component {
 	
-
+	getColor(){
+		if (this.props.disabledInput){
+			return '#474747'
+		}
+		else{
+			return this.props.color
+		}
+	}
 	
 	onChange = values => {
 		const value = values[0];
@@ -45,6 +52,7 @@ class VerticalSlider extends Component {
 					onUpdate={this.onUpdate}
 					onChange={this.onChange}
 					values={values}
+					disabled={this.props.disabledInput}
 				>
 					<Rail>
 						{({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
@@ -59,7 +67,7 @@ class VerticalSlider extends Component {
 										handle={handle}
 										domain={domain}
 										getHandleProps={getHandleProps}
-										color={this.props.color}
+										color={this.getColor()}
 									/>
 								))}
 							</div>
@@ -74,7 +82,7 @@ class VerticalSlider extends Component {
 										source={source}
 										target={target}
 										getTrackProps={getTrackProps}
-										color={this.props.color}
+										color={this.getColor()}
 									/>
 								))}
 							</div>

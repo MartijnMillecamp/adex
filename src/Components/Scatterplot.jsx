@@ -100,9 +100,7 @@ export default class Scatterplot extends Component{
 				fontWeight: 'bold',
 				rotate: -90
 			}
-		
-		
-		]
+		];
 		
 		const svg = d3.select(this.refSVG.current);
 		let axisLabels = svg.selectAll('.axisLabels')
@@ -515,6 +513,7 @@ export default class Scatterplot extends Component{
 	
 	
 	render(){
+		console.log('render scatterplot')
 		let component = this;
 		const data = this.props.data;
 		const [maxX, maxY, maxC, maxS] = this.findMax(data);
@@ -591,6 +590,17 @@ export default class Scatterplot extends Component{
 			.data(data);
 		
 		bubbles
+			.attr('class', 'bubble')
+			.attr('cx', function(d){return xMap(d);})
+			.attr('cy', function(d){ return yMap(d); })
+			.attr('r', function(d){ return radius(d.popularity); })
+			.style('fill', function(d){return colorScale(d.valence);})
+			.style('opacity', 0.5 )
+			.on('mouseover', mouseOver)
+			.on('mouseout', mouseout);
+		
+		
+		bubbles
 			.enter()
 			.append('circle')
 			.attr('class', 'bubble')
@@ -616,6 +626,7 @@ export default class Scatterplot extends Component{
 					ref={this.refSVG}
 					width={width+margin.left + margin.right}
 					height={height + margin.top + margin.bottom}
+					style={this.props.hidden ? {display: 'none'} : {display: 'block'} }
 				/>
 			{this.state.tooltip ?
 				<Tooltip

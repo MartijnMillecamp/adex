@@ -519,7 +519,7 @@ export default class Scatterplot extends Component{
 		const [minX, minY, minC, minS] = this.findMin(data);
 		
 		
-		const margin = {top: 0, right: 100, bottom: 40, left: 50};
+		const margin = {top: 5, right: 100, bottom: 40, left: 50};
 		const width = 350 - margin.left - margin.right;
 		const height = 350 - margin.top - margin.bottom;
 		const svg = d3.select(this.refSVG.current);

@@ -25,9 +25,11 @@ export default class Playlist extends Component{
 	}
 	
 	clickContinue(){
-		this.props.handlerLogging('homeContinue', 'click', 1);
 		const task = this.getTask();
-		alert(task)
+		const message = "You cannot continue yet. " + task;
+		alert(message)
+		this.props.handlerLogging('homeContinue', 'click', 1);
+		
 	}
 	
 	

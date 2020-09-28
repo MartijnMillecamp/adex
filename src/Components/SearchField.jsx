@@ -81,6 +81,7 @@ export default class SearchField extends Component{
 						src={deleteSearchResults}
 						className={styleDelete}
 						onClick={this.deleteSearch}
+						alt="delete"
 					/>
 					: null
 				}

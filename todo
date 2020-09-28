@@ -1,14 +1,10 @@
 ---------------------
 Bugs
 --------------------
-Label danceability in scatterplot
-circles out of bounds scatterplot
-check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)?
+Label danceability in scatterplot ?
+check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)? ?
 request for /null
 test with other accounts
-layout different screen size
-    why is toggle explanations moving
-fix wrapping on mobile phone
 
 
 
@@ -33,8 +29,6 @@ add profile of playlist
 ----------------------
 Deployment
 ---------------------
-update nodeServer local
-    final db model interaction
-update nodeServer online
+
 
 

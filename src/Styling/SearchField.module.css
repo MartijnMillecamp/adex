@@ -6,3 +6,17 @@
     height: 30px;
 
 }
+
+.delete{
+    width: 12px;
+    height: 12px;
+    margin: 1px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

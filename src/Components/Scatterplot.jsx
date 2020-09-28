@@ -513,7 +513,6 @@ export default class Scatterplot extends Component{
 	
 	
 	render(){
-		console.log('render scatterplot')
 		let component = this;
 		const data = this.props.data;
 		const [maxX, maxY, maxC, maxS] = this.findMax(data);

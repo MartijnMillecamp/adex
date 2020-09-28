@@ -6,6 +6,8 @@ import '../Styling/global.css'
 
 import classnames from 'classnames'
 import {getTopSong} from "../Utils/Spotify";
+import ReactTooltip from "react-tooltip";
+
 
 
 
@@ -24,11 +26,14 @@ export default class Playlist extends Component{
 	
 	clickContinue(){
 		this.props.handlerLogging('homeContinue', 'click', 1);
-		this.props.handlerExport()
+		const task = this.getTask();
+		alert(task)
 	}
 	
+	
+	
 	async getTopSongs() {
-		let topSong = await getTopSong(this.props.accessToken);
+		let topSong = await getTopSong(this.props.accessToken, this.props.version);
 		const danceability = topSong['danceability'];
 		const energy = topSong['energy'];
 		const happiness = topSong['valence'];
@@ -58,6 +63,16 @@ export default class Playlist extends Component{
 	
 	checkPlaying(id){
 		return this.props.playing === id
+	}
+	
+	getTask(){
+		const taskNb = localStorage.getItem('task');
+		const taskDict = {
+			1: "sports",
+			2: "relaxing"
+		};
+		const situation = taskDict[taskNb];
+		return "Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity"
 	}
 	
 	render(){
@@ -95,7 +110,11 @@ export default class Playlist extends Component{
 				<button
 					className={styleButton}
 					onClick={this.clickContinue}
-				>Continue</button>
+					data-tip={this.getTask()}
+				>
+					Continue
+				</button>
+				<ReactTooltip/>
 				
 			</div>
 		)

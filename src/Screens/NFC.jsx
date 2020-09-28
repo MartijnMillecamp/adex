@@ -1,8 +1,6 @@
 import React, { Component} from 'react'
 import '../Styling/global.css';
 import * as Survey from "survey-react";
-
-// import {addUser} from '../Utils/API.js'
 import {addUser} from "../Utils/API";
 import {addInteraction} from "../Utils/API";
 

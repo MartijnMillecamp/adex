@@ -1,5 +1,9 @@
 import React, { Component}  from 'react';
 import styles from '../Styling/SearchField.module.css';
+import classnames from 'classnames'
+
+import deleteSearchResults from '../Images/delete.svg'
+
 
 
 export default class SearchField extends Component{
@@ -7,6 +11,7 @@ export default class SearchField extends Component{
 		super(props);
 		this.searchClick = this.searchClick.bind(this);
 		this.stopSearch = this.stopSearch.bind(this);
+		this.deleteSearch = this.deleteSearch.bind(this);
 		this.handleTyping = this.handleTyping.bind(this);
 		this.search = this.search.bind(this);
 		this.state = {
@@ -25,6 +30,10 @@ export default class SearchField extends Component{
 	
 	searchClick(){
 		this.props.handlerSearchClick()
+	}
+	
+	deleteSearch(){
+		this.props.handlerStopSearch()
 	}
 	
 	stopSearch(){
@@ -51,18 +60,33 @@ export default class SearchField extends Component{
 	
 	
 	render(){
+		const styleDelete = classnames(styles.delete);
+		const styleContainer = classnames(styles.container);
 		return(
-			<input
-				type="text"
-				className={styles.SearchField}
-				placeholder="Search..."
-				onFocus={this.searchClick}
-				onBlur={this.stopSearch}
-				onKeyPress={this.search}
-				value={this.state.query}
-				onChange={this.handleTyping}
+			<div
+				className={styleContainer}
+			>
+				<input
+					type="text"
+					className={styles.SearchField}
+					placeholder="Search..."
+					onFocus={this.searchClick}
+					onBlur={this.stopSearch}
+					onKeyPress={this.search}
+					value={this.state.query}
+					onChange={this.handleTyping}
+				/>
+				{this.props.active ?
+					<img
+						src={deleteSearchResults}
+						className={styleDelete}
+						onClick={this.deleteSearch}
+					/>
+					: null
+				}
+				
+			</div>
 			
-			/>
 		)
 	}
 }

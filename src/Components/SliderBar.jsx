@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import '../Styling/global.css';
+import ReactTooltip from 'react-tooltip'
 
 export default class SliderBar extends Component{
 	
@@ -42,8 +43,10 @@ export default class SliderBar extends Component{
 		
 		
 		return(
+			<>
 			<svg
 				style={styleSVG}
+				data-tip={this.props.barValue}
 			>
 				<rect
 					height={handleHeight}
@@ -90,6 +93,9 @@ export default class SliderBar extends Component{
 				</text>
 			
 			</svg>
+			<ReactTooltip/>
+			</>
+		
 		)
 	}
 }

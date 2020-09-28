@@ -87,7 +87,7 @@ export default class Home extends Component {
 			1: "sports",
 			2: "relaxing"
 		};
-		const situation = taskDict[taskNb]
+		const situation = taskDict[taskNb];
 		alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
 	}
 	
@@ -180,7 +180,12 @@ export default class Home extends Component {
 				playing: null
 			})
 		}
-		this.handlerAddSource(song)
+		if (newPlaylist.length === 8){
+			this.handlerExport()
+		}
+		else{
+			this.handlerAddSource(song)
+		}
 	}
 	
 	handlerDeleteFromPlaylist(song){
@@ -359,8 +364,8 @@ export default class Home extends Component {
 					handlerAddSource = {this.handlerAddSource}
 					handlerRemoveSource = {this.handlerRemoveSource}
 					handlerInitSliderValues = {this.handlerInitSliderValues}
-					handlerExport = {this.handlerExport}
 					handlerLogging = {this.handlerLogging}
+					version={this.state.version}
 				/>
 				<div
 					className = {styleContainerCol2}
@@ -383,7 +388,6 @@ export default class Home extends Component {
 							results={this.state.searchResults}
 							handlerStopSearch={this.handlerStopSearch}
 							handlerLogging = {this.handlerLogging}
-						
 						/>
 						:
 						<>

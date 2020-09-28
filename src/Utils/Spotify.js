@@ -71,7 +71,7 @@ export async function getAudioFeatures(song, accessToken){
 	return resData
 }
 
-export async function getTopSong(accessToken) {
+export async function getTopSong(accessToken, version) {
 	//todo test with 'empty' account
 	const topLink = [
 		"https://api.spotify.com/v1/me/top/tracks"
@@ -82,16 +82,19 @@ export async function getTopSong(accessToken) {
 	const topSongs = resData.items;
 	let added = 0;
 	let index = 0;
-	let topSong = null;
-	while (added < 1 || index === 20){
+	let topSong = null
+	let topSongList = [];
+	while (added < 2 || index === 20){
 		if (topSongs[index]['preview_url'] !== null){
 			let audioFeatures = await getAudioFeatures(topSongs[index], accessToken)
-			topSong = Object.assign(topSongs[index], audioFeatures)
+			topSong = Object.assign(topSongs[index], audioFeatures);
+			topSongList.push(topSong)
 			added += 1
 		}
 		index += 1;
 	}
-	return topSong
+	const indexTopSong = version -1;
+	return topSongList[indexTopSong]
 }
 
 export async function getSpotifyId(accessToken) {

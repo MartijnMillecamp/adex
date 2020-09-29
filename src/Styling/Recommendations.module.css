@@ -16,7 +16,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    height: 90%;
+    max-height: 90%;
     overflow: scroll;
 }
 

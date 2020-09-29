@@ -46,7 +46,8 @@ export async function addPostTask(userId, nfc, versionUI, responses) {
 		convinced: responses['question3'],
 		satisfied: responses['question4'],
 		information: responses['question5'],
-		feature: responses['question6']
+		feature: responses['question6'],
+		attention: responses['question7']
 	};
 	// const request = [
 	// 	"http://localhost:5000/api/posttask",

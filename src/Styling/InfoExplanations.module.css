@@ -1,11 +1,13 @@
 .explanation{
     align-items: center;
     width: 50%;
+    max-width: 800px;
 }
 
 .scatterplotContainer{
     align-items: center;
     width: 50%;
+    max-width: 800px;
 }
 
 .textContainer{

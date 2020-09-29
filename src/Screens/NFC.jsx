@@ -105,7 +105,12 @@ export default class NFC extends Component{
 			"description":"For each of the statements below, please indicate whether or not the statement is characteristic of you or of what you believe. For example, if the statement is extremely uncharacteristic of you or of what you believe about yourself (not at all like you) please rate a \"1\". If the statement is extremely characteristic of you or of what you believe about yourself (very much like you) please rate a \"5\". \nYou should use the following scale as you rate each of the statements below.\n1=\"Extremely uncharacteristic of me\" \n2=\"Somewhat uncharacteristic of me\" \n3=\"uncertain\" \n4=\"Somewhat characteristic of me\" \n5=\"Extremely characteristic of me\""}
 		]}
 		return(
-			<Survey.Survey json={ surveyJSON } onComplete={ this.calculateNFC } />
+			<Survey.Survey
+				json={ surveyJSON }
+				onComplete={ this.calculateNFC }
+				style={{'width': '1000px'}}
+			
+			/>
 		);
 	}
 }

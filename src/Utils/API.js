@@ -70,7 +70,7 @@ export async function addFinal(userId, nfc, responses) {
 		prefer: responses['question1'],
 		preferComment: comment,
 		why: responses['question2'],
-		improve: responses['question3'],
+		other: responses['question3'],
 	};
 	// const request = [
 	// 	"http://localhost:5000/api/final",

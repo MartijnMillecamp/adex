@@ -1,5 +1,7 @@
 import React, { Component} from 'react'
 import '../Styling/global.css';
+import classnames from 'classnames';
+import styles from '../Styling/NFC.module.css'
 import * as Survey from "survey-react";
 import {addUser} from "../Utils/API";
 import {addInteraction} from "../Utils/API";
@@ -71,6 +73,7 @@ export default class NFC extends Component{
 	
 	
 	render(){
+		const styleContainer=classnames('container-rows', styles.container);
 		const surveyJSON = {"pages":[{"name":"page1","elements":[
 			{"type":"rating","name":"question1","title":"I prefer complex to simple problems","isRequired":true,"rateValues":[1,2,3,4,5]},
 			{"type":"rating","name":"question2","title":"I like to have the responsibility of handling a situation that" +
@@ -105,12 +108,16 @@ export default class NFC extends Component{
 			"description":"For each of the statements below, please indicate whether or not the statement is characteristic of you or of what you believe. For example, if the statement is extremely uncharacteristic of you or of what you believe about yourself (not at all like you) please rate a \"1\". If the statement is extremely characteristic of you or of what you believe about yourself (very much like you) please rate a \"5\". \nYou should use the following scale as you rate each of the statements below.\n1=\"Extremely uncharacteristic of me\" \n2=\"Somewhat uncharacteristic of me\" \n3=\"uncertain\" \n4=\"Somewhat characteristic of me\" \n5=\"Extremely characteristic of me\""}
 		]}
 		return(
-			<Survey.Survey
-				json={ surveyJSON }
-				onComplete={ this.calculateNFC }
-				style={{'width': '1000px'}}
+			<div
+				className={styleContainer}
+			>
+				<Survey.Survey
+					json={ surveyJSON }
+					onComplete={ this.calculateNFC }
+				/>
+				
+			</div>
 			
-			/>
 		);
 	}
 }

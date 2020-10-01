@@ -54,7 +54,7 @@ export default class Home extends Component {
 			accessToken: JSON.parse(localStorage.getItem('spotify_token'))['access_token'],
 			allExplanations: this.initAllExplanations(),
 			task: localStorage.getItem('task'),
-			version: parseInt(localStorage.getItem('version')),
+			version: 1,
 			disabledInput: false
 			
 		};

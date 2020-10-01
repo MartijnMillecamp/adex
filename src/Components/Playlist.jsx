@@ -25,11 +25,7 @@ export default class Playlist extends Component{
 	}
 	
 	clickContinue(){
-		const task = this.getTask();
-		const message = "You cannot continue yet. " + task;
-		alert(message)
-		this.props.handlerLogging('homeContinue', 'click', 1);
-		
+		this.props.handlerExport()
 	}
 	
 	
@@ -112,11 +108,9 @@ export default class Playlist extends Component{
 				<button
 					className={styleButton}
 					onClick={this.clickContinue}
-					data-tip={this.getTask()}
 				>
 					Continue
 				</button>
-				<ReactTooltip/>
 				
 			</div>
 		)

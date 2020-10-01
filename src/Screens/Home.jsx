@@ -82,20 +82,13 @@ export default class Home extends Component {
 	
 	componentDidMount(){
 		this.getRecommendations();
-		const taskNb = localStorage.getItem('task');
-		const taskDict = {
-			1: "sports",
-			2: "relaxing"
-		};
-		const situation = taskDict[taskNb];
-		alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
 	}
 	
 	handlerLogging(element, action, value){
 		const userId = localStorage.getItem('userId');
 		const nfc = localStorage.getItem('nfc');
 		const versionUI = this.state.version;
-		addInteraction(userId, nfc, versionUI, element, action, value);
+		// addInteraction(userId, nfc, versionUI, element, action, value);
 	}
 	
 	initAllExplanations(){
@@ -180,12 +173,8 @@ export default class Home extends Component {
 				playing: null
 			})
 		}
-		if (newPlaylist.length === 8){
-			this.handlerExport()
-		}
-		else{
-			this.handlerAddSource(song)
-		}
+		
+		this.handlerAddSource(song)
 	}
 	
 	handlerDeleteFromPlaylist(song){
@@ -366,6 +355,7 @@ export default class Home extends Component {
 					handlerInitSliderValues = {this.handlerInitSliderValues}
 					handlerLogging = {this.handlerLogging}
 					version={this.state.version}
+					handlerExport={this.handlerExport}
 				/>
 				<div
 					className = {styleContainerCol2}

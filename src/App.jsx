@@ -30,10 +30,7 @@ export default function App() {
 					<Route path="/Posttask" component={Posttask} />
 					<Route path="/Final" component={Final} />
 					<Route path="/Thanks" component={Thanks} />
-					
-					
-					
-					<Route path="/" component={Welcome}/>
+					<Route path="/" component={Login}/>
 				
 				</Switch>
 		</Router>

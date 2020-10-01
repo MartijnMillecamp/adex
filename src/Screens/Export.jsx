@@ -22,7 +22,7 @@ export default class Export extends Component{
 		const versionUI = localStorage.getItem('version');
 		addInteraction(userId, nfc, versionUI, 'goToPostTask', 'click', 1);
 		this.props.history.push({
-			pathname: '/PostTask',
+			pathname: '/Home',
 		})
 	}
 	

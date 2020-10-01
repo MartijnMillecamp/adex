@@ -62,7 +62,7 @@ podman run -d --name mongoAdex -p 3007:27017 \
 12. podman run \
     -dit \
     --name adex \
-    -p 3005:3000\
+    -p 3009:3000\
     adex:dev
 
     

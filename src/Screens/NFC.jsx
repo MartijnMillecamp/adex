@@ -73,7 +73,8 @@ export default class NFC extends Component{
 	
 	
 	render(){
-		const styleContainer=classnames('container-rows', styles.container);
+		const styleContainer = classnames('container-rows', styles.container);
+		const styleDivSurvey = classnames(styles.divSurvey)
 		const surveyJSON = {"pages":[{"name":"page1","elements":[
 			{"type":"rating","name":"question1","title":"I prefer complex to simple problems","isRequired":true,"rateValues":[1,2,3,4,5]},
 			{"type":"rating","name":"question2","title":"I like to have the responsibility of handling a situation that" +
@@ -111,11 +112,11 @@ export default class NFC extends Component{
 			<div
 				className={styleContainer}
 			>
-				<Survey.Survey
-					json={ surveyJSON }
-					onComplete={ this.calculateNFC }
-				/>
-				
+				<div
+					className={styleDivSurvey}
+				>
+					<Survey.Survey json={ surveyJSON } onComplete={ this.calculateNFC } />
+				</div>
 			</div>
 			
 		);

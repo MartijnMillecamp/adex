@@ -80,7 +80,6 @@ export async function getTopSong(accessToken, version) {
 	const res = await axios.get(topLink, { 'headers': { 'Authorization': AuthStr } });
 	const resData = res.data;
 	const topSongs = resData.items;
-	console.log(topSongs)
 	if (topSongs.length > 0){
 		let added = 0;
 		let index = 0;

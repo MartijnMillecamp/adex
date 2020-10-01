@@ -49,18 +49,17 @@ export async function addPostTask(userId, nfc, versionUI, responses) {
 		feature: responses['question6'],
 		attention: responses['question7']
 	};
-	const request = [
-		"http://localhost:5000/api/posttask",
-	].join('');
 	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
+	// 	"http://localhost:5000/api/posttask",
 	// ].join('');
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
+	].join('');
 	axios.post(request, data);
 	return true
 }
 
 export async function addFinal(userId, nfc, responses) {
-	console.log(responses);
 	let comment = "NA";
 	let question1 = responses['question1'][0];
 	if (question1 === "other"){
@@ -74,12 +73,12 @@ export async function addFinal(userId, nfc, responses) {
 		why: responses['question2'],
 		other: responses['question3'],
 	};
-	const request = [
-		"http://localhost:5000/api/final",
-	].join('');
 	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
+	// 	"http://localhost:5000/api/final",
 	// ].join('');
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
+	].join('');
 	axios.post(request, data);
 	return true
 }

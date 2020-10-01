@@ -41,7 +41,7 @@ export default class Protocol extends Component{
 				<div
 					className={styleTextContainer}
 				>
-					<p>As illustrated by the figure, the experiment will follow next steps					</p>
+					<p>As illustrated by the figure, the experiment will follow the next steps:					</p>
 					
 					<ul>
 							<li>On the next page you will be asked to fill in a questionnaire about your thinking style.</li>

@@ -12,7 +12,8 @@ export default class Recommendation extends Component{
 		this.state = {
 			explanation: this.props.allExplanation
 		};
-		this.toggleExplanation = this.toggleExplanation.bind(this)
+		this.toggleExplanation = this.toggleExplanation.bind(this);
+		this.checkShaking = this.checkShaking.bind(this);
 	}
 	
 	
@@ -93,13 +94,23 @@ export default class Recommendation extends Component{
 		)
 	}
 	
-	
+	checkShaking(){
+		const styleContainerRec = classnames("container-rows", styles.containerRec);
+		const styleContainerRecShake = classnames("container-rows", styles.containerRec, styles.shake);
+		if (this.props.shaking){
+			return styleContainerRecShake
+		}
+		else{
+			return styleContainerRec
+		}
+	}
 	
 	render(){
-		const styleContainerRec = classnames("container-rows", styles.containerRec);
+		
+		
 		return(
 			<>
-			<div className={styleContainerRec}>
+			<div className={this.checkShaking()}>
 				<SongInfo
 					key={"songinfo_" + this.props.id}
 					id={this.props.id}

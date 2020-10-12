@@ -51,6 +51,7 @@ export default class Protocol extends Component{
 							<li>After creating this playlist, you will be asked to evaluate the application.</li>
 							<li>Repeat steps 4 and 5 but in a different version of the application.</li>
 							<li>Fill in a final questionnaire.</li>
+							<li>You only have <b>ONE HOUR</b> to complete this task.</li>
 						</ul>
 					
 				</div>

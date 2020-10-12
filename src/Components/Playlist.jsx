@@ -35,19 +35,25 @@ export default class Playlist extends Component{
 	
 	
 	async getTopSongs() {
-		let topSong = await getTopSong(this.props.accessToken, this.props.version);
-		const danceability = topSong['danceability'];
-		const energy = topSong['energy'];
-		const happiness = topSong['valence'];
-		const popularity = topSong['popularity'];
-		const sliderValueDict = {
-			danceability : danceability.toFixed(2),
-			energy: energy.toFixed(2),
-			happiness: Math.round(100 * happiness) /100,
-			popularity: Math.round(popularity)
-		};
-		this.props.handlerInitSliderValues(sliderValueDict);
-		this.addToPlaylist(topSong);
+		try{
+			let topSong = await getTopSong(this.props.accessToken, this.props.version);
+			const danceability = topSong['danceability'];
+			const energy = topSong['energy'];
+			const happiness = topSong['valence'];
+			const popularity = topSong['popularity'];
+			const sliderValueDict = {
+				danceability : danceability.toFixed(2),
+				energy: energy.toFixed(2),
+				happiness: Math.round(100 * happiness) /100,
+				popularity: Math.round(popularity)
+			};
+			this.props.handlerInitSliderValues(sliderValueDict);
+			this.addToPlaylist(topSong);
+		}
+		catch (error) {
+			this.props.handlerError('getTopSong')
+		}
+		
 		
 	}
 	

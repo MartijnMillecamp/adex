@@ -51,10 +51,10 @@ export default class Home extends Component {
 			search : false,
 			searchResults: [],
 			status: 'empty',
-			accessToken: JSON.parse(localStorage.getItem('spotify_token'))['access_token'],
+			accessToken: this.initAccessToken(),
 			allExplanations: this.initAllExplanations(),
-			task: localStorage.getItem('task'),
-			version: parseInt(localStorage.getItem('version')),
+			task: this.initTask(),
+			version: this.initVersion(),
 			disabledInput: false
 			
 		};
@@ -72,8 +72,43 @@ export default class Home extends Component {
 		this.handlerInitSliderValues = this.handlerInitSliderValues.bind(this);
 		this.handlerExport = this.handlerExport.bind(this);
 		this.handlerLogging = this.handlerLogging.bind(this);
-		this.handlerToggleAllExplanations = this.handlerToggleAllExplanations.bind(this)
+		this.handlerToggleAllExplanations = this.handlerToggleAllExplanations.bind(this);
+		this.handlerHooverScatterplot = this.handlerHooverScatterplot.bind(this);
+		this.handlerError = this.handlerError.bind(this)
 	}
+	
+	initAccessToken(){
+		try{
+			return JSON.parse(localStorage.getItem('spotify_token'))['access_token']
+		}
+		catch (error){
+			this.handlerError('initAccessToken')
+			
+		}
+	}
+	
+	initTask(){
+		try{
+			return localStorage.getItem('task')
+		}
+		catch (error){
+			this.handlerError('initTask')
+			
+		}
+	}
+	
+	initVersion(){
+		try{
+			return localStorage.getItem('version')
+		}
+		catch (error){
+			this.handlerError('initVerion')
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -241,6 +276,15 @@ export default class Home extends Component {
 		})
 	}
 	
+	handlerError(error){
+		this.props.history.push({
+			pathname: '/Error',
+			state: {
+				error : error,
+			}
+		})
+	}
+	
 	async handlerSearch(query){
 		let searchResults = [];
 		if (query !== ""){
@@ -278,6 +322,12 @@ export default class Home extends Component {
 				playlist : this.state.playlist,
 				access_token : this.state.accessToken,
 			}
+		})
+	}
+	
+	handlerHooverScatterplot(id){
+		this.setState({
+			shakeId: id
 		})
 	}
 
@@ -366,6 +416,7 @@ export default class Home extends Component {
 					handlerInitSliderValues = {this.handlerInitSliderValues}
 					handlerLogging = {this.handlerLogging}
 					version={this.state.version}
+					handlerError={this.handlerError}
 				/>
 				<div
 					className = {styleContainerCol2}
@@ -408,6 +459,7 @@ export default class Home extends Component {
 						colorDict={colorDict}
 						handlerLogging = {this.handlerLogging}
 						hidden={this.state.search}
+						handlerHoover={this.handlerHooverScatterplot}
 					/>
 					
 				
@@ -427,7 +479,7 @@ export default class Home extends Component {
 					handlerToggleAllExplanations={this.handlerToggleAllExplanations}
 					version={this.state.version}
 					allExplanations={this.state.allExplanations}
-				
+					shakeId={this.state.shakeId}
 				/>
 			</div>
 		)

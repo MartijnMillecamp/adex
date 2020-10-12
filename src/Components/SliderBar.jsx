@@ -46,7 +46,7 @@ export default class SliderBar extends Component{
 			<>
 			<svg
 				style={styleSVG}
-				data-tip={this.props.barValue}
+				data-tip={this.props.feature + ': ' + this.props.barValue}
 			>
 				<rect
 					height={handleHeight}

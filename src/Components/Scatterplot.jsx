@@ -68,15 +68,15 @@ export default class Scatterplot extends Component{
 		;
 		mainGradient
 			.append('stop')
-			.attr('stop-color', '#78200A')
+			.attr('stop-color', '#EEAE0C')
 			.attr('offset', '0%');
+		// mainGradient
+		// 	.append('stop')
+		// 	.attr('stop-color', '#FF8A48')
+		// 	.attr('offset', '50%');
 		mainGradient
 			.append('stop')
-			.attr('stop-color', '#FF8A48')
-			.attr('offset', '50%');
-		mainGradient
-			.append('stop')
-			.attr('stop-color', '#FFE5CE')
+			.attr('stop-color', '#FFF8E7')
 			.attr('offset', '100%');
 	}
 	
@@ -549,12 +549,16 @@ export default class Scatterplot extends Component{
 		// https://observablehq.com/@d3/working-with-color
 		var colorScale = d3.scaleSequential()
 			.domain([minC, maxC])
-			.interpolator(d3.interpolateOranges);
+			.interpolator(d3.interpolate('rgb(255,248,231)', 'rgb(238,174,12)'));
 		
 		this.drawTargets(width, height, xScale, yScale, margin);
 		this.drawLegendPopularity(width, height, margin, minS, maxS);
 		this.drawLegendHappiness(width, margin, Math.round(minC *100), Math.round(maxC *100));
 		this.appendAxis(width, height, margin);
+		
+		let mouseEnter = function (d) {
+			component.props.handlerHoover(d.id)
+		};
 		
 		let mouseOver = function(d){
 			d3.select(this)
@@ -583,6 +587,8 @@ export default class Scatterplot extends Component{
 			component.setState(
 				{tooltip: false}
 			)
+			component.props.handlerHoover(null)
+			
 		};
 		
 		const bubbles = svg.selectAll('.bubble')
@@ -595,6 +601,7 @@ export default class Scatterplot extends Component{
 			.attr('r', function(d){ return radius(d.popularity); })
 			.style('fill', function(d){return colorScale(d.valence);})
 			.style('opacity', 0.5 )
+			.on('mouseenter', mouseEnter)
 			.on('mouseover', mouseOver)
 			.on('mouseout', mouseout);
 		
@@ -610,6 +617,8 @@ export default class Scatterplot extends Component{
 			.style('opacity', 0.5 )
 			.on('mouseover', mouseOver)
 			.on('mouseout', mouseout)
+			.on('mouseenter', mouseEnter)
+		
 		
 		;
 		

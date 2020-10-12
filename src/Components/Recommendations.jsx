@@ -10,7 +10,8 @@ import Switch from "react-switch";
 export default class Recommendations extends Component {
 	constructor(props){
 		super(props);
-		this.toggleExplanations = this.toggleExplanations.bind(this)
+		this.toggleExplanations = this.toggleExplanations.bind(this);
+		this.checkShaking = this.checkShaking.bind(this);
 	}
 	
 	
@@ -29,6 +30,10 @@ export default class Recommendations extends Component {
 		else{
 			this.props.handlerLogging('closeAllExplanations', 'click', 1);
 		}
+	}
+	
+	checkShaking(id){
+		return this.props.shakeId === id
 	}
 	
 	
@@ -67,6 +72,7 @@ export default class Recommendations extends Component {
 						
 						allExplanation={this.props.allExplanations}
 						handlerLogging={this.props.handlerLogging}
+						shaking={this.checkShaking(rec.id)}
 						
 					/>
 				)

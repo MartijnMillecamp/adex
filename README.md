@@ -37,6 +37,7 @@ podman run -d --name mongoAdex -p 3007:27017 \
 4. cd nodeServer
 5. docker build -t nodeserver:mongo .
 6. docker run --publish 3008:5000 --detach --name nodeserver --restart on-failure:5 nodeserver:mongo
+7. Verify connection: docker logs nodeserver
 
 
 ## Dockerizing app

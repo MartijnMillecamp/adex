@@ -31,7 +31,10 @@ export async function addInteraction(userId, nfc, versionUI, element, action, va
 	const request = [
 		"http://picasso.experiments.cs.kuleuven.be:3008/api/interaction",
 	].join('');
-	axios.post(request, data);
+	// const request = [
+	// 	"http://localhost:5000/api/interaction",
+	// ].join('');
+	const res = await axios.post(request, data);
 	return true
 }
 

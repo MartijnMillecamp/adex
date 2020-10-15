@@ -18,6 +18,7 @@ export default class Playlist extends Component{
 		super(props);
 		this.addToPlaylist = this.addToPlaylist.bind(this);
 		this.clickContinue = this.clickContinue.bind(this);
+		this.checkSource = this.checkSource.bind(this);
 	}
 	
 	componentDidMount(){
@@ -51,7 +52,7 @@ export default class Playlist extends Component{
 			this.addToPlaylist(topSong);
 		}
 		catch (error) {
-			this.props.handlerError('getTopSong')
+			this.props.handlerError('getTopSong' + error)
 		}
 		
 		
@@ -66,11 +67,25 @@ export default class Playlist extends Component{
 			preview_url: song.preview_url,
 			album: song.album.images[0]['url']
 		};
-		this.props.handlerAddToPlaylist(songData)
+		this.props.handlerAddToPlaylist(songData);
+		this.props.handlerAddSource(songData);
 	}
 	
 	checkPlaying(id){
 		return this.props.playing === id
+	}
+	
+	checkSource(id){
+		const sources = this.props.sources;
+		const nbSources = this.props.sources.length;
+		let checkSource = false;
+		for (let i =0 ; i<nbSources; i++){
+			let songId = sources[i]['id']
+			if (songId === id){
+				checkSource = true
+			}
+		}
+		return checkSource
 	}
 	
 	getTask(){
@@ -104,6 +119,7 @@ export default class Playlist extends Component{
 								artist={song.artist}
 								preview_url={song.preview_url}
 								album={song.album}
+								source={this.checkSource(song.id)}
 								handlerPlaySong = {this.props.handlerPlaySong}
 								handlerPauseSong = {this.props.handlerPauseSong}
 								playing = {this.checkPlaying(song.id)}

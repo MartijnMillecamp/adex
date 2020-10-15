@@ -1,12 +1,19 @@
 .col3{
-    width: 50%;
+    min-width: 210px;
+    width: 45%;
     margin-left: 10px;
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.col3::-webkit-scrollbar {
+    display: none;
 }
 
 .container{
@@ -17,7 +24,13 @@
     justify-content: center;
     align-items: flex-start;
     max-height: 90%;
-    overflow: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 .spinner{
@@ -46,3 +59,4 @@ label{
     font-size: 13px;
     line-height: 40px;
 }
+

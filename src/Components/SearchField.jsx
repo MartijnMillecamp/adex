@@ -75,6 +75,7 @@ export default class SearchField extends Component{
 					onKeyPress={this.search}
 					value={this.state.query}
 					onChange={this.handleTyping}
+					disabled={this.props.disabledInput}
 				/>
 				{this.props.active ?
 					<img

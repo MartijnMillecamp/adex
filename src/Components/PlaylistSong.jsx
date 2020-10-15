@@ -19,9 +19,6 @@ export default class PlaylistSong extends Component{
 		this.deleteFromPlaylist = this.deleteFromPlaylist.bind(this);
 		this.handlerAddSource = this.handlerAddSource.bind(this);
 		this.handlerRemoveSource = this.handlerRemoveSource.bind(this);
-		this.state = {
-			source: true
-		};
 	}
 	
 	deleteFromPlaylist(){
@@ -32,9 +29,6 @@ export default class PlaylistSong extends Component{
 	
 	
 	handlerAddSource(){
-		this.setState({
-			source: true
-		});
 		const songData = {
 			id: this.props.id,
 			title: this.props.title,
@@ -48,9 +42,6 @@ export default class PlaylistSong extends Component{
 	}
 	
 	handlerRemoveSource(){
-		this.setState({
-			source: false
-		});
 		this.props.handlerRemoveSource({id: this.props.id});
 		this.props.handlerLogging('removeSource', 'click', this.props.id);
 		
@@ -110,7 +101,7 @@ export default class PlaylistSong extends Component{
 							onClick={this.deleteFromPlaylist}
 						/>
 						<ReactTooltip/>
-						{this.state.source ?
+						{this.props.source ?
 							(<>
 								<img
 									src={source}

@@ -1,18 +1,32 @@
 .container{
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100vw;
     height: 100vh;
-    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 
+
+
 .column2{
-    min-width: 400px;
+    min-width: 350px;
     max-width: 460px;
     width: 25%;
     margin-top: 20px;
     align-items: center;
     height: 90%;
-    overflow: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+
+.column2::-webkit-scrollbar {
+    display: none;
+}
+

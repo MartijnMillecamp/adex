@@ -42,7 +42,8 @@ export default class Final extends Component{
 			],"hasOther":true},
 			{"type":"text","name":"question2","title":"Why do you prefer to see this information for one song/for all" +
 			" songs/not at all?","isRequired":true},
-			{"type":"text","name":"question3","title":"Any other comments?","isRequired":true},
+			{"type":"text","name":"question3","title":"Did you run into technical difficulties? If yes, which ones?","isRequired":true},
+			{"type":"text","name":"question4","title":"Any other comments?","isRequired":true},
 			]}]}
 		
 		

@@ -2,7 +2,6 @@
 Bugs
 --------------------
 Label danceability in scatterplot ?
-check unnecessary update when sliders change (slidervalues are given to rec for exp but are replaced anyway)? ?
 request for /null
 test with other accounts
 test on firefox

@@ -59,11 +59,7 @@ podman run -d --name mongoAdex -p 3007:27017 \
 8. cd adex
 9. podman stop adex
 10. podman rm adex
-11. podman build -t adex:dev .
-12. podman run \
-    -dit \
-    --name adex \
-    -p 3009:3000\
-    adex:dev
+11. podman build -t adex:nfc .
+12. podman run -dit --name adexnfc -p 3009:3000 adex:nfc
 
     

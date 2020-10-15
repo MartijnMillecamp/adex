@@ -99,10 +99,10 @@ export default class Home extends Component {
 	
 	initVersion(){
 		try{
-			return localStorage.getItem('version')
+			return parseInt(localStorage.getItem('version'))
 		}
 		catch (error){
-			this.handlerError('initVerion')
+			this.handlerError('initVersion')
 		}
 	}
 	
@@ -206,11 +206,11 @@ export default class Home extends Component {
 		const newPlaylist = addToArrayObjects(this.state.playlist, song);
 		this.setState({
 			playlist: newPlaylist,
-			// recommendations: recommendations,
+			recommendations: recommendations
 		});
 		//stop playing if added to playlist
 		if (this.state.playing === song.id){
-			this.stopPlayingSong()
+			this.stopPlayingSong();
 			this.setState({
 				playing: null
 			})
@@ -218,9 +218,16 @@ export default class Home extends Component {
 		if (newPlaylist.length === 8){
 			this.handlerExport()
 		}
-		else{
-			this.handlerAddSource(song)
-		}
+		// else{
+		// 	if (this.state.sources.length < 3){
+		// 		this.handlerAddSource(song)
+		// 	}
+		// 	// else{
+		// 	// 	this.setState({
+		// 	// 		recommendations: recommendations
+		// 	// 	})
+		// 	// }
+		// }
 	}
 	
 	handlerDeleteFromPlaylist(song){
@@ -340,7 +347,7 @@ export default class Home extends Component {
 		
 		
 		//stop audio from playing when update
-		this.stopAllSongs()
+		this.stopAllSongs();
 		
 		
 		let recommendations = [];
@@ -355,11 +362,18 @@ export default class Home extends Component {
 		}
 		//request recommendations
 		for (let i=0; i < seeds.length; i++){
-			const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken, numberPerSeed);
-			for (let j = 0; j < recommendationsSeed.length; j++){
-				recommendations = addToArrayObjects(recommendations, recommendationsSeed[j])
+			try{
+				const recommendationsSeed = await getRecommendation(seeds[i], this.state.sliderValueDict, accessToken, numberPerSeed);
+				for (let j = 0; j < recommendationsSeed.length; j++){
+					recommendations = addToArrayObjects(recommendations, recommendationsSeed[j])
+				}
+				finishedSeeds += 1
+			
+			
 			}
-			finishedSeeds += 1
+			catch (error){
+				this.handlerError("getRecommendations" + error)
+			}
 		}
 		//if all recommendations are in
 		if (finishedSeeds === seeds.length){
@@ -407,6 +421,7 @@ export default class Home extends Component {
 					handlerPlaySong = {this.handlerPlaySong}
 					handlerPauseSong = {this.handlerPauseSong}
 					playlist = {this.state.playlist}
+					sources={this.state.sources}
 					accessToken = {this.state.accessToken}
 					playing = {this.state.playing}
 					handlerDeleteFromPlaylist = {this.handlerDeleteFromPlaylist}
@@ -428,6 +443,8 @@ export default class Home extends Component {
 						handlerStopSearch = {this.handlerStopSearch}
 						results = {this.state.searchResults}
 						handlerLogging = {this.handlerLogging}
+						disabledInput={this.state.disabledInput}
+					
 					
 					/>
 					{this.state.search ?

@@ -74,7 +74,8 @@ export async function addFinal(userId, nfc, responses) {
 		prefer: question1,
 		preferComment: comment,
 		why: responses['question2'],
-		other: responses['question3'],
+		technical: responses['question3'],
+		other: responses['question4'],
 	};
 	// const request = [
 	// 	"http://localhost:5000/api/final",

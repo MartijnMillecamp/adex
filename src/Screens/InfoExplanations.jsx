@@ -22,7 +22,7 @@ export default class InfoExplanations extends Component{
 		const versionUI = localStorage.getItem('version');
 		addInteraction(userId, nfc, versionUI, 'InfoExplanations', 'click', 1);
 		this.props.history.push({
-			pathname: '/Home',
+			pathname: '/InfoSources',
 		})
 	}
 	

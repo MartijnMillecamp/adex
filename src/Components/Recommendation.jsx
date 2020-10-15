@@ -10,10 +10,10 @@ export default class Recommendation extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			explanation: this.props.allExplanation
+			explanation: this.props.allExplanation,
 		};
 		this.toggleExplanation = this.toggleExplanation.bind(this);
-		this.checkShaking = this.checkShaking.bind(this);
+		this.checkStyle = this.checkStyle.bind(this);
 	}
 	
 	
@@ -23,7 +23,7 @@ export default class Recommendation extends Component{
 		}
 	}
 	
-	
+
 	
 	
 	
@@ -94,7 +94,7 @@ export default class Recommendation extends Component{
 		)
 	}
 	
-	checkShaking(){
+	checkStyle(){
 		const styleContainerRec = classnames("container-rows", styles.containerRec);
 		const styleContainerRecShake = classnames("container-rows", styles.containerRec, styles.shake);
 		if (this.props.shaking){
@@ -110,7 +110,7 @@ export default class Recommendation extends Component{
 		
 		return(
 			<>
-			<div className={this.checkShaking()}>
+			<div className={this.checkStyle()}>
 				<SongInfo
 					key={"songinfo_" + this.props.id}
 					id={this.props.id}

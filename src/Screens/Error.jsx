@@ -19,6 +19,7 @@ export default class Error extends Component{
 				<h2>
 					Something went wrong :(
 				</h2>
+				<p>Please disable your ad blocker and go back</p>
 				<p>Please try again with a different browser (Firefox, Safari, Chrome)</p>
 				<p>Or send an email to martijn.millecamp@cs.kuleuven.be with as subject [ User: {userId}, Error: {error} ].</p>
 			

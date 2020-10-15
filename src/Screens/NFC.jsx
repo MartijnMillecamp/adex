@@ -103,7 +103,7 @@ export default class NFC extends Component{
 			" care how or why it works.","isRequired":true,"rateValues":[1,2,3,4,5]},
 			{"type":"rating","name":"question18","title":"I usually end up deliberating about issues even when they do not" +
 			" affect me personally.","isRequired":true,"rateValues":[1,2,3,4,5]},
-			{"type":"dropdown","name":"question19","title":"I identify myself as","isRequired":true,"choices":[{"value":"Female","text":"Female"},{"value":"Male","text":"Male"},{"value":"Equal","text":"Genderequeer"}]},
+			{"type":"dropdown","name":"question19","title":"I identify myself as","isRequired":true,"choices":[{"value":"Female","text":"Female"},{"value":"Male","text":"Male"},{"value":"Equal","text":"Genderqueer"}]},
 			{"type":"text","name":"question20","title":"How old are you","isRequired":true,"inputType":"number","min":"18","step":1}
 			],
 			"description":"For each of the statements below, please indicate whether or not the statement is characteristic of you or of what you believe. For example, if the statement is extremely uncharacteristic of you or of what you believe about yourself (not at all like you) please rate a \"1\". If the statement is extremely characteristic of you or of what you believe about yourself (very much like you) please rate a \"5\". \nYou should use the following scale as you rate each of the statements below.\n1=\"Extremely uncharacteristic of me\" \n2=\"Somewhat uncharacteristic of me\" \n3=\"uncertain\" \n4=\"Somewhat characteristic of me\" \n5=\"Extremely characteristic of me\""}

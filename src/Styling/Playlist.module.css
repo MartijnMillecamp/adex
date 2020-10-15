@@ -4,17 +4,23 @@
     margin-left: 10px;
     flex-wrap: nowrap;
     height: 100%;
-    overflow: scroll;
     align-items: center;
     justify-content: space-between;
 }
+
 
 .containerPlaylist{
     width: 100%;
     margin-left: 10px;
     flex-wrap: nowrap;
     height: 90%;
-    overflow: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.containerPlaylist::-webkit-scrollbar {
+    display: none;
 }
 
 .header{

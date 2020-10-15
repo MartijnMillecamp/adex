@@ -116,7 +116,6 @@ export default class Home extends Component {
 	
 	
 	componentDidMount(){
-		this.getRecommendations();
 		const taskNb = localStorage.getItem('task');
 		const taskDict = {
 			1: "sports",
@@ -124,6 +123,8 @@ export default class Home extends Component {
 		};
 		const situation = taskDict[taskNb];
 		alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
+		this.getRecommendations();
+		
 	}
 	
 	handlerLogging(element, action, value){

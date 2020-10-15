@@ -55,6 +55,7 @@
     border: solid;
     border-width: 1px;
     border-color: var(--backgroundcolor);
+    margin-left: 5px;
 }
 
 .text{

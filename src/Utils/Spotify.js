@@ -94,7 +94,7 @@ export async function getTopSong(accessToken, version) {
 			index += 1;
 		}
 		if (added === 0){
-			return getDefaultSong(version)
+			return await getDefaultSong(accessToken, version)
 		}
 		else{
 			const indexTopSong = version -1;
@@ -102,12 +102,12 @@ export async function getTopSong(accessToken, version) {
 		}
 	}
 	else{
-		return getDefaultSong(version)
+		return await getDefaultSong(accessToken, version)
 	}
 }
 
-function getDefaultSong(version){
-	const topSongList = [
+async function getDefaultSong(accessToken, version){
+	const topSongs = [
 		{
 			"album": {
 				"album_type": "SINGLE",
@@ -3899,7 +3899,20 @@ function getDefaultSong(version){
 			"type": "track",
 			"uri": "spotify:track:3rCtueI7qBN2kZBZnXuk5K"
 		}
-	]
+	];
+	let added = 0;
+	let index = 0;
+	let topSong = null;
+	let topSongList = [];
+	while (added < 2 || index === topSongs.length -1){
+		if (topSongs[index]['preview_url'] !== null){
+			let audioFeatures = await getAudioFeatures(topSongs[index], accessToken);
+			topSong = Object.assign(topSongs[index], audioFeatures);
+			topSongList.push(topSong);
+			added += 1
+		}
+		index += 1;
+	}
 	const indexTopSong = version -1;
 	return topSongList[indexTopSong]
 	

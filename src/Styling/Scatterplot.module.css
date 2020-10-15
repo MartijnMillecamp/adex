@@ -1,3 +1,11 @@
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: block;
+    min-height: 360px;
+}
 
 .axis path,
 .axis line{
@@ -6,9 +14,16 @@
     stroke: white;
 }
 
-.axis text {
-    font-size: 13px;
+.axisLabel {
+    font-size: 12px;
     fill: white;
+    font-weight: 400;
+}
+
+.legendPopularity{
+    font-size: 12px;
+    fill: white;
+    font-weight: 400;
 }
 
 .tooltip{

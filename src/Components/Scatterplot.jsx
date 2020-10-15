@@ -3,6 +3,8 @@ import '../Styling/global.css';
 import * as d3 from 'd3';
 import Tooltip from './Tooltip'
 import {addInteraction} from "../Utils/API";
+import classnames from 'classnames';
+import styles from '../Styling/Scatterplot.module.css'
 
 
 
@@ -87,8 +89,6 @@ export default class Scatterplot extends Component{
 				x: margin.left + (width / 2),
 				y: margin.top + height + margin.bottom - 2,
 				text: "Energy",
-				fontSize: 10,
-				fontWeight: 'bold',
 				rotate: 0
 			},
 			{
@@ -96,8 +96,6 @@ export default class Scatterplot extends Component{
 				x: margin.left / 2,
 				y: margin.top + (height / 2),
 				text: "Danceability",
-				fontSize: 10,
-				fontWeight: 'bold',
 				rotate: -90
 			}
 		];
@@ -108,33 +106,28 @@ export default class Scatterplot extends Component{
 				return d.id
 			});
 		
-		axisLabels
-			.attr('x', function (d) {
-				return d.x
-			})
-			.attr('y', function (d) {
-				return d.y
-			})
-			.text(function (d) {
-				return d.text
-			})
-			.style('text-anchor', "middle")
-			.style('fill', "#ffffff")
-			.style('font-size', function (d) {
-				return d.fontSize
-			})
-			.style('font-weight', function (d) {
-				return d.fontWeight
-			})
-			.attr('transform', function (d) {
-				return "rotate(" + d.rotate + "," + d.x + "," + d.y + ")";
-			})
-		;
+		// axisLabels
+		// 	.attr('x', function (d) {
+		// 		return d.x
+		// 	})
+		// 	.attr('y', function (d) {
+		// 		return d.y
+		// 	})
+		// 	.attr('class', styles.axisLabel)
+		// 	.text(function (d) {
+		// 		return d.text
+		// 	})
+		// 	.style('text-anchor', "middle")
+		// 	.style('fill', "#ffffff")
+		// 	.attr('transform', function (d) {
+		// 		return "rotate(" + d.rotate + "," + d.x + "," + d.y + ")";
+		// 	})
+		// ;
 		
 		axisLabels
 			.enter()
 			.append('text')
-			.attr('class', 'axisLabels')
+			.attr('class', styles.axisLabel)
 			.attr('x', function (d) {
 				return d.x
 			})
@@ -146,14 +139,8 @@ export default class Scatterplot extends Component{
 			})
 			.style('text-anchor', "middle")
 			.style('fill', "#ffffff")
-			.style('font-size', function (d) {
-				return d.fontSize
-			})
-			.style('font-weight', function (d) {
-				return d.fontWeight
-			})
 			.attr('transform', function (d) {
-				return "rotate(" + d.rotate + ")";
+				return "rotate(" + d.rotate + "," + d.x + "," + d.y + ")";
 			})
 	}
 	
@@ -189,16 +176,15 @@ export default class Scatterplot extends Component{
 				return d.id
 			});
 		
-		//update existing targets
-		legend
-			.attr('cx', function (d) {return d.x})
-			.attr('cy', function (d) {return d.y})
-			.attr('r', function (d) {return d.radius})
-			.style('stroke', "#ffffff")
-			.style('stroke-width', '1px')
-			.style('fill', '#1e1e1e')
-		
-		;
+		// //update existing targets
+		// legend
+		// 	.attr('cx', function (d) {return d.x})
+		// 	.attr('cy', function (d) {return d.y})
+		// 	.attr('r', function (d) {return d.radius})
+		// 	.style('stroke', "#ffffff")
+		// 	.style('stroke-width', '1px')
+		// 	.style('fill', '#1e1e1e')
+		// ;
 		
 		legend
 			.enter()
@@ -215,7 +201,7 @@ export default class Scatterplot extends Component{
 			})
 			.style('stroke', "#ffffff")
 			.style('stroke-width', '1px')
-			.style('fill', '#1e1e1e')
+			.style('fill', '#1e1e1e');
 		
 		const dataText = [
 			{
@@ -223,7 +209,7 @@ export default class Scatterplot extends Component{
 				text: 'Popularity',
 				x: xLegend,
 				y: yLegendStart + 20,
-				fontSize: 12,
+				fontSize: '12px',
 				fontWeight: 'bold'
 			},
 			{
@@ -231,7 +217,7 @@ export default class Scatterplot extends Component{
 				text: max,
 				x: xLegend,
 				y: yLegendStart + 50,
-				fontSize: 10,
+				fontSize: '10px',
 				fontWeight: 'normal'
 			},
 			{
@@ -239,7 +225,7 @@ export default class Scatterplot extends Component{
 				text: min,
 				x: xLegend + 15,
 				y: yLegendStart + 133,
-				fontSize: 10,
+				fontSize: '10px',
 				fontWeight: 'normal'
 			},
 			
@@ -346,7 +332,7 @@ export default class Scatterplot extends Component{
 				text: 'Happiness',
 				x: margin.left + width + (margin.right/2),
 				y: yLegendStart + marginTitle/2,
-				fontSize: 12,
+				fontSize: '12px',
 				anchor: 'middle',
 				fontWeight: 'bold'
 			},
@@ -355,7 +341,7 @@ export default class Scatterplot extends Component{
 				text: max,
 				x: xLegend + widthRect + marginLabel,
 				y: yLegendStart + marginTitle + 10,
-				fontSize: 10,
+				fontSize: '10px',
 				anchor: 'left',
 				fontWeight: 'normal'
 			},
@@ -364,7 +350,7 @@ export default class Scatterplot extends Component{
 				text: min,
 				x: xLegend + widthRect + marginLabel,
 				y: yLegendStart + marginTitle + heightRect ,
-				fontSize: 10,
+				fontSize: '10px',
 				anchor: 'left',
 				fontWeight: 'normal'
 			},
@@ -627,14 +613,16 @@ export default class Scatterplot extends Component{
 			.remove();
 		
 		
-			
+		const styleHidden = classnames(styles.hidden);
+		const styleVisible = classnames(styles.visible);
 		return (
 			<>
 				<svg
 					ref={this.refSVG}
 					width={width+margin.left + margin.right}
 					height={height + margin.top + margin.bottom}
-					style={this.props.hidden ? {display: 'none'} : {display: 'block'} }
+					className={this.props.hidden ? styleHidden : styleVisible}
+					
 				/>
 			{this.state.tooltip ?
 				<Tooltip

@@ -164,16 +164,31 @@ export default class Home extends Component {
 	}
 	
 	handlerAddSource(song){
-		this.setState({
-			sources: [...this.state.sources, song]
-		}, () => this.getRecommendations());
+		console.log(this.state.disabledInput);
+		if (this.state.disabledInput){
+			alert("Please wait until recommendations are loaded before adding a new source.")
+		}
+		else{
+			this.setState({
+				sources: [...this.state.sources, song],
+				disabledInput: true
+			}, () => this.getRecommendations());
+		}
+		
 	}
 	
 	handlerRemoveSource(song){
-		const sources = removeFromArrayOfObjects(this.state.sources, 'id', song);
-		this.setState({
-			sources: sources
-		}, () => this.getRecommendations());
+		if (this.state.disabledInput){
+			alert("Please wait until recommendations are loaded before removing a source.")
+		}
+		else{
+			const sources = removeFromArrayOfObjects(this.state.sources, 'id', song);
+			this.setState({
+				sources: sources,
+				disabledInput: true
+			}, () => this.getRecommendations());
+		}
+		
 	}
 	
 	updateRecommenderStatus(status){
@@ -185,7 +200,9 @@ export default class Home extends Component {
 		}
 		else{
 			this.setState({
-				status: status
+				status: status,
+				disabledInput: false
+				
 			})
 		}
 		
@@ -193,7 +210,7 @@ export default class Home extends Component {
 	
 	updateRecommendations(recommendations) {
 		this.setState({
-			recommendations: recommendations
+			recommendations: recommendations,
 		});
 	}
 	
@@ -217,6 +234,10 @@ export default class Home extends Component {
 			})
 		}
 		if (newPlaylist.length === 8){
+			this.stopPlayingSong();
+			this.setState({
+				playing: null
+			});
 			this.handlerExport()
 		}
 		// else{
@@ -345,12 +366,8 @@ export default class Home extends Component {
 		//TODO error when too long updating?
 		this.updateRecommenderStatus('updating');
 		this.updateRecommendations([]);
-		
-		
 		//stop audio from playing when update
 		this.stopAllSongs();
-		
-		
 		let recommendations = [];
 		let finishedSeeds = 0;
 		const accessToken = this.state.accessToken;
@@ -388,10 +405,8 @@ export default class Home extends Component {
 			else{
 				this.updateRecommenderStatus('finished')
 			}
-			this.updateRecommendations(recOrdered)
-			this.setState({
-				disabledInput: false
-			})
+			this.updateRecommendations(recOrdered);
+			
 		}
 		
 	}

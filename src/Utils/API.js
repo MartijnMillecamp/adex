@@ -7,13 +7,13 @@ export async function addUser(userId, nfc, gender, age){
 		gender: gender,
 		age: age,
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3008/api/user",
-	].join('');
+	// const request = [
+	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/user",
+	// ].join('');
 	// const request = [
 	// 	"http://localhost:5000/api/user",
 	// ].join('');
-	const res = await axios.post(request, data);
+	// const res = await axios.post(request, data);
 	return res
 }
 
@@ -28,13 +28,13 @@ export async function addInteraction(userId, nfc, versionUI, element, action, va
 		value: value,
 		time: time
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3008/api/interaction",
-	].join('');
+	// const request = [
+	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/interaction",
+	// ].join('');
 	// const request = [
 	// 	"http://localhost:5000/api/interaction",
 	// ].join('');
-	const res = await axios.post(request, data);
+	// const res = await axios.post(request, data);
 	return true
 }
 
@@ -55,10 +55,10 @@ export async function addPostTask(userId, nfc, versionUI, responses) {
 	// const request = [
 	// 	"http://localhost:5000/api/posttask",
 	// ].join('');
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
-	].join('');
-	axios.post(request, data);
+	// const request = [
+	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
+	// ].join('');
+	// axios.post(request, data);
 	return true
 }
 
@@ -80,10 +80,10 @@ export async function addFinal(userId, nfc, responses) {
 	// const request = [
 	// 	"http://localhost:5000/api/final",
 	// ].join('');
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
-	].join('');
-	axios.post(request, data);
+	// const request = [
+	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
+	// ].join('');
+	// axios.post(request, data);
 	return true
 }
 

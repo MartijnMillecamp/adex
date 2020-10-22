@@ -84,7 +84,7 @@ export async function getTopSong(accessToken, version) {
 		let index = 0;
 		let topSong = null;
 		let topSongList = [];
-		while (added < 2 || index === topSongs.length -1){
+		while (added < 3 || index === topSongs.length -1){
 			if (topSongs[index]['preview_url'] !== null){
 				let audioFeatures = await getAudioFeatures(topSongs[index], accessToken);
 				topSong = Object.assign(topSongs[index], audioFeatures);
@@ -93,7 +93,8 @@ export async function getTopSong(accessToken, version) {
 			}
 			index += 1;
 		}
-		if (added === 0){
+		
+		if (added < version){
 			return await getDefaultSong(accessToken, version)
 		}
 		else{

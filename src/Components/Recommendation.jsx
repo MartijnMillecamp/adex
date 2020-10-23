@@ -65,6 +65,7 @@ export default class Recommendation extends Component{
 				playing = {this.props.playing}
 				playable = {true}
 				toggleExplanation = {this.toggleExplanation}
+				version={this.props.version}
 				
 				danceability={this.props.danceability}
 				energy={this.props.energy}

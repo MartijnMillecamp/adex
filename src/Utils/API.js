@@ -1,27 +1,28 @@
 import axios from 'axios'
 
-export async function addUser(userId, nfc, gender, age){
+export async function addUser(userId, ms, gender, age, attention){
 	const data = {
 		userId: userId,
-		nfc: nfc,
+		ms: ms,
 		gender: gender,
 		age: age,
+		attention: attention,
 	};
 	// const request = [
 	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/user",
 	// ].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/user",
-	// ].join('');
-	// const res = await axios.post(request, data);
+	const request = [
+		"http://localhost:5000/api/user",
+	].join('');
+	const res = await axios.post(request, data);
 	return res
 }
 
-export async function addInteraction(userId, nfc, versionUI, element, action, value){
+export async function addInteraction(userId, ms, versionUI, element, action, value){
 	const time = new Date().getTime();
 	const data = {
 		userId: userId,
-		nfc: nfc,
+		ms: ms,
 		versionUI: versionUI,
 		element: element,
 		action: action,
@@ -31,17 +32,17 @@ export async function addInteraction(userId, nfc, versionUI, element, action, va
 	// const request = [
 	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/interaction",
 	// ].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/interaction",
-	// ].join('');
-	// const res = await axios.post(request, data);
+	const request = [
+		"http://localhost:5000/api/interaction",
+	].join('');
+	const res = await axios.post(request, data);
 	return true
 }
 
-export async function addPostTask(userId, nfc, versionUI, responses) {
+export async function addPostTask(userId, ms, versionUI, responses) {
 	const data = {
 		userId: userId,
-		nfc: nfc,
+		ms: ms,
 		versionUI: versionUI,
 		useAgain: responses['question0'],
 		confidence: responses['question1'],
@@ -55,14 +56,14 @@ export async function addPostTask(userId, nfc, versionUI, responses) {
 	// const request = [
 	// 	"http://localhost:5000/api/posttask",
 	// ].join('');
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
-	// ].join('');
-	// axios.post(request, data);
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
+	].join('');
+	axios.post(request, data);
 	return true
 }
 
-export async function addFinal(userId, nfc, responses) {
+export async function addFinal(userId, ms, responses) {
 	let comment = "NA";
 	let question1 = responses['question1'][0];
 	if (question1 === "other"){
@@ -70,7 +71,7 @@ export async function addFinal(userId, nfc, responses) {
 	}
 	const data = {
 		userId: userId,
-		nfc: nfc,
+		ms: ms,
 		prefer: question1,
 		preferComment: comment,
 		why: responses['question2'],
@@ -80,10 +81,10 @@ export async function addFinal(userId, nfc, responses) {
 	// const request = [
 	// 	"http://localhost:5000/api/final",
 	// ].join('');
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
-	// ].join('');
-	// axios.post(request, data);
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
+	].join('');
+	axios.post(request, data);
 	return true
 }
 

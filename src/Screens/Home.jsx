@@ -52,7 +52,7 @@ export default class Home extends Component {
 			searchResults: [],
 			status: 'empty',
 			accessToken: this.initAccessToken(),
-			allExplanations: this.initAllExplanations(),
+			allExplanations: true,
 			task: this.initTask(),
 			version: this.initVersion(),
 			disabledInput: false
@@ -122,7 +122,7 @@ export default class Home extends Component {
 			2: "relaxing"
 		};
 		const situation = taskDict[taskNb];
-		alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
+		// alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
 		this.getRecommendations();
 		
 	}

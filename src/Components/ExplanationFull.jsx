@@ -5,15 +5,17 @@ import classnames from 'classnames';
 import ExplanationSeed from "./ExplanationSeed";
 import ExplanationFeatures from "./ExplanationFeatures";
 import Album from './Album'
+import ExplanationFit from "./ExplanationFit";
 
 export default class ExplanationFull extends Component{
-	render(){
-		const styleContainer=classnames('container-rows', styles.containerAll);
+	
+	renderSwitch(){
 		const styleContainerRow1=classnames('container-columns', styles.containerRow1);
 		const styleContainerRow2=classnames('container-columns', styles.containerRow2);
 		const styleContainerAlbum=classnames(styles.album);
-		return (
-			<div className={styleContainer}>
+		if (this.props.version === 3){
+			return (
+				<>
 				<div className={styleContainerRow1}>
 					<div
 						className={styleContainerAlbum}
@@ -44,16 +46,38 @@ export default class ExplanationFull extends Component{
 					/>
 				</div>
 				<div className={styleContainerRow2}>
-					<ExplanationSeed
-						key={"exp_seed_" + this.props.id}
-						seedId={this.props.seedId}
-						seedTitle={this.props.seedTitle}
-						seedArtist={this.props.seedArtist}
-						seedAlbum={this.props.seedAlbum}
-						seedPreview_url={this.props.seedPreview_url}
-					
-					/>
+						<ExplanationSeed
+							key={"exp_seed_" + this.props.id}
+							seedId={this.props.seedId}
+							seedTitle={this.props.seedTitle}
+							seedArtist={this.props.seedArtist}
+							seedAlbum={this.props.seedAlbum}
+							seedPreview_url={this.props.seedPreview_url}
+							/>
 				</div>
+				</>
+				
+			)
+		}
+		else{
+			return <ExplanationFit
+				key={"exp_fit" + this.props.id}
+				danceability={this.props.danceability}
+				energy={this.props.energy}
+				happiness={this.props.happiness}
+				popularity={this.props.popularity}
+				sliderValueDict={this.props.sliderValueDict}
+			/>
+		}
+	}
+	
+	
+	render(){
+		const styleContainer=classnames('container-rows', styles.containerAll);
+		
+		return (
+			<div className={styleContainer}>
+				{this.renderSwitch() }
 				
 			</div>
 		)

@@ -17,7 +17,7 @@ export default class Protocol extends Component{
 		addInteraction(userId, -1, 0, 'Protocol', 'click', 1);
 		
 		this.props.history.push({
-			pathname: '/NFC',
+			pathname: '/MS',
 		})
 	}
 	

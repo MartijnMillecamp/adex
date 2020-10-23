@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import Welcome from "./Screens/Welcome"
 import Protocol from "./Screens/Protocol"
 import NFC from "./Screens/NFC"
+import MS from "./Screens/MS"
 import Login from './Screens/Login'
 import InfoSliders from "./Screens/InfoSliders"
 import InfoExplanations from "./Screens/InfoExplanations";
@@ -25,6 +26,8 @@ export default function App() {
 				<Switch>
 					<Route path="/Protocol" component={Protocol}/>
 					<Route path="/NFC" component={NFC}/>
+					<Route path="/MS" component={MS}/>
+					
 					<Route path="/Login" component={Login}/>
 					<Route path="/InfoSliders" component={InfoSliders}/>
 					<Route path="/InfoExplanations" component={InfoExplanations}/>

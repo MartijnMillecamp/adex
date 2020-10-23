@@ -73,6 +73,7 @@ export default class Recommendations extends Component {
 						allExplanation={this.props.allExplanations}
 						handlerLogging={this.props.handlerLogging}
 						shaking={this.checkShaking(rec.id)}
+						version={this.props.version}
 						
 					/>
 				)
@@ -161,7 +162,7 @@ export default class Recommendations extends Component {
 					<div className={styleContainerRecommendations}>
 						{this.renderSwitch(list)}
 					</div>
-					{this.props.version === 1 ? this.renderToggle() : <div/>}
+					{this.renderToggle()}
 					
 				
 				</div>

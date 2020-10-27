@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import '../Styling/global.css'
 import classnames from 'classnames'
 import styles from '../Styling/InfoExplanations.module.css';
-import explanations from '../Images/explanations.svg'
-import scatterplot from '../Images/scatterplot.svg'
+import explanations from '../Images/explanations_simple.svg'
 
 import {addInteraction} from "../Utils/API";
 
@@ -22,7 +21,7 @@ export default class InfoExplanations extends Component{
 		const versionUI = localStorage.getItem('version');
 		addInteraction(userId, nfc, versionUI, 'InfoExplanations', 'click', 1);
 		this.props.history.push({
-			pathname: '/InfoExplanationsSimple',
+			pathname: '/InfoSources',
 		})
 	}
 	
@@ -44,9 +43,9 @@ export default class InfoExplanations extends Component{
 				<div
 					className={styleTextContainer}
 				>
-					<h2>Instructions (2)</h2>
+					<h2>Instructions (3)</h2>
 					<p>
-						Additionally, to help you understand why certain songs are recommended, one of the two applications provides explanations in the form of:
+						The other application does not provide an explanation in the form of a scatter plot, but it does provide individual explanations:
 					</p>
 				</div>
 				<div
@@ -64,43 +63,24 @@ export default class InfoExplanations extends Component{
 						<div
 							className={styleTextExplanation}
 						>
-							For each song it will show four different elements:
+							For each song this explanation shows two different elements:
 							<ol>
-								<li>The audio features of the song (bars)</li>
-								<li>The audio features you requested (sliders in background of bars)</li>
-								<li>The difference between the features of this song and the features you requested</li>
+								<li>The fit between the features of this song and the features you requested</li>
 								<li>The song in your playlist on which this recommendation is based</li>
 							</ol>
 						</div>
 					</div>
-					
-					<div
-						className={styleScatterplot}
-					>
-						<h3>2. Scatter plot</h3>
-						<img
-							src={scatterplot}
-							className={styleScatterplotImage}
-							alt="scatter plot"
-						/>
-						<div
-							className={styleTextExplanation}
-						>
-							It will also show an overview of the features of all songs which are represented by circles:
-							<ol>
-								<li>The position on the y-axes indicates the danceability</li>
-								<li>The position on the x-axes indicates the energy</li>
-								<li>The color indicates the happiness</li>
-								<li>The size indicates the popularity</li>
-							</ol>
-						</div>
-					</div>
-				
-				
-				
-				
 				</div>
 			</div>
+			<div
+				className={styleTextContainer}
+			>
+				<p>
+					In case you don't want the explanations, you can turn them off at the bottom of the page.
+				</p>
+				
+			</div>
+			
 			
 			<button
 				className={styleButton}

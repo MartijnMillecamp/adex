@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import SongInfo from './SongInfo'
 import Album from './Album'
 import ExplanationFull from './ExplanationFull'
+import ExplanationFit from './ExplanationFit'
 import styles from '../Styling/Recommendation.module.css';
 import classnames from 'classnames'
 
@@ -53,40 +54,71 @@ export default class Recommendation extends Component{
 	}
 	
 	renderExplanation(){
-		return(
-			<ExplanationFull
-				key={"exp_" + this.props.id}
-				id={this.props.id}
-				uri={this.props.uri}
-				album={this.props.album}
-				preview_url={this.props.preview_url}
-				handlerPlaySong = {this.props.handlerPlaySong}
-				handlerPauseSong = {this.props.handlerPauseSong}
-				playing = {this.props.playing}
-				playable = {true}
-				toggleExplanation = {this.toggleExplanation}
-				version={this.props.version}
+		if (this.props.version === 1){
+			return(
+				<ExplanationFull
+					key={"exp_" + this.props.id}
+					id={this.props.id}
+					uri={this.props.uri}
+					album={this.props.album}
+					preview_url={this.props.preview_url}
+					handlerPlaySong = {this.props.handlerPlaySong}
+					handlerPauseSong = {this.props.handlerPauseSong}
+					playing = {this.props.playing}
+					playable = {true}
+					toggleExplanation = {this.toggleExplanation}
+					version={this.props.version}
+					
+					danceability={this.props.danceability}
+					energy={this.props.energy}
+					happiness={this.props.happiness}
+					popularity={this.props.popularity}
+					sliderValueDict={this.props.sliderValueDict}
+					
+					seedId={this.props.seedId}
+					seedTitle={this.props.seedTitle}
+					seedArtist={this.props.seedArtist}
+					seedAlbum={this.props.seedAlbum}
+					seedPreview_url={this.props.seedPreview_url}
+					
+					colorDict={this.props.colorDict}
+					iconDict={this.props.iconDict}
+					
+					handlerLogging={this.props.handlerLogging}
 				
-				danceability={this.props.danceability}
-				energy={this.props.energy}
-				happiness={this.props.happiness}
-				popularity={this.props.popularity}
-				sliderValueDict={this.props.sliderValueDict}
 				
-				seedId={this.props.seedId}
-				seedTitle={this.props.seedTitle}
-				seedArtist={this.props.seedArtist}
-				seedAlbum={this.props.seedAlbum}
-				seedPreview_url={this.props.seedPreview_url}
-				
-				colorDict={this.props.colorDict}
-				iconDict={this.props.iconDict}
-				
-				handlerLogging={this.props.handlerLogging}
-			
-			
-			/>
-		)
+				/>
+			)
+		}
+		else{
+			return(
+				<ExplanationFit
+					key={"exp_fit" + this.props.id}
+					id={this.props.id}
+					danceability={this.props.danceability}
+					energy={this.props.energy}
+					happiness={this.props.happiness}
+					popularity={this.props.popularity}
+					sliderValueDict={this.props.sliderValueDict}
+					album={this.props.album}
+					preview_url={this.props.preview_url}
+					handlerPlaySong = {this.props.handlerPlaySong}
+					handlerPauseSong = {this.props.handlerPauseSong}
+					playing = {this.props.playing}
+					size = {'explSeed'}
+					playable = {true}
+					handlerLogging={this.props.handlerLogging}
+					seedId={this.props.seedId}
+					seedTitle={this.props.seedTitle}
+					seedArtist={this.props.seedArtist}
+					seedAlbum={this.props.seedAlbum}
+					seedPreview_url={this.props.seedPreview_url}
+					colorDict={this.props.colorDict}
+					iconDict={this.props.iconDict}
+				/>
+			)
+		}
+		
 	}
 	
 	switchRenderAlbumExplanation(){

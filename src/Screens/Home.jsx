@@ -486,14 +486,20 @@ export default class Home extends Component {
 							/>
 						</>
 					}
-					<Scatterplot
-						data={this.state.recommendations}
-						sliderValueDict={this.state.sliderValueDict}
-						colorDict={colorDict}
-						handlerLogging = {this.handlerLogging}
-						hidden={this.state.search}
-						handlerHoover={this.handlerHooverScatterplot}
-					/>
+					{this.state.version === 1 ?
+						<Scatterplot
+							data={this.state.recommendations}
+							sliderValueDict={this.state.sliderValueDict}
+							colorDict={colorDict}
+							handlerLogging = {this.handlerLogging}
+							hidden={this.state.search}
+							handlerHoover={this.handlerHooverScatterplot}
+						/>
+						:
+						<div/>
+					
+					}
+					
 					
 				
 				</div>

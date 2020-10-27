@@ -15,7 +15,9 @@
 .playlist{
     width: 50px;
     height: 50px;
-    border-radius: 25px;
+    background-size: 50px ;
+
+    border-radius: 28px;
     border-style: solid;
     border-color: white;
     border-width: 1px;
@@ -27,7 +29,9 @@
 .explSeed{
     width: 30px;
     height: 30px;
-    border-radius: 15px;
+    background-size: 30px ;
+
+    border-radius: 18px;
     border-style: solid;
     border-color: white;
     border-width: 1px;

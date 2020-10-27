@@ -42,6 +42,7 @@ export default class SliderBar extends Component{
 		};
 		
 		
+		
 		return(
 			<>
 			<svg
@@ -93,7 +94,8 @@ export default class SliderBar extends Component{
 				</text>
 			
 			</svg>
-			<ReactTooltip/>
+			{this.props.tooltip ? <ReactTooltip/> : <div/> }
+			
 			</>
 		
 		)

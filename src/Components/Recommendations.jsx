@@ -47,7 +47,7 @@ export default class Recommendations extends Component {
 						uri={rec.uri}
 						title={rec.name}
 						artist={rec.artists[0]['name']}
-						album={rec.album.images[1].url}
+						album={rec.album.images[0].url}
 						preview_url={rec.preview_url}
 						
 						seedId={rec.seedId}

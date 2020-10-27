@@ -43,7 +43,7 @@ export default class InfoSources extends Component{
 				<div
 					className={styleTextContainer}
 				>
-					<h2>Instructions (3)</h2>
+					<h2>Instructions (4)</h2>
 					<p>
 						When you like a recommendation,
 						you can add that recommendation to your playlist

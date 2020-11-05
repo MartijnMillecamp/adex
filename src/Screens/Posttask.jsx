@@ -45,10 +45,10 @@ export default class Posttask extends Component{
 	goToNext(survey){
 		const data = survey.data;
 		const userId = localStorage.getItem('userId');
-		const nfc = localStorage.getItem('nfc');
+		const ms = localStorage.getItem('ms');
 		const versionUI = localStorage.getItem('version');
-		addPostTask(userId, nfc, versionUI, data);
-		addInteraction(userId, nfc, versionUI, 'finishPostTask', 'click', 1);
+		addPostTask(userId, ms, versionUI, data);
+		addInteraction(userId, ms, versionUI, 'finishPostTask', 'click', 1);
 		const nbTested = localStorage.getItem('nbTested');
 		if (parseInt(nbTested) === 0){
 			this.setVersionSecond(userId);

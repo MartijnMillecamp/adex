@@ -8,12 +8,12 @@ export async function addUser(userId, ms, gender, age, attention){
 		age: age,
 		attention: attention,
 	};
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/user",
-	// ].join('');
 	const request = [
-		"http://localhost:5000/api/user",
+		"http://picasso.experiments.cs.kuleuven.be:3018/api/user",
 	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/user",
+	// ].join('');
 	const res = await axios.post(request, data);
 	return res
 }
@@ -29,12 +29,12 @@ export async function addInteraction(userId, ms, versionUI, element, action, val
 		value: value,
 		time: time
 	};
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3008/api/interaction",
-	// ].join('');
 	const request = [
-		"http://localhost:5000/api/interaction",
+		"http://picasso.experiments.cs.kuleuven.be:3018/api/interaction",
 	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/interaction",
+	// ].join('');
 	const res = await axios.post(request, data);
 	return true
 }
@@ -57,7 +57,7 @@ export async function addPostTask(userId, ms, versionUI, responses) {
 	// 	"http://localhost:5000/api/posttask",
 	// ].join('');
 	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3008/api/posttask",
+		"http://picasso.experiments.cs.kuleuven.be:3018/api/posttask",
 	].join('');
 	axios.post(request, data);
 	return true
@@ -82,7 +82,7 @@ export async function addFinal(userId, ms, responses) {
 	// 	"http://localhost:5000/api/final",
 	// ].join('');
 	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3008/api/final",
+		"http://picasso.experiments.cs.kuleuven.be:3018/api/final",
 	].join('');
 	axios.post(request, data);
 	return true

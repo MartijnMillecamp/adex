@@ -129,9 +129,9 @@ export default class Home extends Component {
 	
 	handlerLogging(element, action, value){
 		const userId = localStorage.getItem('userId');
-		const nfc = localStorage.getItem('nfc');
+		const ms = localStorage.getItem('ms');
 		const versionUI = this.state.version;
-		addInteraction(userId, nfc, versionUI, element, action, value);
+		addInteraction(userId, ms, versionUI, element, action, value);
 	}
 	
 	initAllExplanations(){
@@ -238,7 +238,7 @@ export default class Home extends Component {
 			this.setState({
 				playing: null
 			});
-			this.handlerExport()
+			this.handlerExport(newPlaylist)
 		}
 		// else{
 		// 	if (this.state.sources.length < 3){
@@ -344,11 +344,11 @@ export default class Home extends Component {
 		})
 	}
 	
-	handlerExport(){
+	handlerExport(playlist){
 		this.props.history.push({
 			pathname: '/Export',
 			state: {
-				playlist : this.state.playlist,
+				playlist : playlist,
 				access_token : this.state.accessToken,
 			}
 		})

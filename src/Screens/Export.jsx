@@ -18,9 +18,9 @@ export default class Export extends Component{
 	
 	goToPostTaskQuestionnaire(){
 		const userId = localStorage.getItem('userId');
-		const nfc = localStorage.getItem('nfc');
+		const ms = localStorage.getItem('ms');
 		const versionUI = localStorage.getItem('version');
-		addInteraction(userId, nfc, versionUI, 'goToPostTask', 'click', 1);
+		addInteraction(userId, ms, versionUI, 'goToPostTask', 'click', 1);
 		this.props.history.push({
 			pathname: '/PostTask',
 		})
@@ -41,9 +41,9 @@ export default class Export extends Component{
 		const created = await addSongsToPlaylist(playlistId, tracks, accessToken);
 		if (created){
 			const userId = localStorage.getItem('userId');
-			const nfc = localStorage.getItem('nfc');
+			const ms = localStorage.getItem('ms');
 			const versionUI = localStorage.getItem('version');
-			addInteraction(userId, nfc, versionUI, 'exportPlaylist', 'click', 1);
+			addInteraction(userId, ms, versionUI, 'exportPlaylist', 'click', 1);
 			this.goToPostTaskQuestionnaire();
 		}
 	}

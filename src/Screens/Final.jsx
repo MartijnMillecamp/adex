@@ -19,9 +19,9 @@ export default class Final extends Component{
 	goToNext(survey){
 		const data = survey.data;
 		const userId = localStorage.getItem('userId');
-		const nfc = localStorage.getItem('nfc');
-		addFinal(userId, nfc, data);
-		addInteraction(userId, nfc, -1, 'goToThanks', 'click', 1);
+		const ms = localStorage.getItem('ms');
+		addFinal(userId, ms, data);
+		addInteraction(userId, ms, -1, 'goToThanks', 'click', 1);
 		this.props.history.push({
 			pathname: '/Thanks',
 		})

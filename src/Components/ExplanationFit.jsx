@@ -4,7 +4,9 @@ import styles from '../Styling/ExplanationFit.module.css';
 import classnames from 'classnames';
 import Album from './Album'
 import ExplanationFeatures from './ExplanationFeatures'
-import ReactTooltip from "react-tooltip";
+
+import {addInteraction} from "../Utils/API";
+
 
 
 export default class ExplanationFit extends Component{
@@ -23,6 +25,10 @@ export default class ExplanationFit extends Component{
 	}
 	
 	handlerShowBars(){
+		const userId = localStorage.getItem('userId');
+		const ms = localStorage.getItem('ms');
+		const versionUI = localStorage.getItem('version');
+		addInteraction(userId, ms, versionUI, 'showBars', 'hover', 1);
 		this.setState({
 				bars: true
 			}
@@ -98,7 +104,6 @@ export default class ExplanationFit extends Component{
 					{fit}
 				</text>
 			</svg>
-			<ReactTooltip />
 			</>
 		)
 		

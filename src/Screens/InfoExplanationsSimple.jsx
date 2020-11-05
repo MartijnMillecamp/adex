@@ -17,9 +17,9 @@ export default class InfoExplanations extends Component{
 	
 	clickButton(){
 		const userId = localStorage.getItem('userId');
-		const nfc = localStorage.getItem('nfc');
+		const ms = localStorage.getItem('ms');
 		const versionUI = localStorage.getItem('version');
-		addInteraction(userId, nfc, versionUI, 'InfoExplanations', 'click', 1);
+		addInteraction(userId, ms, versionUI, 'InfoExplanations', 'click', 1);
 		this.props.history.push({
 			pathname: '/InfoSources',
 		})

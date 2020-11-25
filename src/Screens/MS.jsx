@@ -44,31 +44,34 @@ export default class MS extends Component{
 	calculateMS(survey){
 		const data = survey.data;
 		let nbQuestions = 18;
-		let total = 0;
+		let ms = 0;
 		let reversed = [7,9,11,13,14];
 		for (let i = 1; i < nbQuestions +1; i++){
 			let rawScore = parseInt(data['question' + i]);
 			if (reversed.indexOf(i) !== -1 ){
-				total += (8 - rawScore)
+				ms += (8 - rawScore)
 			}
 			else{
-				total += (rawScore)
+				ms += (rawScore)
 			}
 		}
-		localStorage.setItem('ms', total );
+		localStorage.setItem('ms', ms );
 		
 		const userId = localStorage.getItem('userId');
 		let gender = survey.data['question19'];
 		let age = survey.data['question20'];
-		let attention = survey.data['question21'];
-		addUser(userId, total, gender, age, attention);
+		let attentionms = survey.data['question21'];
+		let nfc = localStorage.getItem('nfc');
+		let attentionnfc = localStorage.getItem('attentionnfc');
+		
+		addUser(userId, ms, nfc, gender, age, attentionnfc, attentionms);
 		
 		this.setVersion(userId);
 		
-		addInteraction(userId, total, 0, 'MS', 'click', 1);
+		addInteraction(userId, ms, 0, 'MS', 'click', 1);
 		
 		this.props.history.push({
-			pathname: '/Login',
+			pathname: '/InfoSliders',
 		})
 	}
 	

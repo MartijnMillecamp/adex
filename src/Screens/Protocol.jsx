@@ -17,7 +17,7 @@ export default class Protocol extends Component{
 		addInteraction(userId, -1, 0, 'Protocol', 'click', 1);
 		
 		this.props.history.push({
-			pathname: '/MS',
+			pathname: '/NFC',
 		})
 	}
 	
@@ -44,9 +44,9 @@ export default class Protocol extends Component{
 					<p>As illustrated by the figure, the experiment will follow the next steps:					</p>
 					
 					<ul>
-							<li>On the next page you will be asked to fill in a questionnaire about your thinking style.</li>
-							<li>Afterwards you will be asked to login to your Spotify account.</li>
-							<li>In the next step, you will get a small tutorial about the application.</li>
+							<li>On the next page you will be asked to fill in questionnaires about your thinking style and your music experience.</li>
+							<li>Afterwards, you will get a small tutorial about the application.</li>
+							<li>In the next step, you will be asked to login to your Spotify account.</li>
 							<li>Then you will be redirected to the application to create a playlist.</li>
 							<li>After creating this playlist, you will be asked to evaluate the application.</li>
 							<li>Repeat steps 4 and 5 but in a different version of the application.</li>

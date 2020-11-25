@@ -1,20 +1,23 @@
 import axios from 'axios'
 
-export async function addUser(userId, ms, gender, age, attention){
+export async function addUser(userId, ms, nfc, gender, age, attentionNFC, attentionMS){
 	const data = {
 		userId: userId,
 		ms: ms,
+		nfc: nfc,
 		gender: gender,
 		age: age,
-		attention: attention,
+		attentionNFC: attentionNFC,
+		attentionMS: attentionMS
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3018/api/user",
-	].join('');
 	// const request = [
-	// 	"http://localhost:5000/api/user",
+	// 	"http://picasso.experiments.cs.kuleuven.be:3018/api/user",
 	// ].join('');
+	const request = [
+		"http://localhost:5000/api/user",
+	].join('');
 	const res = await axios.post(request, data);
+	console.log(res);
 	return res
 }
 
@@ -29,12 +32,12 @@ export async function addInteraction(userId, ms, versionUI, element, action, val
 		value: value,
 		time: time
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3018/api/interaction",
-	].join('');
 	// const request = [
-	// 	"http://localhost:5000/api/interaction",
+	// 	"http://picasso.experiments.cs.kuleuven.be:3018/api/interaction",
 	// ].join('');
+	const request = [
+		"http://localhost:5000/api/interaction",
+	].join('');
 	const res = await axios.post(request, data);
 	return true
 }
@@ -53,12 +56,12 @@ export async function addPostTask(userId, ms, versionUI, responses) {
 		feature: responses['question6'],
 		attention: responses['question7']
 	};
-	// const request = [
-	// 	"http://localhost:5000/api/posttask",
-	// ].join('');
 	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3018/api/posttask",
+		"http://localhost:5000/api/posttask",
 	].join('');
+	// const request = [
+	// 	"http://picasso.experiments.cs.kuleuven.be:3018/api/posttask",
+	// ].join('');
 	axios.post(request, data);
 	return true
 }
@@ -78,12 +81,12 @@ export async function addFinal(userId, ms, responses) {
 		technical: responses['question3'],
 		other: responses['question4'],
 	};
-	// const request = [
-	// 	"http://localhost:5000/api/final",
-	// ].join('');
 	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3018/api/final",
+		"http://localhost:5000/api/final",
 	].join('');
+	// const request = [
+	// 	"http://picasso.experiments.cs.kuleuven.be:3018/api/final",
+	// ].join('');
 	axios.post(request, data);
 	return true
 }

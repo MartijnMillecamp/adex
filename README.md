@@ -25,7 +25,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 #Deployment
 
 ##MongoDB
-podman run -d --name mongoAdexMS -p 3017:27017 \
+podman run -d --name mongoAdexMS -p 3027:27017 \
      -v ./data:/data/db \
      -e MONGO_INITDB_ROOT_USERNAME=admin \
      -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:4.4

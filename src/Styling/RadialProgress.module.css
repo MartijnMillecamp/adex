@@ -1,0 +1,16 @@
+.circle{
+    stroke-width: 2px;
+    -webkit-text-stroke-color: green;
+    fill: none;
+    stroke: green;
+    stroke-linecap: round;
+    cursor: pointer;
+}
+
+.text{
+    font-size: 10px;
+    text-anchor: middle;
+    line-height: 125px ;
+    cursor: pointer;
+
+}

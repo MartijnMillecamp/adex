@@ -129,9 +129,9 @@ export default class Home extends Component {
 	
 	handlerLogging(element, action, value){
 		const userId = localStorage.getItem('userId');
-		const ms = localStorage.getItem('ms');
+		const openness = localStorage.getItem('openness');
 		const versionUI = this.state.version;
-		addInteraction(userId, ms, versionUI, element, action, value);
+		addInteraction(userId, openness, versionUI, element, action, value);
 	}
 	
 	initAllExplanations(){

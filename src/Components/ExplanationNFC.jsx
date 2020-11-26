@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../Styling/global.css';
-import styles from '../Styling/ExplanationFull.module.css';
+import styles from '../Styling/ExplanationNFC.module.css';
 import classnames from 'classnames';
 import ExplanationSeed from "./ExplanationSeed";
 import ExplanationFeatures from "./ExplanationFeatures";

@@ -21,9 +21,9 @@ export default class InfoSliders extends Component{
 	
 	clickButton(){
 		const userId = localStorage.getItem('userId');
-		const ms = localStorage.getItem('ms');
+		const openness = localStorage.getItem('openness');
 		const versionUI = localStorage.getItem('version');
-		addInteraction(userId, ms, versionUI, 'InfoSliders', 'click', 1);
+		addInteraction(userId, openness, versionUI, 'InfoSliders', 'click', 1);
 		this.props.history.push({
 			pathname: '/InfoExplanations',
 		})

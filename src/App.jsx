@@ -5,6 +5,7 @@ import Welcome from "./Screens/Welcome"
 import Protocol from "./Screens/Protocol"
 import NFC from "./Screens/NFC"
 import MS from "./Screens/MS"
+import Openness from "./Screens/Openness"
 import Login from './Screens/Login'
 import InfoSliders from "./Screens/InfoSliders"
 import InfoExplanations from "./Screens/InfoExplanations";
@@ -29,6 +30,7 @@ export default function App() {
 					<Route path="/Protocol" component={Protocol}/>
 					<Route path="/NFC" component={NFC}/>
 					<Route path="/MS" component={MS}/>
+					<Route path="/Openness" component={Openness}/>
 					<Route path="/Login" component={Login}/>
 					<Route path="/InfoSliders" component={InfoSliders}/>
 					<Route path="/InfoExplanations" component={InfoExplanations}/>

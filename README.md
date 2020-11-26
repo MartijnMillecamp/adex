@@ -25,7 +25,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 #Deployment
 
 ##MongoDB
-podman run -d --name mongoAdexMS -p 3017:27017 \
+podman run -d --name mongoAdexOpenness -p 3027:27017 \
      -v ./data:/data/db \
      -e MONGO_INITDB_ROOT_USERNAME=admin \
      -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:4.4
@@ -36,7 +36,7 @@ podman run -d --name mongoAdexMS -p 3017:27017 \
 3. unzip
 4. cd nodeServer
 5. docker build -t nodeserverms:mongo .
-6. docker run --publish 3018:5000 --detach --name nodeserverms --restart on-failure:5 nodeserverms:mongo
+6. docker run --publish 3028:5000 --detach --name nodeserveropenness --restart on-failure:5 nodeserveropenness:mongo
 7. Verify connection: docker logs nodeserver
 
 

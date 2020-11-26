@@ -98,7 +98,7 @@ export default class Login extends Component {
 					this.state.loggedIn
 						? (
 							this.props.history.push({
-								pathname: '/InfoSliders',
+								pathname: '/Home',
 							})
 						)
 						: (

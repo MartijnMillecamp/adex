@@ -20,11 +20,11 @@ export default class InfoSources extends Component{
 	
 	clickButton(){
 		const userId = localStorage.getItem('userId');
-		const ms = localStorage.getItem('ms');
+		const openness = localStorage.getItem('openness');
 		const versionUI = localStorage.getItem('version');
-		addInteraction(userId, ms, versionUI, 'InfoSources', 'click', 1);
+		addInteraction(userId, openness, versionUI, 'InfoSources', 'click', 1);
 		this.props.history.push({
-			pathname: '/Home',
+			pathname: '/Login',
 		})
 	}
 	

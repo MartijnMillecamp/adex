@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../Styling/global.css'
 import classnames from 'classnames'
 import styles from '../Styling/InfoExplanations.module.css';
-import explanations from '../Images/explanations.svg'
+import explanationsOpenness from '../Images/explanationsOpenness.svg'
 import scatterplot from '../Images/scatterplot.svg'
 
 import {addInteraction} from "../Utils/API";
@@ -18,9 +18,9 @@ export default class InfoExplanations extends Component{
 	
 	clickButton(){
 		const userId = localStorage.getItem('userId');
-		const ms = localStorage.getItem('ms');
+		const openness = localStorage.getItem('openness');
 		const versionUI = localStorage.getItem('version');
-		addInteraction(userId, ms, versionUI, 'InfoExplanations', 'click', 1);
+		addInteraction(userId, openness, versionUI, 'InfoExplanations', 'click', 1);
 		this.props.history.push({
 			pathname: '/InfoExplanationsSimple',
 		})
@@ -57,18 +57,19 @@ export default class InfoExplanations extends Component{
 					>
 						<h3>1. Individual explanations</h3>
 						<img
-							src={explanations}
+							src={explanationsOpenness}
 							className={styleExplanationImage}
 							alt="explanationsIndividual"
 						/>
 						<div
 							className={styleTextExplanation}
 						>
-							For each song it will show four different elements:
+							For each song it will show five different elements:
 							<ol>
 								<li>The audio features of the song (bars)</li>
 								<li>The audio features you requested (sliders in background of bars)</li>
-								<li>The difference between the features of this song and the features you requested</li>
+								<li>The difference between the features of the song and the features you requested</li>
+								<li>The goodness of fit between the features of the song and the features you requested</li>
 								<li>The song in your playlist on which this recommendation is based</li>
 							</ol>
 						</div>

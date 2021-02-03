@@ -35,7 +35,7 @@ podman run -d --name mongoAdexOpenness -p 3027:27017 \
 2. place zip on server
 3. unzip
 4. cd nodeServer
-5. docker build -t nodeserverms:mongo .
+5. docker build -t nodeserveropenness:mongo .
 6. docker run --publish 3028:5000 --detach --name nodeserveropenness --restart on-failure:5 nodeserveropenness:mongo
 7. Verify connection: docker logs nodeserver
 
@@ -57,9 +57,9 @@ podman run -d --name mongoAdexOpenness -p 3027:27017 \
 6. put zip on server
 7. unzip 
 8. cd adex
-9. podman stop adex
-10. podman rm adex
-11. podman build -t adex:ms .
-12. podman run -dit --name adexms -p 3019:3000 adex:ms
+9. podman stop adexopenness
+10. podman rm adexopenness
+11. podman build -t adex:openness .
+12. podman run -dit --name adexopenness -p 3029:3000 adex:openness
 
     

@@ -64,19 +64,15 @@ export async function addPostTask(userId, openness, versionUI, responses) {
 }
 
 export async function addFinal(userId, openness, responses) {
-	let comment = "NA";
-	let question1 = responses['question1'][0];
-	if (question1 === "other"){
-		comment = responses['question1-Comment']
-	}
+	console.log(responses['question2'])
 	const data = {
 		userId: userId,
 		openness: openness,
-		prefer: question1,
-		preferComment: comment,
-		why: responses['question2'],
-		technical: responses['question3'],
-		other: responses['question4'],
+		preferUI: responses['question1'],
+		preferExplanation: responses['question2'],
+		why: responses['question3'],
+		technical: responses['question4'],
+		other: responses['question5'],
 	};
 	// const request = [
 	// 	"http://localhost:5000/api/final",

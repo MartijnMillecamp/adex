@@ -1,0 +1,11 @@
+.sv_q_radiogroup_label{
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.sv_q_checkbox_label{
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}

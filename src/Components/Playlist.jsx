@@ -104,11 +104,12 @@ export default class Playlist extends Component{
 		const styleContainerPlaylist = classnames('container-rows', styles.containerPlaylist);
 		const styleHeader = classnames(styles.header);
 		const styleButton = classnames(styles.button);
+		const styleCounter = classnames(styles.counter)
 		return(
 			<div className={styleContainer}>
 				<div className={styleContainerPlaylist}>
 					<h1 className={styleHeader}> Your Playlist </h1>
-					
+					<p className={styleCounter}>nb songs: {list.length} </p>
 					{list.map(song =>
 						(
 							<PlaylistSong

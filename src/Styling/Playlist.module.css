@@ -26,6 +26,14 @@
 .header{
     color: whitesmoke;
     margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.counter{
+    color: whitesmoke;
+    font-size: 15px;
+    font-weight: 200;
+    margin-bottom: 5px;
 }
 
 .button{

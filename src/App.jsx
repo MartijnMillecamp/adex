@@ -15,7 +15,7 @@ import InfoSources from "./Screens/InfoSources";
 import Home from './Screens/Home'
 import Export from "./Screens/Export";
 import Posttask from "./Screens/Posttask";
-import FinalMusicSophistication from "./Screens/FinalMusicSophistication";
+import FinalOpenness from "./Screens/FinalOpenness";
 import Thanks from "./Screens/Thanks";
 import Error from "./Screens/Error";
 
@@ -39,7 +39,7 @@ export default function App() {
 					<Route path="/Home" component={Home}/>
 					<Route path="/Export" component={Export} />
 					<Route path="/Posttask" component={Posttask} />
-					<Route path="/Final" component={FinalMusicSophistication} />
+					<Route path="/Final" component={FinalOpenness} />
 					<Route path="/Thanks" component={Thanks} />
 					<Route path="/Error" component={Error}/>
 					

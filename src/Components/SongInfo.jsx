@@ -143,6 +143,7 @@ export default class SongInfo extends Component{
 							data-tip="Why is this song recommended"
 							alt="Why"
 							onClick={this.toggleExplanation}
+							className={styles.why}
 						/>
 						<ReactTooltip/>
 						</>

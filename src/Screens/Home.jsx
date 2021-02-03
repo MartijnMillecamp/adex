@@ -122,7 +122,7 @@ export default class Home extends Component {
 			2: "relaxing"
 		};
 		const situation = taskDict[taskNb];
-		// alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
+		alert("Your task is to create a playlist of 8 songs you would want to listen during a " + situation + " activity")
 		this.getRecommendations();
 		
 	}
@@ -192,6 +192,7 @@ export default class Home extends Component {
 	}
 	
 	updateRecommenderStatus(status){
+		console.log(status)
 		if (status === "updating"){
 			this.setState({
 				status: status,
@@ -212,6 +213,7 @@ export default class Home extends Component {
 		this.setState({
 			recommendations: recommendations,
 		});
+		
 	}
 	
 	handlerAddToPlaylist(song){
@@ -400,12 +402,16 @@ export default class Home extends Component {
 			const recFilteredPlaylist = filterPlaylist(recFilteredPreview, this.state.playlist)
 			const recOrdered = orderList(recFilteredPlaylist, this.state.sliderValueDict);
 			if (recOrdered.length === 0){
-				this.updateRecommenderStatus('empty')
+				this.updateRecommenderStatus('empty');
+				this.updateRecommendations(recOrdered);
+				
 			}
 			else{
+				this.updateRecommendations(recOrdered);
 				this.updateRecommenderStatus('finished')
+				
+				
 			}
-			this.updateRecommendations(recOrdered);
 			
 		}
 		

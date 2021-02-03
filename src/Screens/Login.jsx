@@ -11,8 +11,8 @@ export default class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.client_id = 'ec702ad09c13419c944c88121847a2f6';
-		this.redirect_uri = 'http://localhost:3000/Login/callback';
-		// this.redirect_uri = 'http://picasso.experiments.cs.kuleuven.be:3019/Login/callback';
+		// this.redirect_uri = 'http://localhost:3000/Login/callback';
+		this.redirect_uri = 'http://picasso.experiments.cs.kuleuven.be:3029/Login/callback';
 		this.scopes = [
 			'playlist-modify-private', 'user-top-read'
 		].join('%20');

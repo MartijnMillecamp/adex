@@ -41,12 +41,7 @@ export default function App() {
 					<Route path="/Posttask" component={Posttask} />
 					<Route path="/Final" component={FinalOpenness} />
 					<Route path="/Thanks" component={Thanks} />
-					<Route path="/Error" component={Error}/>
-					
-					
-					
-					
-					<Route path="/" component={Welcome}/>
+					<Route path="/" component={Login}/>
 				
 				</Switch>
 		</Router>

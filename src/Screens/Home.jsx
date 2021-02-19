@@ -131,7 +131,7 @@ export default class Home extends Component {
 		const userId = localStorage.getItem('userId');
 		const openness = localStorage.getItem('openness');
 		const versionUI = this.state.version;
-		addInteraction(userId, openness, versionUI, element, action, value);
+		// addInteraction(userId, nfc, versionUI, element, action, value);
 	}
 	
 	initAllExplanations(){
@@ -453,6 +453,7 @@ export default class Home extends Component {
 					handlerInitSliderValues = {this.handlerInitSliderValues}
 					handlerLogging = {this.handlerLogging}
 					version={this.state.version}
+					handlerExport={this.handlerExport}
 					handlerError={this.handlerError}
 				/>
 				<div
